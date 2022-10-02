@@ -1,4 +1,4 @@
-package uet.oop.bomberman.inPut;
+package bomberman.inPut;
 
 import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;

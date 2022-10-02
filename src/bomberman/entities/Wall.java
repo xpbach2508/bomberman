@@ -1,10 +1,10 @@
-package uet.oop.bomberman.entities;
+package bomberman.entities;
 
 import javafx.scene.image.Image;
 
-public class Portal extends Entity {
+public class Wall extends Entity {
 
-    public Portal(int x, int y, Image img) {
+    public Wall(int x, int y, Image img) {
         super(x, y, img);
     }
 
