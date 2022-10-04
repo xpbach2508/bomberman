@@ -1,4 +1,4 @@
-package uet.oop.bomberman;
+package bomberman;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -7,10 +7,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.inPut.handleInput;
+import bomberman.entities.Bomber;
+import bomberman.entities.Entity;
+import bomberman.graphics.Sprite;
+import bomberman.inPut.handleInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,4 +83,9 @@ public class BombermanGame extends Application {
             g.render(gc);
         }
     }
+
+    public static void main(String[] args) {
+        Application.launch(BombermanGame.class);
+    }
+
 }

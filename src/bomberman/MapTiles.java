@@ -1,13 +1,12 @@
-package uet.oop.bomberman;
+package bomberman;
 
-import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.entities.*;
+import bomberman.graphics.Sprite;
+import bomberman.entities.*;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.WildcardType;
 import java.util.List;
 
 public class MapTiles {
