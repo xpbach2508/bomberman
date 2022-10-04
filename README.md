@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Bài tập lớn số 2 - Bomberman (UET OASIS - INT2204 21 - Lập trình hướng đối tượng)
+Bài tập lớn - Bomberman (UET OASIS - INT2204 21 - Lập trình hướng đối tượng)
 
 ## UML Diagram
 
