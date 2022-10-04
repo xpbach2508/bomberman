@@ -14,6 +14,8 @@ public abstract class Entity {
     //Tọa độ Y tính từ góc trái trên trong Canvas
     public int y;
 
+    protected Sprite sprite;
+
     protected Image img;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
@@ -21,6 +23,10 @@ public abstract class Entity {
         this.x = xUnit * Sprite.SCALED_SIZE;
         this.y = yUnit * Sprite.SCALED_SIZE;
         this.img = img;
+    }
+
+    public Entity() {
+
     }
 
     public void render(GraphicsContext gc) {

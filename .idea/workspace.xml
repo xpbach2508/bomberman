@@ -4,47 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/JFX.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/MapTiles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Buff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Enemies.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Grass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Portal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Wall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/graphics/Sprite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/graphics/SpriteSheet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/inPut/handleInput.java" afterDir="false" />
+    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Change some settings">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bomberman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Bomberman.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/MapTiles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Buff.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Enemies.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Entity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Grass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Portal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Wall.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/Sprite.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/SpriteSheet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/inPut/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/inPut/handleInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/inPut/handleInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/inPut/handleInput.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +27,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -76,20 +49,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/PROJ/bomberman&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Programming/PROJ/Project2OOP-main/Project2OOP-main/BombermanGame",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="bomberman.BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bomberman.BombermanGame" />
@@ -120,8 +93,18 @@
       <option name="presentableId" value="Default" />
       <updated>1664376886130</updated>
       <workItem from="1664713189523" duration="1849000" />
-      <workItem from="1664721503039" duration="1008000" />
+      <workItem from="1664721503039" duration="4269000" />
+      <workItem from="1664729097854" duration="53000" />
+      <workItem from="1664898626679" duration="6146000" />
     </task>
+    <task id="LOCAL-00001" summary="Change some settings">
+      <created>1664722778659</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664722778659</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,5 +120,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Change some settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change some settings" />
   </component>
 </project>
