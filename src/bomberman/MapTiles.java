@@ -1,5 +1,7 @@
 package bomberman;
 
+import bomberman.entities.buff.*;
+import bomberman.entities.tile.*;
 import bomberman.graphics.Sprite;
 import bomberman.entities.*;
 
@@ -37,13 +39,15 @@ public class MapTiles {
                             StillObject.add(object);
                             break;
                         case '*':
-                            object = new Wall(i, row, Sprite.brick.getFxImage());
+                            object = new Brick(i, row, Sprite.brick.getFxImage());
                             tiles[row][i] = "1";
                             StillObject.add(object);
                             break;
                         case 'x':
                             object = new Portal(i, row, Sprite.portal.getFxImage());
                             tiles[row][i] = "1";
+                            StillObject.add(object);
+                            object = new Brick(i, row, Sprite.brick.getFxImage());
                             StillObject.add(object);
                             break;
                         case '1':
@@ -56,8 +60,18 @@ public class MapTiles {
                             tiles[row][i] = "1";
                             entities.add(object);
                             break;
-                        case '3':
-                            object = new Buff(i, row, Sprite.powerup_bombs.getFxImage());
+                        case 'b':
+                            object = new BombBuff(i, row, Sprite.powerup_bombs.getFxImage());
+                            tiles[row][i] = "1";
+                            StillObject.add(object);
+                            break;
+                        case 'f':
+                            object = new FlameBuff(i, row, Sprite.powerup_flames.getFxImage());
+                            tiles[row][i] = "1";
+                            StillObject.add(object);
+                            break;
+                        case 's':
+                            object = new SpeedBuff(i, row, Sprite.powerup_speed.getFxImage());
                             tiles[row][i] = "1";
                             StillObject.add(object);
                             break;

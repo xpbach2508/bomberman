@@ -64,20 +64,27 @@ public class Bomber extends AnimatedEntity {
                     moveX += -1;
                     direct = 3;
             }
-            if (dir.right) {
+            else if (dir.right) {
                     moving = true;
                     moveX += 1;
                     direct = 1;
             }
-            if (dir.up) {
+            else if (dir.up) {
                     moving = true;
                     moveY += -1;
                     direct = 0;
             }
-            if (dir.down) {
+            else if (dir.down) {
                     moving = true;
                     moveY += 1;
                     direct = 2;
             }
+            else moving = false;
+    }
+
+    @Override
+    public boolean collide(Entity e) {
+
+        return false;
     }
 }

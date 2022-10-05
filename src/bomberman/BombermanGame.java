@@ -20,7 +20,7 @@ public class BombermanGame extends Application {
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
 
-    private GraphicsContext gc;
+    private GraphicsContext graContext;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
     private List<Entity> stillObjects = new ArrayList<>();
@@ -30,7 +30,7 @@ public class BombermanGame extends Application {
     public void start(Stage stage) {
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
-        gc = canvas.getGraphicsContext2D();
+        graContext = canvas.getGraphicsContext2D();
 
         // Tao root container
         Pane root = new Pane();
@@ -38,7 +38,7 @@ public class BombermanGame extends Application {
 
         // Tao scene
         Scene scene = new Scene(root);
-        Bomber player = new Bomber(1,1,Sprite.player_right.getFxImage());
+        Bomber player = new Bomber(2,2,Sprite.player_right.getFxImage());
         entities.add(player);
         map.getObject(entities,stillObjects);
 
@@ -75,12 +75,12 @@ public class BombermanGame extends Application {
     }
 
     public void render() {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        graContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (Entity stillObject : stillObjects) {
-            stillObject.render(gc);
+            stillObject.render(graContext);
         }
         for (Entity g : entities) {
-            g.render(gc);
+            g.render(graContext);
         }
     }
 

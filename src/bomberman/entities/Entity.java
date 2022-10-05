@@ -9,10 +9,10 @@ import bomberman.graphics.Sprite;
 
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
-    public int x;
+    protected int x;
 
     //Tọa độ Y tính từ góc trái trên trong Canvas
-    public int y;
+    protected int y;
 
     protected Sprite sprite;
 
@@ -25,12 +25,20 @@ public abstract class Entity {
         this.img = img;
     }
 
+    public Entity(int xUnit, int yUnit) {
+        this.x = xUnit * Sprite.SCALED_SIZE;
+        this.y = yUnit * Sprite.SCALED_SIZE;
+    }
+
     public Entity() {
 
     }
 
-    public void render(GraphicsContext gc) {
-        gc.drawImage(img, x, y);
+    public void render(GraphicsContext graContext) {
+        graContext.drawImage(img, x, y);
     }
+
+    public abstract boolean collide(Entity e);
+
     public abstract void update();
 }

@@ -5,4 +5,9 @@ public class Bomb extends Entity {
     public void update() {
         return;
     }
+
+    @Override
+    public boolean collide(Entity e) {
+        return false;
+    }
 }

@@ -4,15 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Change some settings">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Handled input.">
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/WrapperBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/BombBuff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/Buff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/FlameBuff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/SpeedBuff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/tile/Brick.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/tile/Grass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/tile/Portal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/tile/Wall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/levels/Level1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/Level1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/MapTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/MapTiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Buff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Enemies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Enemies.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/inPut/handleInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/inPut/handleInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Grass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Portal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Wall.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/levels/Level1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/levels/Level1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +69,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Programming/PROJ/Project2OOP-main/Project2OOP-main/BombermanGame",
+    "last_opened_file_path": "D:/Programming/PROJ/bomberman-master/bomberman-master",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.15",
@@ -95,7 +109,10 @@
       <workItem from="1664713189523" duration="1849000" />
       <workItem from="1664721503039" duration="4269000" />
       <workItem from="1664729097854" duration="53000" />
-      <workItem from="1664898626679" duration="6146000" />
+      <workItem from="1664898626679" duration="6354000" />
+      <workItem from="1664951185449" duration="600000" />
+      <workItem from="1664959192596" duration="2244000" />
+      <workItem from="1664984195133" duration="7851000" />
     </task>
     <task id="LOCAL-00001" summary="Change some settings">
       <created>1664722778659</created>
@@ -104,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664722778659</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Handled input.">
+      <created>1664906423040</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664906423040</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +147,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Change some settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change some settings" />
+    <MESSAGE value="Handled input." />
+    <option name="LAST_COMMIT_MESSAGE" value="Handled input." />
   </component>
 </project>

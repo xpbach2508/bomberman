@@ -2,12 +2,14 @@ package bomberman.entities;
 
 import javafx.scene.image.Image;
 
-public class Enemies extends Entity {
-
-    public Enemies(int x, int y, Image img) {
-        super(x,y,img);
+public abstract class WrapperBox extends Entity {
+    public WrapperBox(int x, int y) {
+        super(x, y);
     }
 
+    public WrapperBox(int x, int y, Image img) {
+        super(x, y ,img);
+    }
 
     @Override
     public boolean collide(Entity e) {
