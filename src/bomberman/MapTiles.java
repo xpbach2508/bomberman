@@ -16,7 +16,7 @@ public class MapTiles {
     public static int WIDTH ;
     public static int HEIGHT ;
 
-    public String[][] tiles = new String[13][31];
+    public static String[][] tiles = new String[13][31];
 
     public void getObject(List<Entity> entities, List<Entity> StillObject) {
         try {
