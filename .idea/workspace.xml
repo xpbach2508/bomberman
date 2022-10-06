@@ -4,29 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Handled input.">
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/WrapperBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/BombBuff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/Buff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/FlameBuff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/SpeedBuff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/tile/Brick.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/tile/Grass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/tile/Portal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bomberman/entities/tile/Wall.java" afterDir="false" />
+    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Added some base classes. Collision is bein added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/levels/Level1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/Level1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/MapTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/MapTiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Buff.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Enemies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Enemies.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Grass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Portal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Wall.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/levels/Level1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/levels/Level1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,20 +42,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Programming/PROJ/bomberman-master/bomberman-master",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programming/PROJ/bomberman-master/bomberman-master&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="bomberman.BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bomberman.BombermanGame" />
@@ -112,7 +91,8 @@
       <workItem from="1664898626679" duration="6354000" />
       <workItem from="1664951185449" duration="600000" />
       <workItem from="1664959192596" duration="2244000" />
-      <workItem from="1664984195133" duration="7851000" />
+      <workItem from="1664984195133" duration="8058000" />
+      <workItem from="1665076516090" duration="715000" />
     </task>
     <task id="LOCAL-00001" summary="Change some settings">
       <created>1664722778659</created>
@@ -128,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664906423040</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added some base classes. Collision is bein added.">
+      <created>1664996245554</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664996245554</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +135,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Change some settings" />
     <MESSAGE value="Handled input." />
-    <option name="LAST_COMMIT_MESSAGE" value="Handled input." />
+    <MESSAGE value="Added some base classes. Collision is bein added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some base classes. Collision is bein added." />
   </component>
 </project>
