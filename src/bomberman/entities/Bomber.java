@@ -1,24 +1,12 @@
 package bomberman.entities;
 
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import bomberman.MapTiles;
-import bomberman.inPut.handleInput;
+import javafx.scene.image.Image;
 import bomberman.graphics.Sprite;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Bomber extends AnimatedEntity {
 
-    public int moveX, moveY;
-
-    protected int direct = -1;
-
-    protected boolean moving = false;
+    public int aniX, aniY;
 
     public Bomber(int x, int y, Image img) {
         this.x = x;
@@ -28,56 +16,33 @@ public class Bomber extends AnimatedEntity {
 
     @Override
     public void update() {
-        animate();
-        x += moveX;
-        y += moveY;
-        chooseSprite();
-        this.img = sprite.getFxImage();
     }
 
-    private void chooseSprite() {
-        switch (direct) {
-            case 0 -> {
-                sprite = Sprite.player_up;
-                if (moving) sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 20);
-            }
-            case 2 -> {
-                sprite = Sprite.player_down;
-                if (moving) sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 20);
-            }
-            case 3 -> {
-                sprite = Sprite.player_left;
-                if (moving) sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 20);
-            }
-            default -> {
-                sprite = Sprite.player_right;
-                if (moving) sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 20);
-            }
+    public void moveUp() {
+        if (MapTiles.tiles[y/32 - 1][x/32] == "grass") {
+            y -= 32;
+            this.img = Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, y, 20).getFxImage();
         }
     }
 
-    public void move(handleInput dir, MapTiles map, List<Entity> all) {
-        moveX = 0;
-        moveY = 0;
-            if (dir.left) {
-                    moving = true;
-                    moveX += -1;
-                    direct = 3;
+    public void moveDown() {
+        if (MapTiles.tiles[y/32 + 1][x/32] == "grass") {
+            y += 32;
+            this.img = Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, y, 20).getFxImage();
+        }
+    }
+
+    public void moveLeft() {
+            if (MapTiles.tiles[y/32][x/32 - 1] == "grass") {
+                x -= 32;
+                this.img = Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, x, 20).getFxImage();
             }
-            if (dir.right) {
-                    moving = true;
-                    moveX += 1;
-                    direct = 1;
-            }
-            if (dir.up) {
-                    moving = true;
-                    moveY += -1;
-                    direct = 0;
-            }
-            if (dir.down) {
-                    moving = true;
-                    moveY += 1;
-                    direct = 2;
+    }
+
+    public void moveRight() {
+            if (MapTiles.tiles[y/32][x/32 + 1] == "grass") {
+                x += 32;
+                this.img = Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, x, 20).getFxImage();
             }
     }
 }

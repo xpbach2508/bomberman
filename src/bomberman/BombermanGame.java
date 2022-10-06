@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import bomberman.entities.Bomber;
 import bomberman.entities.Entity;
 import bomberman.graphics.Sprite;
-import bomberman.inPut.handleInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +37,27 @@ public class BombermanGame extends Application {
 
         // Tao scene
         Scene scene = new Scene(root);
-        Bomber player = new Bomber(1,1,Sprite.player_right.getFxImage());
+        Bomber player = new Bomber(32,32,Sprite.player_right.getFxImage());
         entities.add(player);
         map.getObject(entities,stillObjects);
 
-        handleInput direction = new handleInput();
-        scene.setOnKeyPressed(direction::handlePressed);
+        scene.setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case UP:
+                    player.moveUp();
+                    break;
+                case DOWN:
+                    player.moveDown();
+                    break;
+                case LEFT:
+                    player.moveLeft();
+                    break;
+                case RIGHT:
+                    player.moveRight();
+                    break;
+            }
+        });
 
-        scene.setOnKeyReleased(direction::handleReleased);
-
-        // Them scene vao stage
         stage.setScene(scene);
         stage.show();
 
@@ -58,14 +68,11 @@ public class BombermanGame extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                player.move(direction, map, stillObjects);
                 render();
                 update();
             }
         };
         timer.start();
-
-
     }
 
     public void update() {

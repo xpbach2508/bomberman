@@ -11,7 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bomberman" target="18" />
-      <module name="Bomberman" target="18" />
+      <module name="Bomberman" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>
