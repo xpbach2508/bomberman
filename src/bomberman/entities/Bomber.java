@@ -1,5 +1,6 @@
 package bomberman.entities;
 
+import bomberman.entities.buff.SpeedBuff;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -8,6 +9,7 @@ import javafx.scene.paint.Color;
 import bomberman.MapTiles;
 import bomberman.inPut.handleInput;
 import bomberman.graphics.Sprite;
+import bomberman.BombermanGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,10 @@ public class Bomber extends AnimatedEntity {
 
     protected boolean moving = false;
 
+    protected int bomberSpeed = 1;
+
     public Bomber(int x, int y, Image img) {
-        this.x = x;
-        this.y = y;
-        this.img = img;
+        super(x, y, img);
     }
 
     @Override
@@ -32,6 +34,7 @@ public class Bomber extends AnimatedEntity {
         x += moveX;
         y += moveY;
         chooseSprite();
+        //System.out.println("Toa do" + x + " " + y + " o thu ");
         this.img = sprite.getFxImage();
     }
 
@@ -61,22 +64,22 @@ public class Bomber extends AnimatedEntity {
         moveY = 0;
             if (dir.left) {
                     moving = true;
-                    moveX += -1;
+                    moveX += -bomberSpeed;
                     direct = 3;
             }
             else if (dir.right) {
                     moving = true;
-                    moveX += 1;
+                    moveX += bomberSpeed;
                     direct = 1;
             }
             else if (dir.up) {
                     moving = true;
-                    moveY += -1;
+                    moveY += -bomberSpeed;
                     direct = 0;
             }
             else if (dir.down) {
                     moving = true;
-                    moveY += 1;
+                    moveY += bomberSpeed;
                     direct = 2;
             }
             else moving = false;
@@ -84,7 +87,10 @@ public class Bomber extends AnimatedEntity {
 
     @Override
     public boolean collide(Entity e) {
-
         return false;
+    }
+
+    public void setBomberSpeed() {
+        this.bomberSpeed = this.bomberSpeed + 2;
     }
 }

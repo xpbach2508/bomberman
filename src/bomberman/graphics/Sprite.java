@@ -240,6 +240,14 @@ public class Sprite {
 		return SIZE;
 	}
 
+	public int get_realHeight() {
+		return _realHeight;
+	}
+
+	public int get_realWidth() {
+		return _realWidth;
+	}
+
 	public int getPixel(int i) {
 		return _pixels[i];
 	}

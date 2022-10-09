@@ -14,6 +14,8 @@ public abstract class Entity {
     //Tọa độ Y tính từ góc trái trên trong Canvas
     protected int y;
 
+    private boolean removed;
+
     protected Sprite sprite;
 
     protected Image img;
@@ -41,4 +43,28 @@ public abstract class Entity {
     public abstract boolean collide(Entity e);
 
     public abstract void update();
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public boolean isRemoved() {
+        return removed;
+    }
+
+    public void removed() {
+        this.removed = true;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public Image getImg() {
+        return img;
+    }
 }

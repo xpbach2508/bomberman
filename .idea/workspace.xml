@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Added some base classes. Collision is bein added.">
+      <change afterPath="$PROJECT_DIR$/src/bomberman/Collision.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/WrapperBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/WrapperBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/BombBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/BombBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/FlameBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/FlameBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/SpeedBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/SpeedBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/graphics/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/graphics/Sprite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +58,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/PROJ/bomberman-master/bomberman-master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programming/PROJ/OASIS/Week10&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -93,6 +103,13 @@
       <workItem from="1664959192596" duration="2244000" />
       <workItem from="1664984195133" duration="8058000" />
       <workItem from="1665076516090" duration="715000" />
+      <workItem from="1665107367828" duration="5705000" />
+      <workItem from="1665123222771" duration="88000" />
+      <workItem from="1665127014667" duration="280000" />
+      <workItem from="1665164667007" duration="4847000" />
+      <workItem from="1665225745927" duration="2096000" />
+      <workItem from="1665241899074" duration="2000" />
+      <workItem from="1665330001125" duration="1626000" />
     </task>
     <task id="LOCAL-00001" summary="Change some settings">
       <created>1664722778659</created>

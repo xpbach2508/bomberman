@@ -38,7 +38,7 @@ public class BombermanGame extends Application {
 
         // Tao scene
         Scene scene = new Scene(root);
-        Bomber player = new Bomber(2,2,Sprite.player_right.getFxImage());
+        Bomber player = new Bomber(1,1,Sprite.player_right.getFxImage());
         entities.add(player);
         map.getObject(entities,stillObjects);
 
@@ -59,18 +59,23 @@ public class BombermanGame extends Application {
             @Override
             public void handle(long l) {
                 player.move(direction, map, stillObjects);
+                update(player);
                 render();
-                update();
             }
         };
         timer.start();
-
-
     }
 
-    public void update() {
+    public void update(Bomber player) {
         for (Entity entity : entities) {
             entity.update();
+        }
+        for (int i = 0; i < stillObjects.size(); i++) {
+            Entity e = stillObjects.get(i);
+            if (e.collide(player)) {
+                stillObjects.remove(i);
+                i--;
+            }
         }
     }
 
@@ -82,6 +87,15 @@ public class BombermanGame extends Application {
         for (Entity g : entities) {
             g.render(graContext);
         }
+    }
+
+    public Entity getStillEntityAt(int x, int y) {
+        for (Entity e : stillObjects) {
+            if (e.getX() == x && e.getY() == y) {
+                return e;
+            }
+        }
+        return null;
     }
 
     public static void main(String[] args) {
