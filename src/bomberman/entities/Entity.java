@@ -52,6 +52,14 @@ public abstract class Entity {
         return y;
     }
 
+    public int getTileX() {
+        return (int) x / Sprite.SCALED_SIZE;
+    }
+
+    public int getTileY() {
+        return (int) y / Sprite.SCALED_SIZE;
+    }
+
     public boolean isRemoved() {
         return removed;
     }

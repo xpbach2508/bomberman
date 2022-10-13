@@ -1,6 +1,8 @@
 package bomberman.entities;
 
+import bomberman.Collision;
 import bomberman.entities.buff.SpeedBuff;
+import bomberman.entities.tile.Wall;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -13,6 +15,8 @@ import bomberman.BombermanGame;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static bomberman.BombermanGame.getStillEntityAt;
 
 public class Bomber extends AnimatedEntity {
 
@@ -34,8 +38,8 @@ public class Bomber extends AnimatedEntity {
         x += moveX;
         y += moveY;
         chooseSprite();
-        //System.out.println("Toa do" + x + " " + y + " o thu ");
         this.img = sprite.getFxImage();
+        //System.out.println(x + " " + y);
     }
 
     private void chooseSprite() {
@@ -63,34 +67,47 @@ public class Bomber extends AnimatedEntity {
         moveX = 0;
         moveY = 0;
             if (dir.left) {
-                    moving = true;
+                moving = true;
+                if (canMove(x - bomberSpeed, y)) {
                     moveX += -bomberSpeed;
                     direct = 3;
+                    //System.out.println("left");
+                }
             }
             else if (dir.right) {
-                    moving = true;
-                    moveX += bomberSpeed;
-                    direct = 1;
+                moving = true;
+                if (canMove(x + bomberSpeed, y)) {
+                        moveX += bomberSpeed;
+                        direct = 1;
+                        //System.out.println("right");
+                    }
             }
             else if (dir.up) {
-                    moving = true;
-                    moveY += -bomberSpeed;
-                    direct = 0;
+                moving = true;
+                if (canMove(x, y - bomberSpeed)) {
+                        moveY += -bomberSpeed;
+                        direct = 0;
+                        //System.out.println("up");
+                    }
             }
             else if (dir.down) {
-                    moving = true;
-                    moveY += bomberSpeed;
-                    direct = 2;
+                moving = true;
+                if (canMove(x, y + bomberSpeed)) {
+                        moveY += bomberSpeed;
+                        direct = 2;
+                        //System.out.println("down");
+                    }
             }
             else moving = false;
     }
 
     @Override
     public boolean collide(Entity e) {
-        return false;
+        Collision check = new Collision();
+        return check.checkCollision(this, e);
     }
 
     public void setBomberSpeed() {
-        this.bomberSpeed = this.bomberSpeed + 2;
+        this.bomberSpeed = this.bomberSpeed + 1;
     }
 }

@@ -1,5 +1,7 @@
 package bomberman;
 
+import bomberman.entities.buff.Buff;
+import bomberman.entities.tile.Grass;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -23,7 +25,7 @@ public class BombermanGame extends Application {
     private GraphicsContext graContext;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
+    private static List<Entity> stillObjects = new ArrayList<>();
     private MapTiles map = new MapTiles();
 
     @Override
@@ -72,7 +74,7 @@ public class BombermanGame extends Application {
         }
         for (int i = 0; i < stillObjects.size(); i++) {
             Entity e = stillObjects.get(i);
-            if (e.collide(player)) {
+            if (e.collide(player) && e instanceof Buff) {
                 stillObjects.remove(i);
                 i--;
             }
@@ -89,9 +91,12 @@ public class BombermanGame extends Application {
         }
     }
 
-    public Entity getStillEntityAt(int x, int y) {
+    public static Entity getStillEntityAt(double x, double y) {
         for (Entity e : stillObjects) {
-            if (e.getX() == x && e.getY() == y) {
+            if (e instanceof Grass) continue;
+            if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
+                /*System.out.println(x + " " + y + " " + e.getTileX() + " " + e.getTileY());
+                System.out.println("founded");*/
                 return e;
             }
         }

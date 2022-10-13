@@ -5,13 +5,13 @@ import bomberman.entities.buff.FlameBuff;
 
 public class Collision {
 
-    private int leftA;
-    private int leftB;
-    private int rightA, rightB;
-    private int topA, topB;
-    private int bottomA, bottomB;
+    private static int leftA;
+    private static int leftB;
+    private static int rightA, rightB;
+    private static int topA, topB;
+    private static int bottomA, bottomB;
 
-    public boolean checkCollision(Entity e1, Entity e2) {
+    public static boolean checkCollision(Entity e1, Entity e2) {
         int x1 = e1.getX();
         int y1 = e1.getY();
         int x2 = e2.getX();
@@ -24,11 +24,6 @@ public class Collision {
         rightB = x2 + (int) e2.getImg().getWidth();
         bottomA = y1 + (int) e1.getImg().getHeight();
         bottomB = y2 + (int) e2.getImg().getHeight();
-        /*if (e1.getImg() == null) System.out.println("1");
-        rightA = x1 + 16;
-        rightB = x2 + 16;
-        bottomA = y1 + 16;
-        bottomB = y2 + 16;*/
         if ( bottomA <= topB )
         {
             return false;
@@ -50,4 +45,5 @@ public class Collision {
         }
         return true;
     }
+
 }

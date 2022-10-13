@@ -16,14 +16,13 @@ public class BombBuff extends Buff {
     @Override
     public boolean collide(Entity e) {
         if (e instanceof Bomber) {
-            Collision check = new Collision();
             /*int xTile = (int) this.getX() / Sprite.SCALED_SIZE;
             int yTile = (int) this.getY() / Sprite.SCALED_SIZE;
             if (xTile == (int) e.getX() / Sprite.SCALED_SIZE && yTile == (int) e.getY() / Sprite.SCALED_SIZE) {
                 System.out.println("An duoc bomb");
                 return true;
             }*/
-            if (check.checkCollision(this, e)) {
+            if (Collision.checkCollision(this, e)) {
                 System.out.println("bomb");
                 return true;
             }
