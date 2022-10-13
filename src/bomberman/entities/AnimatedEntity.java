@@ -20,13 +20,13 @@ public abstract class AnimatedEntity extends Entity {
     }
     public boolean canMove(int x, int y) {
         double topLeftX = (double) x + 2;
-        double topLeftY = (double) y + 4;
-        double topRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 1;
-        double topRightY = (double) y + 4;
+        double topLeftY = (double) y + 2;
+        double topRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+        double topRightY = (double) y + 2;
         double botLeftX = (double) x + 2;
-        double botLeftY = (double) y + (double) Sprite.SCALED_SIZE * 15 / 16 - 1;
-        double botRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 1;
-        double botRightY = (double) y + (double) Sprite.SCALED_SIZE * 15 / 16 - 1;
+        double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 2;
+        double botRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+        double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 2;
         /*System.out.println(x + " " + y);
         System.out.println(topLeftX + " " + topLeftY + " " + topRightX + " " + topRightY);
         System.out.println(botLeftX + " " + botLeftY + " " + botRightX + " " + botRightY);*/
