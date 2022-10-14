@@ -1,7 +1,10 @@
 package bomberman;
 
+import bomberman.entities.Bomb;
+import bomberman.entities.Enemies;
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Grass;
+import bomberman.entities.tile.Portal;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -28,6 +31,9 @@ public class BombermanGame extends Application {
     private static List<Entity> stillObjects = new ArrayList<>();
     private MapTiles map = new MapTiles();
 
+    private static Bomber player = new Bomber(1,1,Sprite.player_right.getFxImage());
+    private static List<Bomb> bombs = new ArrayList<Bomb>();
+
     @Override
     public void start(Stage stage) {
         // Tao Canvas
@@ -40,11 +46,13 @@ public class BombermanGame extends Application {
 
         // Tao scene
         Scene scene = new Scene(root);
-        Bomber player = new Bomber(1,1,Sprite.player_right.getFxImage());
+
+        //stillObjects.addAll(bombs);
         entities.add(player);
         map.getObject(entities,stillObjects);
 
         handleInput direction = new handleInput();
+        player.dir = direction;
         scene.setOnKeyPressed(direction::handlePressed);
 
         scene.setOnKeyReleased(direction::handleReleased);
@@ -60,7 +68,9 @@ public class BombermanGame extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                player.move(direction, map, stillObjects);
+                player.move(map, stillObjects);
+                putBomb();
+                removeBombs();
                 update(player);
                 render();
             }
@@ -79,6 +89,9 @@ public class BombermanGame extends Application {
                 i--;
             }
         }
+        for (int i = 0; i < bombs.size(); i++) {
+            bombs.get(i).update();
+        }
     }
 
     public void render() {
@@ -89,18 +102,45 @@ public class BombermanGame extends Application {
         for (Entity g : entities) {
             g.render(graContext);
         }
+        for (Bomb b : bombs) {
+            b.render(graContext);
+        }
     }
 
     public static Entity getStillEntityAt(double x, double y) {
         for (Entity e : stillObjects) {
             if (e instanceof Grass) continue;
             if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
-                /*System.out.println(x + " " + y + " " + e.getTileX() + " " + e.getTileY());
-                System.out.println("founded");*/
                 return e;
             }
         }
         return null;
+    }
+
+    public void removeBombs() {
+        for (int i = 0; i < bombs.size(); i++) {
+            if (bombs.get(i).removed) {
+                bombs.remove(i);
+                player.bomberNow++;
+                i--;
+            }
+        }
+    }
+
+    public static boolean canPutBomb() {
+        int posX = player.getX() + 1;
+        int posY = player.getY() + 1;
+        Entity belowE = getStillEntityAt(posX, posY);
+        if (belowE instanceof Portal || belowE instanceof Buff || belowE instanceof Bomb || belowE instanceof Enemies) return false;
+        return true;
+    }
+
+    public static void putBomb() {
+        if (player.dir.space && canPutBomb() && player.timerIntervalBomb < 0 && player.bomberNow > 0) {
+            bombs.add(new Bomb((player.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE, (player.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE, Sprite.bomb.getFxImage()));
+            player.timerIntervalBomb = 30;
+            player.bomberNow--;
+        }
     }
 
     public static void main(String[] args) {

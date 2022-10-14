@@ -1,22 +1,17 @@
 package bomberman.entities;
 
+import bomberman.BombermanGame;
 import bomberman.Collision;
-import bomberman.entities.buff.SpeedBuff;
-import bomberman.entities.tile.Wall;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.GraphicsContext;
+import bomberman.entities.buff.Buff;
+import bomberman.entities.tile.Portal;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import bomberman.MapTiles;
 import bomberman.inPut.handleInput;
 import bomberman.graphics.Sprite;
-import bomberman.BombermanGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bomberman.BombermanGame.getStillEntityAt;
 
 public class Bomber extends AnimatedEntity {
 
@@ -24,9 +19,14 @@ public class Bomber extends AnimatedEntity {
 
     protected int direct = -1;
 
+    public handleInput dir;
+
     protected boolean moving = false;
 
     protected int bomberSpeed = 1;
+    public int bomberNow = 1;
+    public int timerIntervalBomb = 0;
+
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -39,7 +39,8 @@ public class Bomber extends AnimatedEntity {
         y += moveY;
         chooseSprite();
         this.img = sprite.getFxImage();
-        //System.out.println(x + " " + y);
+        if (timerIntervalBomb < -7500) timerIntervalBomb = 0;
+        else timerIntervalBomb--;
     }
 
     private void chooseSprite() {
@@ -63,7 +64,7 @@ public class Bomber extends AnimatedEntity {
         }
     }
 
-    public void move(handleInput dir, MapTiles map, List<Entity> all) {
+    public void move(MapTiles map, List<Entity> all) {
         moveX = 0;
         moveY = 0;
             if (dir.left) {
@@ -98,8 +99,12 @@ public class Bomber extends AnimatedEntity {
                         //System.out.println("down");
                     }
             }
-            else moving = false;
+            else {
+                moving = false;
+            }
     }
+
+
 
     @Override
     public boolean collide(Entity e) {

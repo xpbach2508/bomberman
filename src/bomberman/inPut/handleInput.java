@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 
 public class handleInput {
     public boolean up, down, left, right;
+    public boolean space;
 
     public void handlePressed (KeyEvent e) {
         switch (e.getCode()) {
@@ -26,6 +27,10 @@ public class handleInput {
             case D:
             case RIGHT: {
                 right = true;
+                break;
+            }
+            case SPACE: {
+                space = true;
                 break;
             }
         }
@@ -51,6 +56,10 @@ public class handleInput {
             case D:
             case RIGHT: {
                 right = false;
+                break;
+            }
+            case SPACE: {
+                space = false;
                 break;
             }
         }
