@@ -2,6 +2,8 @@ package bomberman;
 
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Grass;
+import bomberman.entities.tile.Portal;
+import bomberman.entities.tile.Wall;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,6 +17,7 @@ import bomberman.graphics.Sprite;
 import bomberman.inPut.handleInput;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BombermanGame extends Application {
@@ -92,11 +95,11 @@ public class BombermanGame extends Application {
     }
 
     public static Entity getStillEntityAt(double x, double y) {
+        Collections.reverse(stillObjects);
         for (Entity e : stillObjects) {
             if (e instanceof Grass) continue;
             if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
-                /*System.out.println(x + " " + y + " " + e.getTileX() + " " + e.getTileY());
-                System.out.println("founded");*/
+                if (e instanceof Portal) continue;
                 return e;
             }
         }

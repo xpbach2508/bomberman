@@ -32,6 +32,7 @@ public class MapTiles {
                 line = br.readLine();
                 for (int i = 0; i < WIDTH; i++) {
                     Entity object = new Grass(i, row, Sprite.grass.getFxImage());
+                    StillObject.add(object);
                     switch (line.charAt(i)) {
                         case '#':
                             object = new Wall(i, row, Sprite.wall.getFxImage());
@@ -73,10 +74,6 @@ public class MapTiles {
                         case 's':
                             object = new SpeedBuff(i, row, Sprite.powerup_speed.getFxImage());
                             tiles[row][i] = "1";
-                            StillObject.add(object);
-                            break;
-                        default:
-                            tiles[row][i] = "grass";
                             StillObject.add(object);
                             break;
                     }

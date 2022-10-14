@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Added some base classes. Collision is bein added.">
-      <change afterPath="$PROJECT_DIR$/src/bomberman/Collision.java" afterDir="false" />
+    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Change some settings">
+      <change afterPath="$PROJECT_DIR$/src/bomberman/inPut/handleInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bomberman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Bomberman.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/MapTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/MapTiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/WrapperBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/WrapperBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/BombBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/BombBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/FlameBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/FlameBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/SpeedBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/SpeedBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/graphics/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/graphics/Sprite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="hieucode" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,6 +44,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2FOxMn1rBYe462KLuMumoIHpPpF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,19 +55,19 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/PROJ/OASIS/Week10&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/Downloads/openjfx-19_windows-x64_bin-sdk/javafx-sdk-19/lib&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RunManager">
-    <configuration name="bomberman.BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bomberman.BombermanGame" />
       <module name="Bomberman" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;D:\Programming\PROJ\openjfx-19_windows-x64_bin-sdk\javafx-sdk-19\lib&quot; --add-modules=javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Lenovo\Downloads\openjfx-19_windows-x64_bin-sdk\javafx-sdk-19\lib&quot; --add-modules=javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="uet.oop.bomberman.inPut.*" />
@@ -83,7 +80,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.bomberman.BombermanGame" />
+        <item itemvalue="Application.BombermanGame" />
       </list>
     </recent_temporary>
   </component>
