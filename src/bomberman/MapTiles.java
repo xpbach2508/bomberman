@@ -4,6 +4,7 @@ import bomberman.entities.buff.*;
 import bomberman.entities.tile.*;
 import bomberman.graphics.Sprite;
 import bomberman.entities.*;
+import bomberman.entities.Enemies.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +17,7 @@ public class MapTiles {
     public static int WIDTH ;
     public static int HEIGHT ;
 
-    public String[][] tiles = new String[13][31];
+    public static String[][] tiles = new String[13][31];
 
     public void getObject(List<Entity> entities, List<Entity> StillObject) {
         try {
@@ -32,6 +33,7 @@ public class MapTiles {
                 line = br.readLine();
                 for (int i = 0; i < WIDTH; i++) {
                     Entity object = new Grass(i, row, Sprite.grass.getFxImage());
+                    StillObject.add(object);
                     switch (line.charAt(i)) {
                         case '#':
                             object = new Wall(i, row, Sprite.wall.getFxImage());
@@ -51,12 +53,12 @@ public class MapTiles {
                             StillObject.add(object);
                             break;
                         case '1':
-                            object = new Enemies(i, row, Sprite.balloom_right1.getFxImage());
+                            object = new Balloom(i, row, Sprite.balloom_right1.getFxImage());
                             tiles[row][i] = "1";
                             entities.add(object);
                             break;
                         case '2':
-                            object = new Enemies(i, row, Sprite.oneal_right1.getFxImage());
+                            object = new Oneal(i, row, Sprite.oneal_right1.getFxImage());
                             tiles[row][i] = "1";
                             entities.add(object);
                             break;
@@ -73,10 +75,6 @@ public class MapTiles {
                         case 's':
                             object = new SpeedBuff(i, row, Sprite.powerup_speed.getFxImage());
                             tiles[row][i] = "1";
-                            StillObject.add(object);
-                            break;
-                        default:
-                            tiles[row][i] = "grass";
                             StillObject.add(object);
                             break;
                     }

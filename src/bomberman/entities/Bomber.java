@@ -4,6 +4,10 @@ import bomberman.BombermanGame;
 import bomberman.Collision;
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Portal;
+import bomberman.entities.tile.Brick;
+import bomberman.entities.tile.Wall;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import bomberman.MapTiles;
 import bomberman.inPut.handleInput;
@@ -64,7 +68,7 @@ public class Bomber extends AnimatedEntity {
         }
     }
 
-    public void move(MapTiles map, List<Entity> all) {
+    public void move(handleInput dir) {
         moveX = 0;
         moveY = 0;
             if (dir.left) {
@@ -72,7 +76,23 @@ public class Bomber extends AnimatedEntity {
                 if (canMove(x - bomberSpeed, y)) {
                     moveX += -bomberSpeed;
                     direct = 3;
-                    //System.out.println("left");
+                } else {
+                    double topLeftX = (double) x - bomberSpeed + 2;
+                    double topLeftY = (double) y + 2;
+                    Entity topL = getStillEntityAt(topLeftX, topLeftY);
+                    if (topL instanceof Wall || topL instanceof Brick) {
+                        moveY += bomberSpeed;
+                        direct = 2;
+                    }
+
+                    double botLeftX = (double) x - bomberSpeed + 2;
+                    double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 2;
+                    Entity botL = getStillEntityAt(botLeftX, botLeftY);
+                    if (botL instanceof Wall || botL instanceof Brick) {
+                        moveY += -bomberSpeed;
+                        direct = 0;
+                    }
+
                 }
             }
             else if (dir.right) {
@@ -80,24 +100,69 @@ public class Bomber extends AnimatedEntity {
                 if (canMove(x + bomberSpeed, y)) {
                         moveX += bomberSpeed;
                         direct = 1;
-                        //System.out.println("right");
+                } else {
+                    double topRightX = (double) x + bomberSpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+                    double topRightY = (double) y + 2;
+                    Entity topR = getStillEntityAt(topRightX, topRightY);
+                    if (topR instanceof Wall || topR instanceof Brick) {
+                        moveY += bomberSpeed;
+                        direct = 2;
                     }
+
+                    double botRightX = (double) x + bomberSpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+                    double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 2;
+                    Entity botR = getStillEntityAt(botRightX, botRightY);
+                    if (botR instanceof  Wall || botR instanceof Brick) {
+                        moveY += -bomberSpeed;
+                        direct = 0;
+                    }
+                }
             }
             else if (dir.up) {
                 moving = true;
                 if (canMove(x, y - bomberSpeed)) {
                         moveY += -bomberSpeed;
                         direct = 0;
-                        //System.out.println("up");
+                } else {
+                    double topLeftX = (double) x + 2;
+                    double topLeftY = (double) y - bomberSpeed + 2;
+                    Entity topL = getStillEntityAt(topLeftX, topLeftY);
+                    if (topL instanceof Wall || topL instanceof Brick) {
+                        moveX += bomberSpeed;
+                        direct = 1;
                     }
+
+                    double topRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+                    double topRightY = (double) y - bomberSpeed + 2;
+                    Entity topR = getStillEntityAt(topRightX, topRightY);
+                    if (topR instanceof Wall || topR instanceof Brick) {
+                        moveX += -bomberSpeed;
+                        direct = 3;
+                    }
+
+                }
             }
             else if (dir.down) {
                 moving = true;
                 if (canMove(x, y + bomberSpeed)) {
                         moveY += bomberSpeed;
                         direct = 2;
-                        //System.out.println("down");
+                } else {
+                    double botLeftX = (double) x + 2;
+                    double botLeftY = (double) y + bomberSpeed + (double) Sprite.SCALED_SIZE - 2;
+                    Entity botL = getStillEntityAt(botLeftX, botLeftY);
+                    if (botL instanceof Wall || botL instanceof Brick) {
+                        moveX += bomberSpeed;
+                        direct = 1;
                     }
+                    double botRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+                    double botRightY = (double) y + bomberSpeed + (double) Sprite.SCALED_SIZE - 2;
+                    Entity botR = getStillEntityAt(botRightX, botRightY);
+                    if (botR instanceof  Wall || botR instanceof Brick) {
+                        moveX += -bomberSpeed;
+                        direct = 3;
+                    }
+                }
             }
             else {
                 moving = false;
