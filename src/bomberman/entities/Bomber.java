@@ -39,7 +39,7 @@ public class Bomber extends AnimatedEntity {
         y += moveY;
         chooseSprite();
         this.img = sprite.getFxImage();
-        if (timerIntervalBomb < -7500) timerIntervalBomb = 0;
+        if (timerIntervalBomb < -2500) timerIntervalBomb = 0;
         else timerIntervalBomb--;
     }
 

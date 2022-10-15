@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Added some base classes. Collision is bein added.">
-      <change afterPath="$PROJECT_DIR$/src/bomberman/Collision.java" afterDir="false" />
+    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Bomb placement.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/BombermanGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/WrapperBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/WrapperBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/BombBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/BombBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/FlameBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/FlameBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/buff/SpeedBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/buff/SpeedBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/graphics/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/graphics/Sprite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +51,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/PROJ/OASIS/Week10&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programming/PROJ/bomberman&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
@@ -109,7 +102,16 @@
       <workItem from="1665164667007" duration="4847000" />
       <workItem from="1665225745927" duration="2096000" />
       <workItem from="1665241899074" duration="2000" />
-      <workItem from="1665330001125" duration="1626000" />
+      <workItem from="1665330001125" duration="2024000" />
+      <workItem from="1665419101291" duration="1317000" />
+      <workItem from="1665541578186" duration="235000" />
+      <workItem from="1665563360218" duration="1549000" />
+      <workItem from="1665565581588" duration="4874000" />
+      <workItem from="1665671409877" duration="10383000" />
+      <workItem from="1665726409767" duration="346000" />
+      <workItem from="1665740509120" duration="2361000" />
+      <workItem from="1665761262960" duration="4756000" />
+      <workItem from="1665816502765" duration="254000" />
     </task>
     <task id="LOCAL-00001" summary="Change some settings">
       <created>1664722778659</created>
@@ -132,7 +134,35 @@
       <option name="project" value="LOCAL" />
       <updated>1664996245554</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added checkCollision.">
+      <created>1665332866708</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665332866708</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed movement.">
+      <created>1665679889470</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665679889470</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed movement 2.">
+      <created>1665680988838</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665680988838</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Bomb placement.">
+      <created>1665776253132</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665776253132</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +183,10 @@
     <MESSAGE value="Change some settings" />
     <MESSAGE value="Handled input." />
     <MESSAGE value="Added some base classes. Collision is bein added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some base classes. Collision is bein added." />
+    <MESSAGE value="Added checkCollision." />
+    <MESSAGE value="Fixed movement." />
+    <MESSAGE value="Fixed movement 2." />
+    <MESSAGE value="Bomb placement." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bomb placement." />
   </component>
 </project>

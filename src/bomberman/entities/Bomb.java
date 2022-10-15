@@ -10,7 +10,7 @@ import java.util.List;
 public class Bomb extends AnimatedEntity {
 
     public boolean removed = false;
-    private int timerExplode = 200;
+    private int timerExplode = 150;
     private int timerRemove = 20;
     private List<Flame> flameList = new ArrayList<Flame>();
     public Bomb(int xUnit, int yUnit, Image img) {
