@@ -61,9 +61,14 @@ public class BombermanGame extends Application {
         all.addAll(stillObjects);
 
         AnimationTimer timer = new AnimationTimer() {
+            long pre = 0;
             @Override
             public void handle(long l) {
-                player.move(direction, map, stillObjects);
+                if ((l - pre) < 7500000) {
+                    return;
+                }
+                pre = l;
+                player.move(direction);
                 update(player);
                 render();
             }

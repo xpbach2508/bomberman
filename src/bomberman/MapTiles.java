@@ -4,6 +4,7 @@ import bomberman.entities.buff.*;
 import bomberman.entities.tile.*;
 import bomberman.graphics.Sprite;
 import bomberman.entities.*;
+import bomberman.entities.Enemies.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,12 +53,12 @@ public class MapTiles {
                             StillObject.add(object);
                             break;
                         case '1':
-                            object = new Enemies(i, row, Sprite.balloom_right1.getFxImage());
+                            object = new Balloom(i, row, Sprite.balloom_right1.getFxImage());
                             tiles[row][i] = "1";
                             entities.add(object);
                             break;
                         case '2':
-                            object = new Enemies(i, row, Sprite.oneal_right1.getFxImage());
+                            object = new Oneal(i, row, Sprite.oneal_right1.getFxImage());
                             tiles[row][i] = "1";
                             entities.add(object);
                             break;

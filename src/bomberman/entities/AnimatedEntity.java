@@ -11,6 +11,14 @@ public abstract class AnimatedEntity extends Entity {
     protected int animate = 0;
     protected final int MAX_ANIMATE = 10000;
 
+    public int moveX, moveY;
+
+    protected int direct = random(new int[]{0, 1, 2, 3});
+
+    protected int random(int[] arr) {
+        return  arr[(int) ((Math.random() * (arr.length - 0))+ 0)];
+    }
+
     public AnimatedEntity(int x, int y, Image img) {
         super(x, y, img);
     }

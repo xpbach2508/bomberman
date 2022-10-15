@@ -21,13 +21,9 @@ import static bomberman.BombermanGame.getStillEntityAt;
 
 public class Bomber extends AnimatedEntity {
 
-    public int moveX, moveY;
-
-    protected int direct = -1;
-
     protected boolean moving = false;
 
-    protected int bomberSpeed = 1;
+    protected int bomberSpeed = 2;
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -64,7 +60,7 @@ public class Bomber extends AnimatedEntity {
         }
     }
 
-    public void move(handleInput dir, MapTiles map, List<Entity> all) {
+    public void move(handleInput dir) {
         moveX = 0;
         moveY = 0;
             if (dir.left) {
