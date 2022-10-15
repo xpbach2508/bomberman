@@ -24,6 +24,7 @@ public class BombBuff extends Buff {
             }*/
             if (Collision.checkCollision(this, e)) {
                 System.out.println("bomb");
+                ((Bomber) e).bomberNow++;
                 return true;
             }
         }

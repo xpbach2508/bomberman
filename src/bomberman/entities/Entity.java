@@ -14,8 +14,6 @@ public abstract class Entity {
     //Tọa độ Y tính từ góc trái trên trong Canvas
     protected int y;
 
-    private boolean removed;
-
     protected Sprite sprite;
 
     protected Image img;
@@ -60,13 +58,6 @@ public abstract class Entity {
         return (int) y / Sprite.SCALED_SIZE;
     }
 
-    public boolean isRemoved() {
-        return removed;
-    }
-
-    public void removed() {
-        this.removed = true;
-    }
 
     public Sprite getSprite() {
         return sprite;
