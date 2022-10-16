@@ -6,10 +6,15 @@ import javafx.scene.image.Image;
 
 public class Enemies extends AnimatedEntity {
 
-    public int direction;
+    protected int preX = 0, preY = 0;
 
     public Enemies(int x, int y, Image img) {
         super(x,y,img);
+    }
+
+    public void setChangedCoordinates(int x, int y) {
+        this.preX = x;
+        this.preY = y;
     }
 
     @Override
@@ -20,4 +25,6 @@ public class Enemies extends AnimatedEntity {
     @Override
     public void update() {
     }
+
+
 }
