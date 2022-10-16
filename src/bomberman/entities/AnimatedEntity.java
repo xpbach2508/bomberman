@@ -9,6 +9,8 @@ import static bomberman.BombermanGame.getStillEntityAt;
 
 public abstract class AnimatedEntity extends Entity {
     protected int animate = 0;
+
+    protected int pre = 0;
     protected final int MAX_ANIMATE = 10000;
 
     public int moveX, moveY;
@@ -42,19 +44,19 @@ public abstract class AnimatedEntity extends Entity {
         Entity botL = getStillEntityAt(botLeftX, botLeftY);
         Entity botR = getStillEntityAt(botRightX, botRightY);
         if (topL instanceof Wall || topL instanceof Brick) {
-            System.out.println("topL");
+//            System.out.println("topL");
             return false;
         }
         if (topR instanceof Wall || topR instanceof Brick) {
-            System.out.println("topR");
+//            System.out.println("topR");
             return false;
         }
         if (botL instanceof Wall || botL instanceof Brick) {
-            System.out.println("botL");
+//            System.out.println("botL");
             return false;
         }
         if (botR instanceof Wall || botR instanceof Brick) {
-            System.out.println("botR");
+//            System.out.println("botR");
             return false;
         }
         return true;

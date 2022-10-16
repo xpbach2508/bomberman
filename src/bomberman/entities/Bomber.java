@@ -84,8 +84,8 @@ public class Bomber extends AnimatedEntity {
                         moveY += -bomberSpeed;
                         direct = 0;
                     }
-
                 }
+                if (moveX == 0) direct = 3;
             }
             else if (dir.right) {
                 moving = true;
@@ -109,6 +109,7 @@ public class Bomber extends AnimatedEntity {
                         direct = 0;
                     }
                 }
+                if (moveX == 0) direct = 1;
             }
             else if (dir.up) {
                 moving = true;
@@ -131,8 +132,8 @@ public class Bomber extends AnimatedEntity {
                         moveX += -bomberSpeed;
                         direct = 3;
                     }
-
                 }
+                if (moveY == 0) direct = 0;
             }
             else if (dir.down) {
                 moving = true;
@@ -155,6 +156,7 @@ public class Bomber extends AnimatedEntity {
                         direct = 3;
                     }
                 }
+                if (moveY == 0) direct = 2;
             }
             else moving = false;
     }
