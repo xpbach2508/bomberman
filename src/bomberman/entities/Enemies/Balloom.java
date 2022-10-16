@@ -21,8 +21,8 @@ public class Balloom extends Enemies {
 
     private void chooseSprite() {
         switch (direct) {
-            case 0 -> sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_left2, Sprite.balloom_right3, animate, 20);
-            case 2 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_right2, Sprite.balloom_left3, animate, 20);
+            case 0 -> sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, animate, 20);
+            case 2 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, animate, 20);
             case 3 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, animate, 20);
             default -> sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, animate, 20);
         }
@@ -58,7 +58,7 @@ public class Balloom extends Enemies {
         if (direct == 3) {
             if (canMove(x - 8, y)) {
                 moveX = -1;
-                if (preX - x > 24) if (canMove(x, y - 4) || canMove(x, y + 4)) {
+                if (preX - x > 24) if (canMove(x+10, y - 4) || canMove(x+10, y + 4)) {
                     direct = random(new int[]{3, 0, 2});
                     setChangedCoordinates(x, y);
                 }
