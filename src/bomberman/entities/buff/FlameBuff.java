@@ -16,8 +16,6 @@ public class FlameBuff extends Buff {
     public boolean collide(Entity e) {
         if (e instanceof Bomber) {
             if (Collision.checkCollision(this, e)) {
-                System.out.println(e.getX() + " " + e.getY() + "flame " + this.getX() + " " + this.getY());
-                System.out.println("flame");
                 return true;
             }
         }

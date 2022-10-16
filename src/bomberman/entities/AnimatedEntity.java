@@ -38,7 +38,6 @@ public abstract class AnimatedEntity extends Entity {
         double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 2;
         double botRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
         double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 2;
-
         Entity topL = getStillEntityAt(topLeftX, topLeftY);
         Entity topR = getStillEntityAt(topRightX, topRightY);
         Entity botL = getStillEntityAt(botLeftX, botLeftY);
