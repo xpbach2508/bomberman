@@ -1,9 +1,12 @@
 package bomberman;
 
+import bomberman.entities.Bomber;
+import bomberman.entities.Entity;
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Grass;
 import bomberman.entities.tile.Portal;
-import bomberman.entities.tile.Wall;
+import bomberman.graphics.Sprite;
+import bomberman.inPut.handleInput;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,10 +14,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import bomberman.entities.Bomber;
-import bomberman.entities.Entity;
-import bomberman.graphics.Sprite;
-import bomberman.inPut.handleInput;
 
 import java.util.ArrayList;
 import java.util.Collections;

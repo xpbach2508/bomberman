@@ -12,6 +12,11 @@ public class Enemies extends AnimatedEntity {
         super(x,y,img);
     }
 
+    public void setChangedCoordinates(int x, int y) {
+        this.preX = x;
+        this.preY = y;
+    }
+
     @Override
     public boolean collide(Entity e) {
         return false;
@@ -20,4 +25,6 @@ public class Enemies extends AnimatedEntity {
     @Override
     public void update() {
     }
+
+
 }
