@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="Added some base classes. Collision is bein added.">
+    <list default="true" id="4c515d6d-5bd9-44bb-be94-902e1e764efe" name="Changes" comment="finishes balloom random movement">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/AnimatedEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Bomber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Enemies/Balloom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Enemies/Balloom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Enemies/Enemies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Enemies/Enemies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bomberman/entities/Enemies/Oneal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bomberman/entities/Enemies/Oneal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664996245554</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="finishes balloom random movement">
+      <created>1665918493088</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665918493088</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +161,7 @@
     <MESSAGE value="Change some settings" />
     <MESSAGE value="Handled input." />
     <MESSAGE value="Added some base classes. Collision is bein added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some base classes. Collision is bein added." />
+    <MESSAGE value="finishes balloom random movement" />
+    <option name="LAST_COMMIT_MESSAGE" value="finishes balloom random movement" />
   </component>
 </project>

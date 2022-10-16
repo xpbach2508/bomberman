@@ -5,8 +5,6 @@ import javafx.scene.image.Image;
 
 public class Balloom extends Enemies {
 
-    protected int preX = 0, preY = 0;
-
     public Balloom(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -24,8 +22,8 @@ public class Balloom extends Enemies {
     private void chooseSprite() {
         switch (direct) {
             case 0 -> sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_left2, Sprite.balloom_right3, animate, 20);
-            case 2 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, animate, 20);
-            case 3 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_right2, Sprite.balloom_left3, animate, 20);
+            case 2 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_right2, Sprite.balloom_left3, animate, 20);
+            case 3 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, animate, 20);
             default -> sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, animate, 20);
         }
     }
@@ -36,7 +34,7 @@ public class Balloom extends Enemies {
         if (direct == 1) {
             if (canMove(x + 8, y)) {
                 moveX = 1;
-                if (x - preX > 32) if (canMove(x, y - 4) || canMove(x, y + 4)) {
+                if (x - preX > 24) if (canMove(x, y - 4) || canMove(x, y + 4)) {
                     direct = random(new int[]{1, 0, 2});
                     preX = x;
                 }
@@ -46,7 +44,7 @@ public class Balloom extends Enemies {
         if (direct == 2) {
             if (canMove(x, y + 4)) {
                 moveY = 1;
-                if (y - preY > 32) if (canMove(x + 8, y) || canMove(x - 8, y)) {
+                if (y - preY > 24) if (canMove(x + 8, y) || canMove(x - 8, y)) {
                     direct = random(new int[]{2, 1, 3});
                     preY = y;
                 }
@@ -56,7 +54,7 @@ public class Balloom extends Enemies {
         if (direct == 3) {
             if (canMove(x - 8, y)) {
                 moveX = -1;
-                if (preX - x > 32) if (canMove(x, y - 4) || canMove(x, y + 4)) {
+                if (preX - x > 24) if (canMove(x, y - 4) || canMove(x, y + 4)) {
                     direct = random(new int[]{3, 0, 2});
                     preX = x;
                 }
@@ -66,7 +64,7 @@ public class Balloom extends Enemies {
         if (direct == 0) {
             if (canMove(x, y - 4)) {
                 moveY = -1;
-                if (preY - y > 32) if (canMove(x + 8, y) || canMove(x - 8, y)) {
+                if (preY - y > 24) if (canMove(x + 8, y) || canMove(x - 8, y)) {
                     direct = random(new int[]{0, 1, 3});
                     preY = y;
                 }
