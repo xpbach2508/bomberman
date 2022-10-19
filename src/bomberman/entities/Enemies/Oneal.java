@@ -58,7 +58,7 @@ public class Oneal extends Enemies{
         if (direct == 3) {
             if (canMove(x - 8, y)) {
                 moveX = -1;
-                if (preX - x > 24) if (canMove(x, y - 4) || canMove(x, y + 4)) {
+                if (preX - x > 24) if (canMove(x + 10, y - 4) || canMove(x + 10, y + 4)) {
                     direct = random(new int[]{3, 0, 2});
                     setChangedCoordinates(x, y);
                 }

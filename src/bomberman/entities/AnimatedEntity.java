@@ -29,6 +29,7 @@ public abstract class AnimatedEntity extends Entity {
         if (animate < MAX_ANIMATE) animate++;
         else animate = 0;
     }
+
     public boolean canMove(int x, int y) {
         double topLeftX = (double) x + 2;
         double topLeftY = (double) y + 2;
@@ -42,19 +43,19 @@ public abstract class AnimatedEntity extends Entity {
         Entity topR = getStillEntityAt(topRightX, topRightY);
         Entity botL = getStillEntityAt(botLeftX, botLeftY);
         Entity botR = getStillEntityAt(botRightX, botRightY);
-        if (topL instanceof Wall || topL instanceof Brick) {
+        if (topL instanceof Wall || topL instanceof Brick || topL instanceof Bomb) {
 //            System.out.println("topL");
             return false;
         }
-        if (topR instanceof Wall || topR instanceof Brick) {
+        if (topR instanceof Wall || topR instanceof Brick || topR instanceof Bomb) {
 //            System.out.println("topR");
             return false;
         }
-        if (botL instanceof Wall || botL instanceof Brick) {
+        if (botL instanceof Wall || botL instanceof Brick || botL instanceof Bomb) {
 //            System.out.println("botL");
             return false;
         }
-        if (botR instanceof Wall || botR instanceof Brick) {
+        if (botR instanceof Wall || botR instanceof Brick || botR instanceof Bomb) {
 //            System.out.println("botR");
             return false;
         }

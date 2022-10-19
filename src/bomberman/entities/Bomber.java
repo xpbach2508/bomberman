@@ -1,20 +1,13 @@
 package bomberman.entities;
 
-import bomberman.BombermanGame;
 import bomberman.Collision;
-import bomberman.entities.buff.Buff;
-import bomberman.entities.tile.Portal;
 import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Wall;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import bomberman.MapTiles;
 import bomberman.inPut.handleInput;
 import bomberman.graphics.Sprite;
 
-import java.util.ArrayList;
-import java.util.List;
+import static bomberman.BombermanGame.getStillEntityAt;
 
 
 public class Bomber extends AnimatedEntity {
@@ -30,7 +23,6 @@ public class Bomber extends AnimatedEntity {
     protected int bomberSpeed = 1;
     public int bomberNow = 1;
     public int timerIntervalBomb = 0;
-
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -170,8 +162,6 @@ public class Bomber extends AnimatedEntity {
                 moving = false;
             }
     }
-
-
 
     @Override
     public boolean collide(Entity e) {
