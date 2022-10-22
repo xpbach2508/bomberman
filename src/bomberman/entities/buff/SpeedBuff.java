@@ -16,8 +16,7 @@ public class SpeedBuff extends Buff {
     public boolean collide(Entity e) {
         if (e instanceof Bomber) {
             if (Collision.checkCollision(this, e)) {
-                ((Bomber) e).setBomberSpeed();
-                System.out.println("speed");
+                ((Bomber) e).setEntitySpeed();
                 return true;
             }
         }

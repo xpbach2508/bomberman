@@ -18,6 +18,8 @@ public abstract class Entity {
 
     protected Image img;
 
+    public boolean removed = false;
+
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity( int xUnit, int yUnit, Image img) {
         this.x = xUnit * Sprite.SCALED_SIZE;
@@ -51,11 +53,11 @@ public abstract class Entity {
     }
 
     public int getTileX() {
-        return (int) x / Sprite.SCALED_SIZE;
+        return (int) (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
     }
 
     public int getTileY() {
-        return (int) y / Sprite.SCALED_SIZE;
+        return (int) (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
     }
 
 

@@ -16,6 +16,7 @@ public class FlameBuff extends Buff {
     public boolean collide(Entity e) {
         if (e instanceof Bomber) {
             if (Collision.checkCollision(this, e)) {
+                ((Bomber) e).bombPower++;
                 return true;
             }
         }
