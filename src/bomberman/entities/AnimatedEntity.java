@@ -1,9 +1,16 @@
 package bomberman.entities;
 
+import bomberman.entities.Enemies.Enemies;
+import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Brick;
+import bomberman.entities.tile.Portal;
 import bomberman.entities.tile.Wall;
 import bomberman.graphics.Sprite;
+import bomberman.inPut.handleInput;
 import javafx.scene.image.Image;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static bomberman.BombermanGame.getStillEntityAt;
 
@@ -15,12 +22,18 @@ public abstract class AnimatedEntity extends Entity {
 
     protected int direct = random(new int[]{0, 1, 2, 3});
 
+    protected int entitySpeed = 2;
+
     protected int random(int[] arr) {
-        return  arr[(int) ((Math.random() * (arr.length - 0))+ 0)];
+        return  arr[(int) ((Math.random() * (arr.length))+ 0)];
     }
 
     public AnimatedEntity(int x, int y, Image img) {
         super(x, y, img);
+    }
+
+    public AnimatedEntity(int x, int y) {
+        super(x,y);
     }
 
     protected void animate() {
@@ -40,23 +53,35 @@ public abstract class AnimatedEntity extends Entity {
         Entity topR = getStillEntityAt(topRightX, topRightY);
         Entity botL = getStillEntityAt(botLeftX, botLeftY);
         Entity botR = getStillEntityAt(botRightX, botRightY);
-        if (topL instanceof Wall || topL instanceof Brick) {
-            System.out.println("topL");
+        if (topL instanceof Wall || topL instanceof Brick ) {
             return false;
         }
-        if (topR instanceof Wall || topR instanceof Brick) {
-            System.out.println("topR");
+        if (topR instanceof Wall || topR instanceof Brick ) {
             return false;
         }
-        if (botL instanceof Wall || botL instanceof Brick) {
-            System.out.println("botL");
+        if (botL instanceof Wall || botL instanceof Brick ) {
             return false;
         }
-        if (botR instanceof Wall || botR instanceof Brick) {
-            System.out.println("botR");
+        if (botR instanceof Wall || botR instanceof Brick ) {
+            return false;
+        }
+        if (topL instanceof Bomb) {
+            return false;
+        }
+        if (topR instanceof Bomb) {
+            return false;
+        }
+        if (botL instanceof Bomb) {
+            return false;
+        }
+        if (botR instanceof Bomb) {
             return false;
         }
         return true;
+    }
+
+    public void setEntitySpeed() {
+        this.entitySpeed = this.entitySpeed + 1;
     }
 
 }

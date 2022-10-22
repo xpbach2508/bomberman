@@ -56,11 +56,13 @@ public class MapTiles {
                             object = new Balloom(i, row, Sprite.balloom_right1.getFxImage());
                             tiles[row][i] = "1";
                             entities.add(object);
+                            BombermanGame.numberEnemies++;
                             break;
                         case '2':
                             object = new Oneal(i, row, Sprite.oneal_right1.getFxImage());
                             tiles[row][i] = "1";
                             entities.add(object);
+                            BombermanGame.numberEnemies++;
                             break;
                         case 'b':
                             object = new BombBuff(i, row, Sprite.powerup_bombs.getFxImage());

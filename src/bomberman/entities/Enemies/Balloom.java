@@ -20,7 +20,14 @@ public class Balloom extends Enemies {
     }
 
     private void chooseSprite() {
-        switch (direct) {
+        if (removed) {
+            if (timeAnimation <= 0) sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 20);
+            else {
+                animate = 0;
+                sprite = Sprite.balloom_dead;
+            }
+        }
+        else switch (direct) {
             case 0 -> {
                 sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_left2, Sprite.balloom_right3, animate, 20);
             }
