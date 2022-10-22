@@ -68,4 +68,5 @@ public abstract class Entity {
     public Image getImg() {
         return img;
     }
+
 }

@@ -1,20 +1,14 @@
 package bomberman.entities;
 
-import bomberman.BombermanGame;
 import bomberman.Collision;
-import bomberman.entities.buff.Buff;
-import bomberman.entities.tile.Portal;
 import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Wall;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import bomberman.MapTiles;
 import bomberman.inPut.handleInput;
 import bomberman.graphics.Sprite;
 
-import java.util.ArrayList;
-import java.util.List;
+import static bomberman.BombermanGame.getStillEntityAt;
 
 import static bomberman.BombermanGame.getStillEntityAt;
 
@@ -26,7 +20,6 @@ public class Bomber extends AnimatedEntity {
 
     public int bombNow = 1;
     public int timerIntervalBomb = 0;
-
     public int bombPower = 1;
 
     public Bomber(int x, int y, Image img) {
@@ -90,8 +83,8 @@ public class Bomber extends AnimatedEntity {
                         moveY += -entitySpeed;
                         direct = 0;
                     }
-
                 }
+                if (moveX == 0) direct = 3;
             }
             else if (dir.right) {
                 moving = true;
@@ -115,6 +108,7 @@ public class Bomber extends AnimatedEntity {
                         direct = 0;
                     }
                 }
+                if (moveX == 0) direct = 1;
             }
             else if (dir.up) {
                 moving = true;
@@ -137,8 +131,8 @@ public class Bomber extends AnimatedEntity {
                         moveX += -entitySpeed;
                         direct = 3;
                     }
-
                 }
+                if (moveY == 0) direct = 0;
             }
             else if (dir.down) {
                 moving = true;
@@ -161,6 +155,7 @@ public class Bomber extends AnimatedEntity {
                         direct = 3;
                     }
                 }
+                if (moveY == 0) direct = 2;
             }
             else {
                 moving = false;

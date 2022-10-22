@@ -47,33 +47,52 @@ public class Balloom extends Enemies {
         moveX = 0;
         moveY = 0;
         if (direct == 1) {
-            if (canMove(x + 2, y)) {
+            if (canMove(x + 8, y)) {
                 moveX = 1;
-                /*if (canMove(x, y+2)) {
-                    direct = random(new int[]{1, 2});
-                    if (direct == 1) moveX = 1;
-                }*/
-            } else
+                if (x - preX > 24) if (canMove(x, y - 4) || canMove(x, y + 4)) {
+                    direct = random(new int[]{1, 0, 2});
+                    setChangedCoordinates(x, y);
+                }
+            } else {
                 direct = random(new int[]{0, 2, 3});
+                setChangedCoordinates(x, y);
+            }
         }
         if (direct == 2) {
-            if (canMove(x, y + 2)) {
+            if (canMove(x, y + 4)) {
                 moveY = 1;
-            } else
+                if (y - preY > 24) if (canMove(x + 8, y) || canMove(x - 8, y)) {
+                    direct = random(new int[]{2, 1, 3});
+                    setChangedCoordinates(x, y);
+                }
+            } else {
                 direct = random(new int[]{0, 1, 3});
+                setChangedCoordinates(x, y);
+            }
         }
         if (direct == 3) {
-            if (canMove(x - 2, y)) {
+            if (canMove(x - 8, y)) {
                 moveX = -1;
-            } else
+                if (preX - x > 24) if (canMove(x+10, y - 4) || canMove(x+10, y + 4)) {
+                    direct = random(new int[]{3, 0, 2});
+                    setChangedCoordinates(x, y);
+                }
+            } else {
                 direct = random(new int[]{0, 1, 2});
+                setChangedCoordinates(x, y);
+            }
         }
         if (direct == 0) {
-            if (canMove(x, y - 2)) {
+            if (canMove(x, y - 4)) {
                 moveY = -1;
-            } else
+                if (preY - y > 24) if (canMove(x + 8, y) || canMove(x - 8, y)) {
+                    direct = random(new int[]{0, 1, 3});
+                    setChangedCoordinates(x, y);
+                }
+            } else {
                 direct = random(new int[]{1, 2, 3});
+                setChangedCoordinates(x, y);
+            }
         }
     }
-
 }

@@ -1,12 +1,16 @@
 package bomberman;
 
-import bomberman.entities.*;
+import bomberman.entities.Bomb;
+import bomberman.entities.Bomber;
 import bomberman.entities.Enemies.Enemies;
+import bomberman.entities.Entity;
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Grass;
 import bomberman.entities.tile.Portal;
-import bomberman.entities.tile.Wall;
+import bomberman.graphics.MapTiles;
+import bomberman.graphics.Sprite;
+import bomberman.inPut.handleInput;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -23,21 +27,29 @@ import java.util.List;
 
 public class BombermanGame extends Application {
     // replace with getWidth and getHeight
-    public static final int WIDTH = 31;
-    public static final int HEIGHT = 13;
+    public static int WIDTH;
+    public static int HEIGHT;
+
+    public static boolean running;
+
     protected static int numberEnemies = 0;
     private GraphicsContext graContext;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
 
-    private static List<Bomb> bombList = new ArrayList<>();
-    private static List<Entity> stillObjects = new ArrayList<>();
+    public static List<Entity> entities = new ArrayList<>();
+    public static List<Entity> stillObjects = new ArrayList<>();
     private MapTiles map = new MapTiles();
 
     private static Bomber player = new Bomber(1,1,Sprite.player_right.getFxImage());
+    private static List<Bomb> bombList = new ArrayList<>();
 
     @Override
     public void start(Stage stage) {
+        int[] size = new int[2];
+        map.getObject(size, "Level1");
+        WIDTH = size[0];
+        HEIGHT = size[1];
+
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         graContext = canvas.getGraphicsContext2D();
@@ -45,13 +57,13 @@ public class BombermanGame extends Application {
         // Tao root container
         Pane root = new Pane();
         root.getChildren().add(canvas);
+        Menu.create(root);
 
         // Tao scene
         Scene scene = new Scene(root);
 
         //stillObjects.addAll(bombs);
         entities.add(player);
-        map.getObject(entities,stillObjects);
 
         handleInput direction = new handleInput();
         scene.setOnKeyPressed(direction::handlePressed);
@@ -63,20 +75,17 @@ public class BombermanGame extends Application {
         stage.show();
 
         AnimationTimer timer = new AnimationTimer() {
-            long pre = 0;
             @Override
             public void handle(long l) {
-                if ((l - pre) < 7500000) {
-                    return;
+                if (running) {
+                    player.move(direction);
+                    if (direction.space) {
+                        putBomb(player);
+                    }
+                    removeBombs(player);
+                    update(player);
+                    render();
                 }
-                pre = l;
-                player.move(direction);
-                if (direction.space) {
-                    putBomb(player);
-                }
-                removeBombs(player);
-                update(player);
-                render();
             }
         };
         timer.start();
@@ -160,9 +169,7 @@ public class BombermanGame extends Application {
             e.bombNow--;
         }
     }
-
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }
-
 }
