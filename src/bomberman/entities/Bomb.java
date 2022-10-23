@@ -134,7 +134,7 @@ public class Bomb extends AnimatedEntity {
         }
     }
 
-    public void update(List<Entity> player, List<Entity> stillObj) {
+    public void update(List<Entity> player, List<Entity> stillObj, List<Bomb> bombList) {
         if (timerExplode > 0) timerExplode--;
         else {
             if (!explodedBomb) {
@@ -173,6 +173,9 @@ public class Bomb extends AnimatedEntity {
             if (explodedBomb && (e instanceof Bomber || e instanceof Enemies)) {
                 if (deadByFlame(e)) e.removed = true;
             }
+        }
+        for (Bomb e : bombList) {
+            if (e!= this && deadByFlame(e)) e.timerExplode = 0;
         }
         for (Entity e : stillObj) {
             if (e instanceof Brick && deadByFlame(e)) e.removed = true;

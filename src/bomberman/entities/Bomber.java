@@ -15,7 +15,7 @@ import static bomberman.graphics.Menu.*;
 
 
 public class Bomber extends AnimatedEntity {
-    protected int direct = -1;
+    public int direct = -1;
     protected boolean moving = false;
     public int bombNow = 1;
     public int timerIntervalBomb = 0;

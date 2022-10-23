@@ -102,7 +102,7 @@ public class BombermanGame extends Application {
         }
         //Bomb
         for (Bomb e : bombList) {
-            e.update(entities, stillObjects);
+            e.update(entities, stillObjects, bombList);
         }
         //Brick and wall
         for (int i = 0; i < stillObjects.size(); i++) {
@@ -166,6 +166,18 @@ public class BombermanGame extends Application {
         return null;
     }
 
+    public static Entity getMovingEntityAt(double x, double y) {
+        int xTile = (int) x / Sprite.SCALED_SIZE;
+        int yTile = (int) y / Sprite.SCALED_SIZE;
+        for (int i = entities.size() - 1; i >= 0; i--) {
+            Entity e = entities.get(i);
+            if (e instanceof Enemies) if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
+                return e;
+            }
+        }
+        return null;
+    }
+
     public void removeBombs(Bomber e) {
         for (int i = 0; i < bombList.size(); i++) {
             if (bombList.get(i).removed) {
@@ -178,12 +190,34 @@ public class BombermanGame extends Application {
 
     public void putBomb(Bomber e) {
         if (e.timerIntervalBomb < 0 && e.bombNow > 0) {
-            Bomb b = new Bomb((e.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE,
-                    (e.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE, Sprite.bomb.getFxImage(), e.bombPower);
+            int xTileMore = 0;
+            int yTileMore = 0;
+            if (!canPutBomb(e)) switch (e.direct) {
+                case 0 -> {
+                    yTileMore = 1;
+                }
+                case 2 -> {
+                    yTileMore = -1;
+                }
+                case 3 -> {
+                    xTileMore = 1;
+                }
+                default -> {
+                    xTileMore = -1;
+                }
+            }
+            Bomb b = new Bomb((e.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + xTileMore,
+                    (e.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + yTileMore, Sprite.bomb.getFxImage(), e.bombPower);
             bombList.add(b);
             e.timerIntervalBomb = 30;
             e.bombNow--;
         }
+    }
+
+    public boolean canPutBomb(Bomber b) {
+        Entity e = getMovingEntityAt((b.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE,
+                                                    ((b.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE));
+        return e == null;
     }
 
     public static void main(String[] args) {
