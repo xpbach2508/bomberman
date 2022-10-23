@@ -11,19 +11,33 @@ public class Doll extends Enemies{
 
     @Override
     public void update() {
-        animate();
-        x += moveX;
-        y += moveY;
-        move();
-        chooseSprite();
-        this.img = sprite.getFxImage();
+        if (removed) {
+            animate();
+            chooseSprite();
+            this.img = sprite.getFxImage();
+            if (timeAnimation > 0) timeAnimation--;
+        } else {
+            animate();
+            x += moveX;
+            y += moveY;
+            move();
+            chooseSprite();
+            this.img = sprite.getFxImage();
+        }
     }
 
     private void chooseSprite() {
-        if (direct == 0 || direct == 1) {
+        if (removed) {
+            if (timeAnimation <= 0) sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 20);
+            else {
+                animate = 0;
+                sprite = Sprite.doll_dead;
+            }
+        }
+        else if (direct == 0 || direct == 1) {
             sprite = Sprite.movingSprite(Sprite.doll_right1, Sprite.doll_right2, Sprite.doll_right3, animate, 20);
         }
-        if (direct == 2 || direct == 3) {
+        else if (direct == 2 || direct == 3) {
             sprite = Sprite.movingSprite(Sprite.doll_left1, Sprite.doll_left2, Sprite.doll_left3, animate, 20);
         }
     }

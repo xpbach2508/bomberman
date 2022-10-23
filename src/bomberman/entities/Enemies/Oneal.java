@@ -11,16 +11,32 @@ public class Oneal extends Enemies{
 
     @Override
     public void update() {
-        animate();
-        x += moveX;
-        y += moveY;
-        move();
-        chooseSprite();
-        this.img = sprite.getFxImage();
+        if (removed) {
+            animate();
+            chooseSprite();
+            this.img = sprite.getFxImage();
+            if (timeAnimation > 0) timeAnimation--;
+        } else {
+            animate();
+            x += moveX;
+            y += moveY;
+            move();
+            chooseSprite();
+            this.img = sprite.getFxImage();
+        }
     }
 
     private void chooseSprite() {
-        switch (direct) {
+        if (removed) {
+            if (timeAnimation > 0) {
+                sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 20);
+            }
+            else {
+                animate = 0;
+                sprite = Sprite.oneal_dead;
+            }
+        }
+        else switch (direct) {
             case 0 -> sprite = Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_left2, Sprite.oneal_right2, animate, 20);
             case 2 -> sprite = Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_right2, Sprite.oneal_left2, animate, 20);
             case 3 -> sprite = Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3, animate, 20);

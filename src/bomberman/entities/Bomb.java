@@ -17,6 +17,7 @@ import static bomberman.BombermanGame.getStillEntityAt;
 public class Bomb extends AnimatedEntity {
 
     private boolean movedOut = false;
+    private boolean enemyMovedOut = false;
     private int timerExplode = 150;
     private int timerRemove = 20;
     private boolean explodedBomb = false;
@@ -197,6 +198,7 @@ public class Bomb extends AnimatedEntity {
                 if (flameList[i].get(j).collide(e)) return true;
             }
         }
+        if (this.collide(e)) return true;
         return false;
     }
 
@@ -216,6 +218,6 @@ public class Bomb extends AnimatedEntity {
 
     @Override
     public boolean collide(Entity e) {
-        return false;
+        return Collision.checkCollision(this, e);
     }
 }
