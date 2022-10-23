@@ -10,7 +10,5 @@ public class Portal extends WrapperBox {
     }
 
     @Override
-    public void update() {
-
-    }
+    public void update() {}
 }

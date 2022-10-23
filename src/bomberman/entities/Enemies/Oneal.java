@@ -3,6 +3,8 @@ package bomberman.entities.Enemies;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
+import static bomberman.BombermanGame.player;
+
 public class Oneal extends Enemies{
 
     public Oneal(int x, int y, Image img) {
@@ -24,6 +26,13 @@ public class Oneal extends Enemies{
             chooseSprite();
             this.img = sprite.getFxImage();
         }
+        //animate();
+        //x += moveX;
+        //y += moveY;
+        //move();
+        //chooseSprite();
+        //this.img = sprite.getFxImage();
+        //collide(player);
     }
 
     private void chooseSprite() {
@@ -72,9 +81,9 @@ public class Oneal extends Enemies{
             }
         }
         if (direct == 3) {
-            if (canMove(x - 8, y)) {
+            if (canMove(x - 4, y)) {
                 moveX = -1;
-                if (preX - x > 24) if (canMove(x + 10, y - 4) || canMove(x + 10, y + 4)) {
+                if (preX - x > 24) if (canMove(x+10, y - 4) || canMove(x+10, y + 4)) {
                     direct = random(new int[]{3, 0, 2});
                     setChangedCoordinates(x, y);
                 }

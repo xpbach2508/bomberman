@@ -53,7 +53,7 @@ public class Sprite {
 	
 	public static Sprite player_right_1 = new Sprite(DEFAULT_SIZE, 1, 1, SpriteSheet.tiles, 11, 16);
 	public static Sprite player_right_2 = new Sprite(DEFAULT_SIZE, 1, 2, SpriteSheet.tiles, 12, 16);
-	
+	public static Sprite player_dead = new Sprite(DEFAULT_SIZE, 8, 9, SpriteSheet.tiles, 14, 16);
 	public static Sprite player_dead1 = new Sprite(DEFAULT_SIZE, 4, 2, SpriteSheet.tiles, 14, 16);
 	public static Sprite player_dead2 = new Sprite(DEFAULT_SIZE, 5, 2, SpriteSheet.tiles, 13, 15);
 	public static Sprite player_dead3 = new Sprite(DEFAULT_SIZE, 6, 2, SpriteSheet.tiles, 16, 16);
@@ -230,6 +230,25 @@ public class Sprite {
 			return x1;
 		}
 		return x2;
+	}
+
+	public static Sprite movingSprite(Sprite normal, Sprite x1, Sprite x2, Sprite x3, int animate, int time) {
+		int calc = animate % time;
+		int diff = time / 4;
+
+		if(calc < diff) {
+			return normal;
+		}
+
+		if(calc < diff * 2) {
+			return x1;
+		}
+
+		if(calc < diff * 3) {
+			return x2;
+		}
+
+		return x3;
 	}
 	
 	public static Sprite movingSprite(Sprite x1, Sprite x2, int animate, int time) {

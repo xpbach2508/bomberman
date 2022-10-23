@@ -2,25 +2,27 @@ package bomberman.entities;
 
 import bomberman.Collision;
 import bomberman.entities.tile.Brick;
+import bomberman.entities.tile.Portal;
 import bomberman.entities.tile.Wall;
+import bomberman.graphics.Sprite;
+import bomberman.inPut.handleInput;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import bomberman.inPut.handleInput;
-import bomberman.graphics.Sprite;
 
 import static bomberman.BombermanGame.getStillEntityAt;
-
-import static bomberman.BombermanGame.getStillEntityAt;
+import static bomberman.graphics.Menu.*;
 
 
 public class Bomber extends AnimatedEntity {
     protected int direct = -1;
-
     protected boolean moving = false;
-
     public int bombNow = 1;
     public int timerIntervalBomb = 0;
     public int bombPower = 1;
+    public int level = 1;
+    public int timerDead = 100;
+    boolean startDead = true;
+    private Sprite preSprite = Sprite.player_dead1;
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -33,11 +35,22 @@ public class Bomber extends AnimatedEntity {
         y += moveY;
         if (timerIntervalBomb < -2500) timerIntervalBomb = 0;
         else timerIntervalBomb--;
+        checkWin();
     }
 
     private void chooseSprite() {
         if (removed) {
-            sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, animate, 20);
+            if (startDead) sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, Sprite.player_dead, animate, 200);
+            if (preSprite.equals(Sprite.player_dead)) {
+                startDead = false;
+                timerDead--;
+                if (timerDead == 0) {
+                    level = 1;
+                    removed = false;
+                    checkEnd("Game Over");
+                }
+            }
+            preSprite = sprite;
         }
         else switch (direct) {
             case 0 -> {
@@ -62,10 +75,10 @@ public class Bomber extends AnimatedEntity {
     public void move(handleInput dir) {
         moveX = 0;
         moveY = 0;
-            if (dir.left) {
+            if (!removed) if (dir.left) {
                 moving = true;
                 if (canMove(x - entitySpeed, y)) {
-                    moveX += -entitySpeed;
+                    moveX -= entitySpeed;
                     direct = 3;
                 } else {
                     double topLeftX = (double) x - entitySpeed + 2;
@@ -80,7 +93,7 @@ public class Bomber extends AnimatedEntity {
                     double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 2;
                     Entity botL = getStillEntityAt(botLeftX, botLeftY);
                     if (botL instanceof Wall || botL instanceof Brick) {
-                        moveY += -entitySpeed;
+                        moveY -= entitySpeed;
                         direct = 0;
                     }
                 }
@@ -104,7 +117,7 @@ public class Bomber extends AnimatedEntity {
                     double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 2;
                     Entity botR = getStillEntityAt(botRightX, botRightY);
                     if (botR instanceof  Wall || botR instanceof Brick) {
-                        moveY += -entitySpeed;
+                        moveY -= entitySpeed;
                         direct = 0;
                     }
                 }
@@ -113,7 +126,7 @@ public class Bomber extends AnimatedEntity {
             else if (dir.up) {
                 moving = true;
                 if (canMove(x, y - entitySpeed)) {
-                        moveY += -entitySpeed;
+                    moveY -= entitySpeed;
                         direct = 0;
                 } else {
                     double topLeftX = (double) x + 2;
@@ -128,7 +141,7 @@ public class Bomber extends AnimatedEntity {
                     double topRightY = (double) y - entitySpeed + 2;
                     Entity topR = getStillEntityAt(topRightX, topRightY);
                     if (topR instanceof Wall || topR instanceof Brick) {
-                        moveX += -entitySpeed;
+                        moveX -= entitySpeed;
                         direct = 3;
                     }
                 }
@@ -151,7 +164,7 @@ public class Bomber extends AnimatedEntity {
                     double botRightY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 2;
                     Entity botR = getStillEntityAt(botRightX, botRightY);
                     if (botR instanceof  Wall || botR instanceof Brick) {
-                        moveX += -entitySpeed;
+                        moveX -= entitySpeed;
                         direct = 3;
                     }
                 }
@@ -167,6 +180,32 @@ public class Bomber extends AnimatedEntity {
         return Collision.checkCollision(this, e);
     }
 
+    public void checkWin() {
+        if (getStillEntityAt(x,y) instanceof Portal) {
+            level++;
+            if (level < 3) {
+                loadObject("Stage " + level);
+                loadLevel("Stage " + level);
+            } else {
+                level = 1;
+                checkEnd("You Win");
+            }
+        }
+    }
+
+    public void reset() {
+        x = 32;
+        y = 32;
+        bombNow = 1;
+        bombPower = 1;
+        entitySpeed = 1;
+        removed = false;
+        timerDead = 100;
+        startDead = true;
+        preSprite = Sprite.player_right_1;
+    }
+
+    @Override
     public void render(GraphicsContext graContext) {
         chooseSprite();
         this.img = sprite.getFxImage();

@@ -3,7 +3,6 @@ package bomberman.entities.buff;
 import bomberman.Collision;
 import bomberman.entities.Bomber;
 import bomberman.entities.Entity;
-import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
 //import bomberman.Collision.checkCollision;
