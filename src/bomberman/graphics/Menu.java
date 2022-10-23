@@ -104,7 +104,7 @@ public class Menu {
         Text text = new Text(430,250,level);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
         text.setFill(Color.WHITE);
-        PauseTransition loadStage = new PauseTransition(Duration.seconds(2));
+        PauseTransition loadStage = new PauseTransition(Duration.seconds(0.1));
         running = false;
         loadStage.setOnFinished(e -> {
             root.getChildren().add(black);
@@ -113,7 +113,7 @@ public class Menu {
             root.getChildren().remove(loading);
         });
 
-        PauseTransition stage = new PauseTransition(Duration.seconds(2));
+        PauseTransition stage = new PauseTransition(Duration.seconds(0.1));
         stage.setOnFinished(m -> {
             root.getChildren().remove(text);
             running = true;
@@ -144,7 +144,7 @@ public class Menu {
         root.getChildren().add(text);
         running = false;
 
-        PauseTransition over = new PauseTransition(Duration.seconds(2));
+        PauseTransition over = new PauseTransition(Duration.seconds(0.1));
         over.setOnFinished(e -> {
             root.getChildren().remove(black);
             root.getChildren().remove(text);

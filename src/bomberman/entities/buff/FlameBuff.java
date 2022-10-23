@@ -1,9 +1,8 @@
 package bomberman.entities.buff;
 
-import bomberman.Collision;
+import bomberman.gameInteraction.Collision;
 import bomberman.entities.Bomber;
 import bomberman.entities.Entity;
-import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
 //import static bomberman.Collision.checkCollision;

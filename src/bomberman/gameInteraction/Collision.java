@@ -1,8 +1,7 @@
-package bomberman;
+package bomberman.gameInteraction;
 
 import bomberman.entities.Bomb;
 import bomberman.entities.Entity;
-import bomberman.entities.buff.FlameBuff;
 
 public class Collision {
 

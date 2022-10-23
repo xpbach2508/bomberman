@@ -63,16 +63,14 @@ public class BombermanGame extends Application {
         // Tao scene
         scene.getRoot().getTransforms().setAll(scale);
 
-
-        //stillObjects.addAll(bombList);
         entities.add(player);
-
+        //Handle Input
         handleInput direction = new handleInput();
         scene.setOnKeyPressed(direction::handlePressed);
 
         scene.setOnKeyReleased(direction::handleReleased);
 
-        // Them scene vao stage
+        //Scene vao stage
         stage.getIcons().add(new Image("./textures/icon.jfif"));
         stage.setTitle("Bomberman");
         stage.setScene(scene);
@@ -85,7 +83,7 @@ public class BombermanGame extends Application {
             public void handle(long l) {
                 if (running) {
                     player.move(direction);
-                    if (direction.space) {
+                    if (direction.space && !player.removed) {
                         putBomb(player);
                     }
                     removeBombs(player);
@@ -98,12 +96,15 @@ public class BombermanGame extends Application {
     }
 
     public void update(Bomber player) {
+        //Enemy and player
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).update();
         }
+        //Bomb
         for (Bomb e : bombList) {
             e.update(entities, stillObjects);
         }
+        //Brick and wall
         for (int i = 0; i < stillObjects.size(); i++) {
             Entity e = stillObjects.get(i);
             e.update();
@@ -116,15 +117,16 @@ public class BombermanGame extends Application {
                 i--;
             }
         }
+        //Enemy and player collision
         for (int i = 0; i < entities.size(); i++) {
             Entity e = entities.get(i);
-            if (e.removed && (e instanceof Bomber || e instanceof Enemies) && ((AnimatedEntity) e).timeAnimation <= 0) {
+            if (e.removed && (e instanceof Enemies) && ((AnimatedEntity) e).timeAnimation <= 0) {
                 entities.remove(i);
                 i--;
                 numberEnemies--;
             }
             if (e instanceof Enemies) {
-                if (player.collide(e)) System.out.println("Game over");
+                if (player.collide(e) && !e.removed) player.removed = true;
             }
         }
     }

@@ -1,6 +1,6 @@
 package bomberman.entities;
 
-import bomberman.Collision;
+import bomberman.gameInteraction.Collision;
 import bomberman.entities.Enemies.Enemies;
 import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Wall;
@@ -17,7 +17,6 @@ import static bomberman.BombermanGame.getStillEntityAt;
 public class Bomb extends AnimatedEntity {
 
     private boolean movedOut = false;
-    private boolean enemyMovedOut = false;
     private int timerExplode = 150;
     private int timerRemove = 20;
     private boolean explodedBomb = false;
@@ -114,8 +113,6 @@ public class Bomb extends AnimatedEntity {
     public void flameRender(GraphicsContext graContext) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < flameList[i].size(); j++) {
-                /*flameList[i].get(j).chooseSprite(20);
-                flameList[i].get(j).img = flameList[i].get(j).sprite.getFxImage();*/
                 flameList[i].get(j).render(graContext);
             }
         }

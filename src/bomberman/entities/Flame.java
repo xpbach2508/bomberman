@@ -1,6 +1,6 @@
 package bomberman.entities;
 
-import bomberman.Collision;
+import bomberman.gameInteraction.Collision;
 import bomberman.graphics.Sprite;
 
 public class Flame extends AnimatedEntity {

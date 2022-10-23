@@ -11,33 +11,9 @@ public class Balloom extends Enemies {
         super(x, y, img);
     }
 
-    @Override
-    public void update() {
+    protected void chooseSprite() {
         if (removed) {
-            animate();
-            chooseSprite();
-            this.img = sprite.getFxImage();
-            if (timeAnimation > 0) timeAnimation--;
-        } else {
-            animate();
-            x += moveX;
-            y += moveY;
-            move();
-            chooseSprite();
-            this.img = sprite.getFxImage();
-        }
-        //animate();
-        //x += moveX;
-       // y += moveY;
-       // move();
-        //chooseSprite();
-        //this.img = sprite.getFxImage();
-        //collide(player);
-    }
-
-    private void chooseSprite() {
-        if (removed) {
-            if (timeAnimation <= 0) sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 20);
+            if (timeAnimation <= 30) sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 20);
             else {
                 animate = 0;
                 sprite = Sprite.balloom_dead;
@@ -45,21 +21,21 @@ public class Balloom extends Enemies {
         }
         else switch (direct) {
             case 0 -> {
-                sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_left2, Sprite.balloom_right3, animate, 20);
+                sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_left2, Sprite.balloom_right3, animate, 40);
             }
             case 2 -> {
-                sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_right2, Sprite.balloom_left3, animate, 20);
+                sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_right2, Sprite.balloom_left3, animate, 40);
             }
             case 3 -> {
-                sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, animate, 20);
+                sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, animate, 40);
             }
             default -> {
-                sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, animate, 20);
+                sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, animate, 40);
             }
         }
     }
 
-    private void move() {
+    protected void move() {
         moveX = 0;
         moveY = 0;
         if (direct == 1) {

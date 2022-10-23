@@ -1,6 +1,7 @@
 package bomberman.entities;
 
-import bomberman.Collision;
+import bomberman.BombermanGame;
+import bomberman.gameInteraction.Collision;
 import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Portal;
 import bomberman.entities.tile.Wall;
@@ -22,7 +23,6 @@ public class Bomber extends AnimatedEntity {
     public int level = 1;
     public int timerDead = 100;
     boolean startDead = true;
-    private Sprite preSprite = Sprite.player_dead1;
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -31,6 +31,8 @@ public class Bomber extends AnimatedEntity {
     @Override
     public void update() {
         animate();
+        chooseSprite();
+        this.img = sprite.getFxImage();
         x += moveX;
         y += moveY;
         if (timerIntervalBomb < -2500) timerIntervalBomb = 0;
@@ -40,8 +42,13 @@ public class Bomber extends AnimatedEntity {
 
     private void chooseSprite() {
         if (removed) {
-            if (startDead) sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, Sprite.player_dead, animate, 200);
-            if (preSprite.equals(Sprite.player_dead)) {
+            //if (startDead) sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, Sprite.player_dead, animate, 80);
+            if (startDead && timeAnimation > 0) {
+                sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, animate, 70);
+                timeAnimation--;
+            }
+            if (timeAnimation == 0) {
+                sprite = Sprite.player_dead;
                 startDead = false;
                 timerDead--;
                 if (timerDead == 0) {
@@ -50,7 +57,6 @@ public class Bomber extends AnimatedEntity {
                     checkEnd("Game Over");
                 }
             }
-            preSprite = sprite;
         }
         else switch (direct) {
             case 0 -> {
@@ -202,13 +208,11 @@ public class Bomber extends AnimatedEntity {
         removed = false;
         timerDead = 100;
         startDead = true;
-        preSprite = Sprite.player_right_1;
+        timeAnimation = 70;
     }
 
     @Override
     public void render(GraphicsContext graContext) {
-        chooseSprite();
-        this.img = sprite.getFxImage();
         graContext.drawImage(img, x, y);
     }
 }

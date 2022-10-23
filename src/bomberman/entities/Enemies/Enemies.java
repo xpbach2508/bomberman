@@ -1,6 +1,6 @@
 package bomberman.entities.Enemies;
 
-import bomberman.Collision;
+import bomberman.gameInteraction.Collision;
 import bomberman.entities.AnimatedEntity;
 import bomberman.entities.Bomber;
 import bomberman.entities.Entity;
@@ -21,11 +21,15 @@ public class Enemies extends AnimatedEntity {
         this.preY = y;
     }
 
+    protected void chooseSprite(){
+
+    }
+
     @Override
     public boolean collide(Entity e) {
-        if (e instanceof Bomber) {
+        if (e instanceof Bomber && !this.removed) {
             if (Collision.checkCollision(this, e)) {
-                player.removed = true;
+                e.removed = true;
                 return true;
             }
         }
@@ -34,8 +38,21 @@ public class Enemies extends AnimatedEntity {
 
     @Override
     public void update() {
-
+        if (removed) {
+            animate();
+            chooseSprite();
+            this.img = sprite.getFxImage();
+            if (timeAnimation > 0) timeAnimation--;
+        } else {
+            animate();
+            x += moveX;
+            y += moveY;
+            move();
+            chooseSprite();
+            this.img = sprite.getFxImage();
+        }
     }
-
+    protected void move() {
+    }
 
 }
