@@ -30,7 +30,7 @@ public class BombermanGame extends Application {
     // replace with getWidth and getHeight
     public static int WIDTH;
     public static int HEIGHT;
-    public static boolean running;
+    public static boolean running = true;
 
     public static int numberEnemies = 0;
     private GraphicsContext graContext;
@@ -67,7 +67,6 @@ public class BombermanGame extends Application {
         //Handle Input
         handleInput direction = new handleInput();
         scene.setOnKeyPressed(direction::handlePressed);
-
         scene.setOnKeyReleased(direction::handleReleased);
 
         //Scene vao stage

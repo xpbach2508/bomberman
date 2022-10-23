@@ -104,7 +104,7 @@ public class Menu {
         Text text = new Text(430,250,level);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
         text.setFill(Color.WHITE);
-        PauseTransition loadStage = new PauseTransition(Duration.seconds(0.1));
+        PauseTransition loadStage = new PauseTransition(Duration.seconds(1));
         running = false;
         loadStage.setOnFinished(e -> {
             root.getChildren().add(black);
@@ -113,7 +113,7 @@ public class Menu {
             root.getChildren().remove(loading);
         });
 
-        PauseTransition stage = new PauseTransition(Duration.seconds(0.1));
+        PauseTransition stage = new PauseTransition(Duration.seconds(1));
         stage.setOnFinished(m -> {
             root.getChildren().remove(text);
             running = true;
@@ -132,8 +132,6 @@ public class Menu {
     }
 
     public static void checkEnd(String message) {
-        entities.clear();
-        stillObjects.clear();
         Image bl = new Image("./textures/black.png", 32 * 31, 32 * 13, false, false);
         ImageView black = new ImageView(bl);
 
@@ -144,14 +142,13 @@ public class Menu {
         root.getChildren().add(text);
         running = false;
 
-        PauseTransition over = new PauseTransition(Duration.seconds(0.1));
+        PauseTransition over = new PauseTransition(Duration.seconds(1));
         over.setOnFinished(e -> {
             root.getChildren().remove(black);
             root.getChildren().remove(text);
             create(new Scale(1,1,0,0));
             loadObject("Stage 1");
             entities.add(player);
-            running = true;
         });
         over.play();
     }

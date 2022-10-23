@@ -1,6 +1,5 @@
 package bomberman.entities;
 
-import bomberman.BombermanGame;
 import bomberman.gameInteraction.Collision;
 import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Portal;
@@ -10,7 +9,7 @@ import bomberman.inPut.handleInput;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import static bomberman.BombermanGame.getStillEntityAt;
+import static bomberman.BombermanGame.*;
 import static bomberman.graphics.Menu.*;
 
 
@@ -42,7 +41,6 @@ public class Bomber extends AnimatedEntity {
 
     private void chooseSprite() {
         if (removed) {
-            //if (startDead) sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, Sprite.player_dead, animate, 80);
             if (startDead && timeAnimation > 0) {
                 sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, animate, 70);
                 timeAnimation--;
@@ -52,6 +50,7 @@ public class Bomber extends AnimatedEntity {
                 startDead = false;
                 timerDead--;
                 if (timerDead == 0) {
+                    entities.remove(player);
                     level = 1;
                     removed = false;
                     checkEnd("Game Over");
