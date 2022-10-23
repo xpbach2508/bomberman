@@ -2,6 +2,7 @@ package bomberman;
 
 import bomberman.entities.Bomb;
 import bomberman.entities.Bomber;
+import bomberman.entities.Enemies.Enemies;
 import bomberman.entities.Entity;
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Brick;

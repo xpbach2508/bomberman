@@ -3,6 +3,8 @@ package bomberman.entities.Enemies;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
+import static bomberman.BombermanGame.player;
+
 public class Oneal extends Enemies{
 
     public Oneal(int x, int y, Image img) {
@@ -17,6 +19,7 @@ public class Oneal extends Enemies{
         move();
         chooseSprite();
         this.img = sprite.getFxImage();
+        collide(player);
     }
 
     private void chooseSprite() {

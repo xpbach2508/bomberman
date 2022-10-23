@@ -95,7 +95,7 @@ public class Menu {
         ImageView loading = new ImageView(load);
         ImageView black = new ImageView(bl);
 
-        loading.setX(330);
+        loading.setX(367);
         loading.setY(200);
 
         root.getChildren().add(background);
@@ -137,7 +137,7 @@ public class Menu {
         Image bl = new Image("./textures/black.png", 32 * 31, 32 * 13, false, false);
         ImageView black = new ImageView(bl);
 
-        Text text = new Text(430,250,message);
+        Text text = new Text(410,250,message);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
         text.setFill(Color.WHITE);
         root.getChildren().add(black);
@@ -149,7 +149,6 @@ public class Menu {
             root.getChildren().remove(black);
             root.getChildren().remove(text);
             create(new Scale(1,1,0,0));
-            System.out.println("dsss");
             loadObject("Stage 1");
             entities.add(player);
             running = true;

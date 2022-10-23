@@ -20,8 +20,9 @@ public class Bomber extends AnimatedEntity {
     public int timerIntervalBomb = 0;
     public int bombPower = 1;
     public int level = 1;
-
-    public int timeDead = 90;
+    public int timerDead = 100;
+    boolean startDead = true;
+    private Sprite preSprite = Sprite.player_dead1;
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -39,17 +40,17 @@ public class Bomber extends AnimatedEntity {
 
     private void chooseSprite() {
         if (removed) {
-            if (!sprite.equals(Sprite.grass)) {
-                sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, Sprite.grass, animate, 200);
-            } else {
-                if (timeDead == 0) {
+            if (startDead) sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, Sprite.player_dead, animate, 200);
+            if (preSprite.equals(Sprite.player_dead)) {
+                startDead = false;
+                timerDead--;
+                if (timerDead == 0) {
                     level = 1;
                     removed = false;
                     checkEnd("Game Over");
-                } else {
-                    timeDead--;
                 }
             }
+            preSprite = sprite;
         }
         else switch (direct) {
             case 0 -> {
@@ -74,7 +75,7 @@ public class Bomber extends AnimatedEntity {
     public void move(handleInput dir) {
         moveX = 0;
         moveY = 0;
-            if (dir.left) {
+            if (!removed) if (dir.left) {
                 moving = true;
                 if (canMove(x - entitySpeed, y)) {
                     moveX -= entitySpeed;
@@ -193,11 +194,15 @@ public class Bomber extends AnimatedEntity {
     }
 
     public void reset() {
-        this.setX(32);
-        this.setY(32);
-        this.bombNow = 1;
-        this.bombPower = 1;
-        this.entitySpeed = 1;
+        x = 32;
+        y = 32;
+        bombNow = 1;
+        bombPower = 1;
+        entitySpeed = 1;
+        removed = false;
+        timerDead = 100;
+        startDead = true;
+        preSprite = Sprite.player_right_1;
     }
 
     @Override

@@ -1,8 +1,12 @@
 package bomberman.entities.Enemies;
 
+import bomberman.Collision;
 import bomberman.entities.AnimatedEntity;
+import bomberman.entities.Bomber;
 import bomberman.entities.Entity;
 import javafx.scene.image.Image;
+
+import static bomberman.BombermanGame.player;
 
 public class Enemies extends AnimatedEntity {
     public int direction;
@@ -20,6 +24,12 @@ public class Enemies extends AnimatedEntity {
 
     @Override
     public boolean collide(Entity e) {
+        if (e instanceof Bomber) {
+            if (Collision.checkCollision(this, e)) {
+                player.removed = true;
+                return true;
+            }
+        }
         return false;
     }
 
