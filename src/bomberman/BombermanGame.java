@@ -1,5 +1,6 @@
 package bomberman;
 
+import bomberman.entities.AnimatedEntity;
 import bomberman.entities.Bomb;
 import bomberman.entities.Bomber;
 import bomberman.entities.Enemies.Enemies;
@@ -31,7 +32,7 @@ public class BombermanGame extends Application {
     public static int HEIGHT;
     public static boolean running;
 
-    protected static int numberEnemies = 0;
+    public static int numberEnemies = 0;
     private GraphicsContext graContext;
     private Canvas canvas;
 
@@ -113,6 +114,17 @@ public class BombermanGame extends Application {
             if (e instanceof Brick && ((Brick) e).timeRemoved <= 0) {
                 stillObjects.remove(i);
                 i--;
+            }
+        }
+        for (int i = 0; i < entities.size(); i++) {
+            Entity e = entities.get(i);
+            if (e.removed && (e instanceof Bomber || e instanceof Enemies) && ((AnimatedEntity) e).timeAnimation <= 0) {
+                entities.remove(i);
+                i--;
+                numberEnemies--;
+            }
+            if (e instanceof Enemies) {
+                if (player.collide(e)) System.out.println("Game over");
             }
         }
     }

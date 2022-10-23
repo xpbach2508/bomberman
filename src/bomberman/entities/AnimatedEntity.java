@@ -11,7 +11,7 @@ public abstract class AnimatedEntity extends Entity {
     protected int animate = 0;
 
     protected final int MAX_ANIMATE = 10000;
-
+    public int timeAnimation = 70;
     public int moveX, moveY;
 
     protected int direct = random(new int[]{0, 1, 2, 3});

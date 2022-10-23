@@ -13,13 +13,26 @@ public class Balloom extends Enemies {
 
     @Override
     public void update() {
-        animate();
-        x += moveX;
-        y += moveY;
-        move();
-        chooseSprite();
-        this.img = sprite.getFxImage();
-        collide(player);
+        if (removed) {
+            animate();
+            chooseSprite();
+            this.img = sprite.getFxImage();
+            if (timeAnimation > 0) timeAnimation--;
+        } else {
+            animate();
+            x += moveX;
+            y += moveY;
+            move();
+            chooseSprite();
+            this.img = sprite.getFxImage();
+        }
+        //animate();
+        //x += moveX;
+       // y += moveY;
+       // move();
+        //chooseSprite();
+        //this.img = sprite.getFxImage();
+        //collide(player);
     }
 
     private void chooseSprite() {
