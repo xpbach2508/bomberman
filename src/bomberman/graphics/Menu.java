@@ -128,6 +128,7 @@ public class Menu {
         entities.removeIf(n -> !(n instanceof Bomber));
         stillObjects.clear();
         player.reset();
+        numberEnemies = 0;
         getObject(size, level);
     }
 

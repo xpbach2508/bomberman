@@ -1,6 +1,5 @@
 package bomberman.graphics;
 
-import bomberman.BombermanGame;
 import bomberman.entities.buff.*;
 import bomberman.entities.tile.*;
 import bomberman.entities.*;
@@ -39,34 +38,40 @@ public class MapTiles {
                         case 'x' -> {
                             object = new Portal(i, row, Sprite.portal.getFxImage());
                             stillObjects.add(object);
-//                            object = new Brick(i, row, Sprite.brick.getFxImage());
-//                            stillObjects.add(object);
+                            object = new Brick(i, row, Sprite.brick.getFxImage());
+                            stillObjects.add(object);
                         }
                         case '1' -> {
                             object = new Balloom(i, row, Sprite.balloom_right1.getFxImage());
+                            numberEnemies++;
                             entities.add(object);
-                            BombermanGame.numberEnemies++;
                         }
                         case '2' -> {
                             object = new Oneal(i, row, Sprite.oneal_right1.getFxImage());
+                            numberEnemies++;
                             entities.add(object);
-                            BombermanGame.numberEnemies++;
                         }
                         case '3' -> {
                             object = new Doll(i, row, Sprite.doll_right1.getFxImage());
+                            numberEnemies++;
                             entities.add(object);
-                            BombermanGame.numberEnemies++;
                         }
                         case 'b' -> {
                             object = new BombBuff(i, row, Sprite.powerup_bombs.getFxImage());
+                            stillObjects.add(object);
+                            object = new Brick(i, row, Sprite.brick.getFxImage());
                             stillObjects.add(object);
                         }
                         case 'f' -> {
                             object = new FlameBuff(i, row, Sprite.powerup_flames.getFxImage());
                             stillObjects.add(object);
+                            object = new Brick(i, row, Sprite.brick.getFxImage());
+                            stillObjects.add(object);
                         }
                         case 's' -> {
                             object = new SpeedBuff(i, row, Sprite.powerup_speed.getFxImage());
+                            stillObjects.add(object);
+                            object = new Brick(i, row, Sprite.brick.getFxImage());
                             stillObjects.add(object);
                         }
                     }

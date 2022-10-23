@@ -6,10 +6,9 @@ import bomberman.entities.Bomber;
 import bomberman.entities.Entity;
 import javafx.scene.image.Image;
 
-import static bomberman.BombermanGame.player;
+import static bomberman.BombermanGame.numberEnemies;
 
 public class Enemies extends AnimatedEntity {
-    public int direction;
     protected int preX = 0, preY = 0;
 
     public Enemies(int x, int y, Image img) {
@@ -30,6 +29,7 @@ public class Enemies extends AnimatedEntity {
         if (e instanceof Bomber && !this.removed) {
             if (Collision.checkCollision(this, e)) {
                 e.removed = true;
+                numberEnemies--;
                 return true;
             }
         }

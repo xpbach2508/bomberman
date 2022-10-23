@@ -31,8 +31,7 @@ public class BombermanGame extends Application {
     public static int WIDTH;
     public static int HEIGHT;
     public static boolean running = true;
-
-    public static int numberEnemies = 0;
+    public static int numberEnemies;
     private GraphicsContext graContext;
     private Canvas canvas;
 
@@ -166,8 +165,6 @@ public class BombermanGame extends Application {
     }
 
     public static Entity getMovingEntityAt(double x, double y) {
-        int xTile = (int) x / Sprite.SCALED_SIZE;
-        int yTile = (int) y / Sprite.SCALED_SIZE;
         for (int i = entities.size() - 1; i >= 0; i--) {
             Entity e = entities.get(i);
             if (e instanceof Enemies) if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
@@ -192,18 +189,10 @@ public class BombermanGame extends Application {
             int xTileMore = 0;
             int yTileMore = 0;
             if (!canPutBomb(e)) switch (e.direct) {
-                case 0 -> {
-                    yTileMore = 1;
-                }
-                case 2 -> {
-                    yTileMore = -1;
-                }
-                case 3 -> {
-                    xTileMore = 1;
-                }
-                default -> {
-                    xTileMore = -1;
-                }
+                case 0 -> yTileMore = 1;
+                case 2 -> yTileMore = -1;
+                case 3 -> xTileMore = 1;
+                default -> xTileMore = -1;
             }
             Bomb b = new Bomb((e.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + xTileMore,
                     (e.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + yTileMore, Sprite.bomb.getFxImage(), e.bombPower);

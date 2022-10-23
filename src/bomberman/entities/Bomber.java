@@ -186,14 +186,21 @@ public class Bomber extends AnimatedEntity {
     }
 
     public void checkWin() {
-        if (getStillEntityAt(x,y) instanceof Portal) {
-            level++;
-            if (level < 3) {
-                loadObject("Stage " + level);
-                loadLevel("Stage " + level);
-            } else {
-                level = 1;
-                checkEnd("You Win");
+        for (int i = 0; i < stillObjects.size(); i++) {
+            Entity e = stillObjects.get(i);
+                if (e instanceof Portal &&
+                   (x + Sprite.DEFAULT_SIZE)/Sprite.SCALED_SIZE == e.x/Sprite.SCALED_SIZE &&
+                   (y + Sprite.DEFAULT_SIZE)/Sprite.SCALED_SIZE == e.y/Sprite.SCALED_SIZE &&
+                   !(getStillEntityAt(96, 96) instanceof Brick) &&
+                   numberEnemies == 0) {
+                level++;
+                if (level < 3) {
+                    loadObject("Stage " + level);
+                    loadLevel("Stage " + level);
+                } else {
+                    level = 1;
+                    checkEnd("You Win");
+                }
             }
         }
     }
