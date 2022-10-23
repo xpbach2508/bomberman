@@ -1,23 +1,15 @@
 package bomberman.entities;
 
-import bomberman.entities.Enemies.Enemies;
-import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Brick;
-import bomberman.entities.tile.Portal;
 import bomberman.entities.tile.Wall;
 import bomberman.graphics.Sprite;
-import bomberman.inPut.handleInput;
 import javafx.scene.image.Image;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static bomberman.BombermanGame.getStillEntityAt;
 
 public abstract class AnimatedEntity extends Entity {
     protected int animate = 0;
 
-    protected int pre = 0;
     protected final int MAX_ANIMATE = 10000;
 
     public int moveX, moveY;

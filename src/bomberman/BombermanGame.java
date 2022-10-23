@@ -2,13 +2,11 @@ package bomberman;
 
 import bomberman.entities.Bomb;
 import bomberman.entities.Bomber;
-import bomberman.entities.Enemies.Enemies;
 import bomberman.entities.Entity;
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Grass;
-import bomberman.entities.tile.Portal;
-import bomberman.graphics.MapTiles;
+import bomberman.graphics.Menu;
 import bomberman.graphics.Sprite;
 import bomberman.inPut.handleInput;
 import javafx.animation.AnimationTimer;
@@ -16,20 +14,20 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
-import bomberman.graphics.Sprite;
-import bomberman.inPut.handleInput;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import static bomberman.graphics.Menu.loadObject;
 
 public class BombermanGame extends Application {
     // replace with getWidth and getHeight
     public static int WIDTH;
     public static int HEIGHT;
-
     public static boolean running;
 
     protected static int numberEnemies = 0;
@@ -38,15 +36,15 @@ public class BombermanGame extends Application {
 
     public static List<Entity> entities = new ArrayList<>();
     public static List<Entity> stillObjects = new ArrayList<>();
-    private MapTiles map = new MapTiles();
-
-    private static Bomber player = new Bomber(1,1,Sprite.player_right.getFxImage());
+    public static Pane root = new Pane();
+    public static Scene scene = new Scene(root);
+    public static Bomber player = new Bomber(1, 1, Sprite.player_right.getFxImage());
+    public static int[] size = new int[2];
     private static List<Bomb> bombList = new ArrayList<>();
 
     @Override
     public void start(Stage stage) {
-        int[] size = new int[2];
-        map.getObject(size, "Level1");
+        loadObject("Stage 1");
         WIDTH = size[0];
         HEIGHT = size[1];
 
@@ -55,14 +53,16 @@ public class BombermanGame extends Application {
         graContext = canvas.getGraphicsContext2D();
 
         // Tao root container
-        Pane root = new Pane();
         root.getChildren().add(canvas);
-        Menu.create(root);
+        Scale scale = new Scale(1, 1, 0, 0);
+        Menu.create(scale);
+
 
         // Tao scene
-        Scene scene = new Scene(root);
+        scene.getRoot().getTransforms().setAll(scale);
 
-        //stillObjects.addAll(bombs);
+
+        //stillObjects.addAll(bombList);
         entities.add(player);
 
         handleInput direction = new handleInput();
@@ -71,8 +71,12 @@ public class BombermanGame extends Application {
         scene.setOnKeyReleased(direction::handleReleased);
 
         // Them scene vao stage
+        stage.getIcons().add(new Image("./textures/icon.jfif"));
+        stage.setTitle("Bomberman");
         stage.setScene(scene);
+        stage.setResizable(true);
         stage.show();
+
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -92,17 +96,15 @@ public class BombermanGame extends Application {
     }
 
     public void update(Bomber player) {
-        for (Entity entity : entities) {
-            entity.update();
+        for (int i = 0; i < entities.size(); i++) {
+            entities.get(i).update();
         }
         for (Bomb e : bombList) {
             e.update(entities, stillObjects);
         }
-        for (Entity e : stillObjects) {
-            e.update();
-        }
         for (int i = 0; i < stillObjects.size(); i++) {
             Entity e = stillObjects.get(i);
+            e.update();
             if (e.collide(player) && e instanceof Buff) {
                 stillObjects.remove(i);
                 i--;
@@ -119,8 +121,8 @@ public class BombermanGame extends Application {
         for (Entity stillObject : stillObjects) {
             stillObject.render(graContext);
         }
-        for (Entity g : entities) {
-            g.render(graContext);
+        for (int i = 0; i < entities.size(); i++) {
+            entities.get(i).render(graContext);
         }
         for (Bomb b : bombList) {
             b.render(graContext);
@@ -130,14 +132,13 @@ public class BombermanGame extends Application {
     public static Entity getStillEntityAt(double x, double y) {
         int xTile = (int) x / Sprite.SCALED_SIZE;
         int yTile = (int) y / Sprite.SCALED_SIZE;
-        for (Entity e : stillObjects) {
+        for (int i = stillObjects.size() - 1; i >= 0; i--) {
+            Entity e = stillObjects.get(i);
             if (e instanceof Grass) continue;
-            if (e.getTileX() == xTile && e.getTileY() == yTile) {
-                if (e instanceof Portal) continue;
+            if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
                 return e;
             }
         }
-
         for (Bomb e : bombList) {
             if (e.getTileX() == xTile && e.getTileY() == yTile) {
                 if (!e.isMovedOut()) {
@@ -169,6 +170,7 @@ public class BombermanGame extends Application {
             e.bombNow--;
         }
     }
+
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }

@@ -46,7 +46,7 @@ public class Doll extends Enemies{
             }
         }
         if (direct == 3) {
-            if (canMove(x - 8, y)) {
+            if (canMove(x - 4, y)) {
                 moveX = -1;
             } else {
                 direct = 0;
