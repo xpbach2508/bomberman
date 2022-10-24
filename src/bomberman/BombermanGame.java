@@ -35,6 +35,8 @@ public class BombermanGame extends Application {
     private GraphicsContext graContext;
     private Canvas canvas;
 
+    public static Sound music = new Sound();
+
     public static List<Entity> entities = new ArrayList<>();
     public static List<Entity> stillObjects = new ArrayList<>();
     public static Pane root = new Pane();
@@ -82,6 +84,7 @@ public class BombermanGame extends Application {
                 if (running) {
                     player.move(direction);
                     if (direction.space && !player.removed) {
+                        music.playPlantBomb();
                         putBomb(player);
                     }
                     removeBombs(player);

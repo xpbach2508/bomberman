@@ -56,9 +56,19 @@ public class Menu {
             layoutMenu.setTranslateX(-1000);
             layoutMenu.setTranslateY(-1000);
             running = true;
+            music.playGameMusic();
             player.life = 3;
             loadLevel("Stage 1");
-//            new Level1(root);
+        });
+        options[0].setOnMouseClicked(event -> {
+            background.setX(-1000);
+            background.setY(-1000);
+            layoutMenu.setTranslateX(-1000);
+            layoutMenu.setTranslateY(-1000);
+            running = true;
+            music.playGameMusic();
+            player.life = 3;
+            loadLevel("Stage 1");
         });
 
         options[0].setText("New Game");
@@ -78,13 +88,14 @@ public class Menu {
         rect[2].setY(353);
 
         rect[2].setOnMouseClicked(event-> Platform.exit());
+        options[2].setOnMouseClicked(event-> Platform.exit());
 
-        for(Rectangle Rect:rect) {
-            Rect.setOnMouseEntered(event-> Rect.setFill(Color.LIGHTGREEN));
-        }
-
-        for(Rectangle Rect:rect) {
-            Rect.setOnMouseExited(event-> Rect.setFill(Color.DEEPSKYBLUE));
+        for(int i = 0; i < 3; i++) {
+            int finalI = i;
+            rect[i].setOnMouseEntered(event-> rect[finalI].setFill(Color.LIGHTGREEN));
+            rect[i].setOnMouseExited(event-> rect[finalI].setFill(Color.DEEPSKYBLUE));
+            options[i].setOnMouseEntered(event-> rect[finalI].setFill(Color.LIGHTGREEN));
+            options[i].setOnMouseExited(event-> rect[finalI].setFill(Color.DEEPSKYBLUE));
         }
     }
     public static void loadLevel(String level) {
