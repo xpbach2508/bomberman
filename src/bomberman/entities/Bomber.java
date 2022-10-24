@@ -14,6 +14,7 @@ import static bomberman.graphics.Menu.*;
 
 
 public class Bomber extends AnimatedEntity {
+    public int life = 3;
     public int direct = -1;
     protected boolean moving = false;
     public int bombNow = 1;
@@ -50,10 +51,15 @@ public class Bomber extends AnimatedEntity {
                 startDead = false;
                 timerDead--;
                 if (timerDead == 0) {
-                    entities.remove(player);
-                    level = 1;
-                    removed = false;
-                    checkEnd("Game Over");
+                    if (life > 0) {
+                        life--;
+                        reset();
+                    } else {
+                        entities.remove(player);
+                        level = 1;
+                        removed = false;
+                        checkEnd("Game Over");
+                    }
                 }
             }
         }
@@ -191,9 +197,14 @@ public class Bomber extends AnimatedEntity {
                 if (e instanceof Portal &&
                    (x + Sprite.DEFAULT_SIZE)/Sprite.SCALED_SIZE == e.x/Sprite.SCALED_SIZE &&
                    (y + Sprite.DEFAULT_SIZE)/Sprite.SCALED_SIZE == e.y/Sprite.SCALED_SIZE &&
-                   !(getStillEntityAt(96, 96) instanceof Brick) &&
-                   numberEnemies == 0) {
+                   !(getStillEntityAt(96, 96) instanceof Brick) /*&&
+                   numberEnemies == 0*/) {
                 level++;
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException I) {
+                    I.printStackTrace();
+                }
                 if (level < 3) {
                     loadObject("Stage " + level);
                     loadLevel("Stage " + level);
@@ -201,6 +212,7 @@ public class Bomber extends AnimatedEntity {
                     level = 1;
                     checkEnd("You Win");
                 }
+                break;
             }
         }
     }

@@ -16,7 +16,7 @@ public abstract class AnimatedEntity extends Entity {
 
     protected int direct = random(new int[]{0, 1, 2, 3});
 
-    protected int entitySpeed = 2;
+    protected int entitySpeed = 1;
 
     protected int random(int[] arr) {
         return  arr[(int) ((Math.random() * (arr.length))+ 0)];

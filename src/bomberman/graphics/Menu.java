@@ -56,6 +56,7 @@ public class Menu {
             layoutMenu.setTranslateX(-1000);
             layoutMenu.setTranslateY(-1000);
             running = true;
+            player.life = 3;
             loadLevel("Stage 1");
 //            new Level1(root);
         });
@@ -135,16 +136,24 @@ public class Menu {
     public static void checkEnd(String message) {
         Image bl = new Image("./textures/black.png", 32 * 31, 32 * 13, false, false);
         ImageView black = new ImageView(bl);
+        Image cat = new Image("./textures/cat.gif", 32 * 9, 32 * 4, false, false);
+        ImageView meow = new ImageView(cat);
+        meow.setX(367);
+        meow.setY(200);
 
         Text text = new Text(410,250,message);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
         text.setFill(Color.WHITE);
         root.getChildren().add(black);
         root.getChildren().add(text);
+        if (message.equals("You Win")) {
+            root.getChildren().add(meow);
+        }
         running = false;
 
-        PauseTransition over = new PauseTransition(Duration.seconds(1));
+        PauseTransition over = new PauseTransition(Duration.seconds(2));
         over.setOnFinished(e -> {
+            root.getChildren().remove(meow);
             root.getChildren().remove(black);
             root.getChildren().remove(text);
             create(new Scale(1,1,0,0));
