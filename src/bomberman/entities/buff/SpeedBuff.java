@@ -7,6 +7,7 @@ import bomberman.entities.Entity;
 import javafx.scene.image.Image;
 
 import static bomberman.BombermanGame.getStillEntityAt;
+import static bomberman.BombermanGame.music;
 
 public class SpeedBuff extends Buff {
     public SpeedBuff(int x, int y, Image img) {
@@ -17,6 +18,7 @@ public class SpeedBuff extends Buff {
         if (getStillEntityAt(x, y) instanceof Brick) return false;
         if (e instanceof Bomber) {
             if (Collision.checkCollision(this, e)) {
+                music.playBuff();
                 ((Bomber) e).setEntitySpeed();
                 return true;
             }

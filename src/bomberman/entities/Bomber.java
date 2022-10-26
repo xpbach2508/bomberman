@@ -16,7 +16,7 @@ import static bomberman.graphics.Menu.*;
 public class Bomber extends AnimatedEntity {
     public int life = 3;
     public int direct = -1;
-    protected boolean moving = false;
+    public boolean moving = false;
     public int bombNow = 1;
     public int timerIntervalBomb = 0;
     public int bombPower = 1;
@@ -41,7 +41,14 @@ public class Bomber extends AnimatedEntity {
     }
 
     private void chooseSprite() {
+        if (moveX != 0)
+            music.playMoveX();
+        else if (moveY != 0)
+            music.playMoveY();
+        else music.stopMove();
+
         if (removed) {
+            music.playDead();
             if (startDead && timeAnimation > 0) {
                 sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, animate, 70);
                 timeAnimation--;
@@ -51,19 +58,18 @@ public class Bomber extends AnimatedEntity {
                 startDead = false;
                 timerDead--;
                 if (timerDead == 0) {
+                    music.stopDead();
                     if (life > 0) {
                         life--;
                         reset();
                     } else {
-                        entities.remove(player);
                         level = 1;
                         removed = false;
                         checkEnd("Game Over");
                     }
                 }
             }
-        }
-        else switch (direct) {
+        } else switch (direct) {
             case 0 -> {
                 sprite = Sprite.player_up;
                 if (moving) sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 20);
@@ -86,104 +92,100 @@ public class Bomber extends AnimatedEntity {
     public void move(handleInput dir) {
         moveX = 0;
         moveY = 0;
-            if (!removed) if (dir.left) {
-                moving = true;
-                if (canMove(x - entitySpeed, y)) {
+        if (!removed) if (dir.left) {
+            moving = true;
+            if (canMove(x - entitySpeed, y)) {
+                moveX -= entitySpeed;
+                direct = 3;
+            } else {
+                double topLeftX = (double) x - entitySpeed + 2;
+                double topLeftY = (double) y + 2;
+                Entity topL = getStillEntityAt(topLeftX, topLeftY);
+                if (topL instanceof Wall || topL instanceof Brick) {
+                    moveY += entitySpeed;
+                    direct = 2;
+                }
+
+                double botLeftX = (double) x - entitySpeed + 2;
+                double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 2;
+                Entity botL = getStillEntityAt(botLeftX, botLeftY);
+                if (botL instanceof Wall || botL instanceof Brick) {
+                    moveY -= entitySpeed;
+                    direct = 0;
+                }
+            }
+            if (moveX == 0) direct = 3;
+        } else if (dir.right) {
+            moving = true;
+            if (canMove(x + entitySpeed, y)) {
+                moveX += entitySpeed;
+                direct = 1;
+            } else {
+                double topRightX = (double) x + entitySpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+                double topRightY = (double) y + 2;
+                Entity topR = getStillEntityAt(topRightX, topRightY);
+                if (topR instanceof Wall || topR instanceof Brick) {
+                    moveY += entitySpeed;
+                    direct = 2;
+                }
+
+                double botRightX = (double) x + entitySpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+                double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 2;
+                Entity botR = getStillEntityAt(botRightX, botRightY);
+                if (botR instanceof Wall || botR instanceof Brick) {
+                    moveY -= entitySpeed;
+                    direct = 0;
+                }
+            }
+            if (moveX == 0) direct = 1;
+        } else if (dir.up) {
+            moving = true;
+            if (canMove(x, y - entitySpeed)) {
+                moveY -= entitySpeed;
+                direct = 0;
+            } else {
+                double topLeftX = (double) x + 2;
+                double topLeftY = (double) y - entitySpeed + 2;
+                Entity topL = getStillEntityAt(topLeftX, topLeftY);
+                if (topL instanceof Wall || topL instanceof Brick) {
+                    moveX += entitySpeed;
+                    direct = 1;
+                }
+
+                double topRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+                double topRightY = (double) y - entitySpeed + 2;
+                Entity topR = getStillEntityAt(topRightX, topRightY);
+                if (topR instanceof Wall || topR instanceof Brick) {
                     moveX -= entitySpeed;
                     direct = 3;
-                } else {
-                    double topLeftX = (double) x - entitySpeed + 2;
-                    double topLeftY = (double) y + 2;
-                    Entity topL = getStillEntityAt(topLeftX, topLeftY);
-                    if (topL instanceof Wall || topL instanceof Brick) {
-                        moveY += entitySpeed;
-                        direct = 2;
-                    }
-
-                    double botLeftX = (double) x - entitySpeed + 2;
-                    double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 2;
-                    Entity botL = getStillEntityAt(botLeftX, botLeftY);
-                    if (botL instanceof Wall || botL instanceof Brick) {
-                        moveY -= entitySpeed;
-                        direct = 0;
-                    }
                 }
-                if (moveX == 0) direct = 3;
             }
-            else if (dir.right) {
-                moving = true;
-                if (canMove(x + entitySpeed, y)) {
-                        moveX += entitySpeed;
-                        direct = 1;
-                } else {
-                    double topRightX = (double) x + entitySpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                    double topRightY = (double) y + 2;
-                    Entity topR = getStillEntityAt(topRightX, topRightY);
-                    if (topR instanceof Wall || topR instanceof Brick) {
-                        moveY += entitySpeed;
-                        direct = 2;
-                    }
-
-                    double botRightX = (double) x + entitySpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                    double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 2;
-                    Entity botR = getStillEntityAt(botRightX, botRightY);
-                    if (botR instanceof  Wall || botR instanceof Brick) {
-                        moveY -= entitySpeed;
-                        direct = 0;
-                    }
+            if (moveY == 0) direct = 0;
+        } else if (dir.down) {
+            moving = true;
+            if (canMove(x, y + entitySpeed)) {
+                moveY += entitySpeed;
+                direct = 2;
+            } else {
+                double botLeftX = (double) x + 2;
+                double botLeftY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 2;
+                Entity botL = getStillEntityAt(botLeftX, botLeftY);
+                if (botL instanceof Wall || botL instanceof Brick) {
+                    moveX += entitySpeed;
+                    direct = 1;
                 }
-                if (moveX == 0) direct = 1;
-            }
-            else if (dir.up) {
-                moving = true;
-                if (canMove(x, y - entitySpeed)) {
-                    moveY -= entitySpeed;
-                        direct = 0;
-                } else {
-                    double topLeftX = (double) x + 2;
-                    double topLeftY = (double) y - entitySpeed + 2;
-                    Entity topL = getStillEntityAt(topLeftX, topLeftY);
-                    if (topL instanceof Wall || topL instanceof Brick) {
-                        moveX += entitySpeed;
-                        direct = 1;
-                    }
-
-                    double topRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                    double topRightY = (double) y - entitySpeed + 2;
-                    Entity topR = getStillEntityAt(topRightX, topRightY);
-                    if (topR instanceof Wall || topR instanceof Brick) {
-                        moveX -= entitySpeed;
-                        direct = 3;
-                    }
+                double botRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+                double botRightY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 2;
+                Entity botR = getStillEntityAt(botRightX, botRightY);
+                if (botR instanceof Wall || botR instanceof Brick) {
+                    moveX -= entitySpeed;
+                    direct = 3;
                 }
-                if (moveY == 0) direct = 0;
             }
-            else if (dir.down) {
-                moving = true;
-                if (canMove(x, y + entitySpeed)) {
-                        moveY += entitySpeed;
-                        direct = 2;
-                } else {
-                    double botLeftX = (double) x + 2;
-                    double botLeftY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 2;
-                    Entity botL = getStillEntityAt(botLeftX, botLeftY);
-                    if (botL instanceof Wall || botL instanceof Brick) {
-                        moveX += entitySpeed;
-                        direct = 1;
-                    }
-                    double botRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                    double botRightY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 2;
-                    Entity botR = getStillEntityAt(botRightX, botRightY);
-                    if (botR instanceof  Wall || botR instanceof Brick) {
-                        moveX -= entitySpeed;
-                        direct = 3;
-                    }
-                }
-                if (moveY == 0) direct = 2;
-            }
-            else {
-                moving = false;
-            }
+            if (moveY == 0) direct = 2;
+        } else {
+            moving = false;
+        }
     }
 
     @Override
@@ -192,14 +194,14 @@ public class Bomber extends AnimatedEntity {
     }
 
     public void checkWin() {
-        for (int i = 0; i < stillObjects.size(); i++) {
-            Entity e = stillObjects.get(i);
-                if (e instanceof Portal &&
-                   (x + Sprite.DEFAULT_SIZE)/Sprite.SCALED_SIZE == e.x/Sprite.SCALED_SIZE &&
-                   (y + Sprite.DEFAULT_SIZE)/Sprite.SCALED_SIZE == e.y/Sprite.SCALED_SIZE &&
-                   !(getStillEntityAt(96, 96) instanceof Brick) /*&&
+        for (Entity e : stillObjects) {
+            if (e instanceof Portal &&
+                    (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.x / Sprite.SCALED_SIZE &&
+                    (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.y / Sprite.SCALED_SIZE &&
+                    !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) /*&&
                    numberEnemies == 0*/) {
                 level++;
+                music.playPortal();
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException I) {
@@ -210,6 +212,7 @@ public class Bomber extends AnimatedEntity {
                     loadLevel("Stage " + level);
                 } else {
                     level = 1;
+                    reset();
                     checkEnd("You Win");
                 }
                 break;
@@ -223,10 +226,10 @@ public class Bomber extends AnimatedEntity {
         bombNow = 1;
         bombPower = 1;
         entitySpeed = 1;
-        removed = false;
         timerDead = 100;
-        startDead = true;
         timeAnimation = 70;
+        startDead = true;
+        removed = false;
     }
 
     @Override

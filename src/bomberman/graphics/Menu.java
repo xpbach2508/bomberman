@@ -18,6 +18,7 @@ import static bomberman.graphics.MapTiles.getObject;
 
 public class Menu {
     public static void create(Scale scale) {
+        music.playMenuMusic();
         scale.xProperty().bind(root.widthProperty().divide(32 * 31));     //must match with the one in the controller
         scale.yProperty().bind(root.heightProperty().divide(32 * 13));   //must match with the one in the controller
         root.getTransforms().add(scale);
@@ -55,9 +56,9 @@ public class Menu {
             background.setY(-1000);
             layoutMenu.setTranslateX(-1000);
             layoutMenu.setTranslateY(-1000);
-            running = true;
-            music.playGameMusic();
             player.life = 3;
+            music.stopMenuMusic();
+            music.playGameMusic();
             loadLevel("Stage 1");
         });
         options[0].setOnMouseClicked(event -> {
@@ -65,9 +66,8 @@ public class Menu {
             background.setY(-1000);
             layoutMenu.setTranslateX(-1000);
             layoutMenu.setTranslateY(-1000);
-            running = true;
-            music.playGameMusic();
             player.life = 3;
+            music.stopMenuMusic();
             loadLevel("Stage 1");
         });
 
@@ -102,6 +102,9 @@ public class Menu {
         Image backgroundImg = new Image("./textures/scr2gif.gif", 32 * 31, 32 * 13, false, false);
         Image load = new Image("./textures/load.gif", 32 * 9, 32 * 4, false, false);
         Image bl = new Image("./textures/black.png", 32 * 31, 32 * 13, false, false);
+        music.stopGameMusic();
+        music.stopMove();
+        music.playLoadScene();
 
         ImageView background = new ImageView(backgroundImg);
         ImageView loading = new ImageView(load);
@@ -116,7 +119,7 @@ public class Menu {
         Text text = new Text(430,250,level);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
         text.setFill(Color.WHITE);
-        PauseTransition loadStage = new PauseTransition(Duration.seconds(1));
+        PauseTransition loadStage = new PauseTransition(Duration.seconds(2));
         running = false;
         loadStage.setOnFinished(e -> {
             root.getChildren().add(black);
@@ -130,6 +133,8 @@ public class Menu {
             root.getChildren().remove(text);
             running = true;
             root.getChildren().remove(black);
+            music.stopLoadScene();
+            music.playGameMusic();
         });
 
         SequentialTransition sq = new SequentialTransition(loadStage, stage);
@@ -139,6 +144,7 @@ public class Menu {
     public static void loadObject(String level) {
         entities.removeIf(n -> !(n instanceof Bomber));
         stillObjects.clear();
+        bombList.clear();
         player.reset();
         numberEnemies = 0;
         getObject(size, level);
@@ -151,6 +157,9 @@ public class Menu {
         ImageView meow = new ImageView(cat);
         meow.setX(367);
         meow.setY(200);
+        Duration time = Duration.seconds(6);
+        music.stopGameMusic();
+        music.stopMove();
 
         Text text = new Text(410,250,message);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
@@ -158,18 +167,21 @@ public class Menu {
         root.getChildren().add(black);
         root.getChildren().add(text);
         if (message.equals("You Win")) {
+            time = Duration.seconds(13);
+            music.playWin();
             root.getChildren().add(meow);
-        }
+        } else music.playGameOver();
         running = false;
 
-        PauseTransition over = new PauseTransition(Duration.seconds(2));
+        PauseTransition over = new PauseTransition(time);
         over.setOnFinished(e -> {
             root.getChildren().remove(meow);
             root.getChildren().remove(black);
             root.getChildren().remove(text);
+            music.stopGameOver();
+            music.stopWin();
             create(new Scale(1,1,0,0));
             loadObject("Stage 1");
-            entities.add(player);
         });
         over.play();
     }

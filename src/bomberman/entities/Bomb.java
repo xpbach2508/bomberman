@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bomberman.BombermanGame.getStillEntityAt;
+import static bomberman.BombermanGame.music;
 
 public class Bomb extends AnimatedEntity {
 
@@ -120,6 +121,7 @@ public class Bomb extends AnimatedEntity {
 
     private void explodedBomb() {
         explodedBomb = true;
+        music.playExplode();
         createFlame(0, bombLength, flameList[0]);
         createFlame(1, bombLength, flameList[1]);
         createFlame(2, bombLength, flameList[2]);
@@ -142,7 +144,9 @@ public class Bomb extends AnimatedEntity {
             }
             //Flame update
             else update();
-            if (timerRemove > 0) timerRemove--;
+            if (timerRemove > 0) {
+                timerRemove--;
+            }
             else removed = true;
         }
         for (Entity e : player) {
@@ -164,9 +168,9 @@ public class Bomb extends AnimatedEntity {
                 int tileBotRx = (int) botRightX / Sprite.SCALED_SIZE;
                 int tileBotRy = (int) botRightY / Sprite.SCALED_SIZE;
                 if ((tileTopLx != this.getTileX() || tileTopLy != this.getTileY())
-                        && (tileBotRx != this.getTileX() || tileBotRy != this.getTileY())
-                        && (tileTopRx != this.getTileX() || tileTopRy != this.getTileY())
-                        && (tileBotLx != this.getTileX() || tileBotLy != this.getTileY())) {
+                    && (tileBotRx != this.getTileX() || tileBotRy != this.getTileY())
+                    && (tileTopRx != this.getTileX() || tileTopRy != this.getTileY())
+                    && (tileBotLx != this.getTileX() || tileBotLy != this.getTileY())) {
                     this.setMovedOut(true);
                 }
             }

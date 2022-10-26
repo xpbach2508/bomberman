@@ -28,22 +28,21 @@ import static bomberman.graphics.Menu.loadObject;
 
 public class BombermanGame extends Application {
     // replace with getWidth and getHeight
+    public static Sound music = new Sound();
     public static int WIDTH;
     public static int HEIGHT;
-    public static boolean running = true;
+    public static boolean running = false;
     public static int numberEnemies;
     private GraphicsContext graContext;
     private Canvas canvas;
 
-    public static Sound music = new Sound();
-
-    public static List<Entity> entities = new ArrayList<>();
-    public static List<Entity> stillObjects = new ArrayList<>();
     public static Pane root = new Pane();
     public static Scene scene = new Scene(root);
     public static Bomber player = new Bomber(1, 1, Sprite.player_right.getFxImage());
+    public static List<Entity> entities = new ArrayList<>(List.of(player));
+    public static List<Entity> stillObjects = new ArrayList<>();
     public static int[] size = new int[2];
-    private static List<Bomb> bombList = new ArrayList<>();
+    public static List<Bomb> bombList = new ArrayList<>();
 
     @Override
     public void start(Stage stage) {
@@ -64,7 +63,6 @@ public class BombermanGame extends Application {
         // Tao scene
         scene.getRoot().getTransforms().setAll(scale);
 
-        entities.add(player);
         //Handle Input
         handleInput direction = new handleInput();
         scene.setOnKeyPressed(direction::handlePressed);
@@ -84,7 +82,6 @@ public class BombermanGame extends Application {
                 if (running) {
                     player.move(direction);
                     if (direction.space && !player.removed) {
-                        music.playPlantBomb();
                         putBomb(player);
                     }
                     removeBombs(player);
@@ -200,6 +197,7 @@ public class BombermanGame extends Application {
             Bomb b = new Bomb((e.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + xTileMore,
                     (e.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + yTileMore, Sprite.bomb.getFxImage(), e.bombPower);
             bombList.add(b);
+            music.playPlantBomb();
             e.timerIntervalBomb = 30;
             e.bombNow--;
         }

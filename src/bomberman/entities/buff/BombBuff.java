@@ -7,6 +7,8 @@ import bomberman.entities.Entity;
 import javafx.scene.image.Image;
 
 import static bomberman.BombermanGame.getStillEntityAt;
+import static bomberman.BombermanGame.music;
+
 public class BombBuff extends Buff {
     public BombBuff(int x, int y, Image img) {
         super(x, y, img);
@@ -17,6 +19,7 @@ public class BombBuff extends Buff {
          if (getStillEntityAt(x, y) instanceof Brick) return false;
         if (e instanceof Bomber) {
             if (Collision.checkCollision(this, e)) {
+                music.playBuff();
                 ((Bomber) e).bombNow++;
                 return true;
             }
