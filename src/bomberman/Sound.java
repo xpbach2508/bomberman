@@ -21,35 +21,40 @@ public class Sound {
     private final String youWin_path = "D:\\bomberman\\res\\sounds\\youWin.mp3";
 
     private final Media playing_media = new Media(new File(playing_path).toURI().toString());
-    private final MediaPlayer playing = new MediaPlayer(playing_media);
     private final Media menu_media = new Media(new File(menu_path).toURI().toString());
-    private final MediaPlayer menu = new MediaPlayer(menu_media);
     private final Media buff_media = new Media(new File(buff_path).toURI().toString());
-    private final MediaPlayer buff = new MediaPlayer(buff_media);
     private final Media enter_portal_media = new Media(new File(enter_portal_path).toURI().toString());
-    private final MediaPlayer enter_portal = new MediaPlayer(enter_portal_media);
     private final Media explode_media = new Media(new File(explode_path).toURI().toString());
-    private final MediaPlayer explode = new MediaPlayer(explode_media);
     private final Media game_over_media = new Media(new File(game_over_path).toURI().toString());
-    private final MediaPlayer game_over = new MediaPlayer(game_over_media);
     private final Media move_vertical_media = new Media(new File(move_vertical_path).toURI().toString());
-    private final MediaPlayer move_vertical = new MediaPlayer(move_vertical_media);
     private final Media move_horizontal_media = new Media(new File(move_horizontal_path).toURI().toString());
-    private final MediaPlayer move_horizontal = new MediaPlayer(move_horizontal_media);
     private final Media plant_bomb_media = new Media(new File(plant_bomb_path).toURI().toString());
-    private final MediaPlayer plant_bomb = new MediaPlayer(plant_bomb_media);
     private final Media dead_media = new Media(new File(dead_path).toURI().toString());
-    private final MediaPlayer dead = new MediaPlayer(dead_media);
     private final Media load_scene_media = new Media(new File(load_scene_path).toURI().toString());
-    private final MediaPlayer load_scene = new MediaPlayer(load_scene_media);
     private final Media youWin_media = new Media(new File(youWin_path).toURI().toString());
+
     private final MediaPlayer youWin = new MediaPlayer(youWin_media);
+    private final MediaPlayer playing = new MediaPlayer(playing_media);
+    private final MediaPlayer menu = new MediaPlayer(menu_media);
+    private final MediaPlayer buff = new MediaPlayer(buff_media);
+    private final MediaPlayer enter_portal = new MediaPlayer(enter_portal_media);
+    private final MediaPlayer plant_bomb = new MediaPlayer(plant_bomb_media);
+    private final MediaPlayer explode = new MediaPlayer(explode_media);
+    private final MediaPlayer move_vertical = new MediaPlayer(move_vertical_media);
+    private final MediaPlayer move_horizontal = new MediaPlayer(move_horizontal_media);
+    private final MediaPlayer load_scene = new MediaPlayer(load_scene_media);
+    private final MediaPlayer game_over = new MediaPlayer(game_over_media);
+    private final MediaPlayer dead = new MediaPlayer(dead_media);
+
+
+    public boolean pauseMusic = false;
+    public boolean pauseEffect = false;
 
     public void playGameMusic() {
-        playing.setVolume(0.5);
-        playing.seek(Duration.ZERO);
-        playing.setCycleCount(-1);
-        playing.play();
+            playing.setVolume(0.5);
+            playing.seek(Duration.ZERO);
+            playing.setCycleCount(-1);
+            playing.play();
     }
 
     public void stopGameMusic() {
@@ -57,9 +62,11 @@ public class Sound {
     }
 
     public void playMenuMusic() {
-        menu.seek(Duration.ZERO);
-        menu.setCycleCount(-1);
-        menu.play();
+         {
+            menu.seek(Duration.ZERO);
+            menu.setCycleCount(-1);
+            menu.play();
+        }
     }
 
     public void stopMenuMusic() {
@@ -67,28 +74,38 @@ public class Sound {
     }
 
     public void playBuff() {
-        buff.seek(Duration.ZERO);
-        buff.play();
+         {
+            buff.seek(Duration.ZERO);
+            buff.play();
+        }
     }
 
     public void playPlantBomb() {
-        plant_bomb.seek(Duration.ZERO);
-        plant_bomb.play();
+         {
+            plant_bomb.seek(Duration.ZERO);
+            plant_bomb.play();
+        }
     }
 
     public void playPortal() {
-        enter_portal.seek(Duration.ZERO);
-        enter_portal.play();
+         {
+            enter_portal.seek(Duration.ZERO);
+            enter_portal.play();
+        }
     }
 
     public void playExplode() {
-        explode.seek(Duration.ZERO);
-        explode.play();
+         {
+            explode.seek(Duration.ZERO);
+            explode.play();
+        }
     }
 
     public void playGameOver() {
-        game_over.seek(Duration.ZERO);
-        game_over.play();
+         {
+            game_over.seek(Duration.ZERO);
+            game_over.play();
+        }
     }
 
     public void stopGameOver() {
@@ -96,15 +113,19 @@ public class Sound {
     }
 
     public void playMoveY() {
-        move_horizontal.stop();
-        move_vertical.setOnEndOfMedia(() -> move_vertical.seek(Duration.ZERO));
-        move_vertical.play();
+         {
+            move_horizontal.stop();
+            move_vertical.setOnEndOfMedia(() -> move_vertical.seek(Duration.ZERO));
+            move_vertical.play();
+        }
     }
 
     public void playMoveX() {
-        move_vertical.stop();
-        move_horizontal.setOnEndOfMedia(() -> move_horizontal.seek(Duration.ZERO));
-        move_horizontal.play();
+         {
+            move_vertical.stop();
+            move_horizontal.setOnEndOfMedia(() -> move_horizontal.seek(Duration.ZERO));
+            move_horizontal.play();
+        }
     }
 
     public void stopMove() {
@@ -113,8 +134,10 @@ public class Sound {
     }
 
     public void playDead() {
-        dead.setOnEndOfMedia(() -> dead.seek(Duration.ZERO));
-        dead.play();
+         {
+            dead.setOnEndOfMedia(() -> dead.seek(Duration.ZERO));
+            dead.play();
+        }
     }
 
     public void stopDead() {
@@ -122,8 +145,10 @@ public class Sound {
     }
 
     public void playLoadScene() {
-        load_scene.seek(Duration.ZERO);
-        load_scene.play();
+         {
+            load_scene.seek(Duration.ZERO);
+            load_scene.play();
+        }
     }
 
     public void stopLoadScene() {
@@ -131,11 +156,57 @@ public class Sound {
     }
 
     public void playWin() {
-        youWin.seek(Duration.ZERO);
-        youWin.play();
+         {
+            youWin.seek(Duration.ZERO);
+            youWin.play();
+        }
     }
 
     public void stopWin() {
         youWin.stop();
+    }
+
+    public void muteMusic() {
+        pauseMusic = true;
+
+        playing.setMute(true);
+        menu.setMute(true);
+        load_scene.setMute(true);
+        game_over.setMute(true);
+        youWin.setMute(true);
+    }
+
+    public void unmuteMusic() {
+        pauseMusic = false;
+
+        playing.setMute(false);
+        menu.setMute(false);
+        load_scene.setMute(false);
+        game_over.setMute(false);
+        youWin.setMute(false);
+    }
+
+    public void muteEffect() {
+        pauseEffect = true;
+
+        buff.setMute(true);
+        enter_portal.setMute(true);
+        plant_bomb.setMute(true);
+        explode.setMute(true);
+        move_vertical.setMute(true);
+        move_horizontal.setMute(true);
+        dead.setMute(true);
+    }
+
+    public void unmuteEffect() {
+        pauseEffect = false;
+
+        buff.setMute(false);
+        enter_portal.setMute(false);
+        plant_bomb.setMute(false);
+        explode.setMute(false);
+        move_vertical.setMute(false);
+        move_horizontal.setMute(false);
+        dead.setMute(false);
     }
 }

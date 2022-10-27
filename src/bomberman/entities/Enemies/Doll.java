@@ -17,6 +17,7 @@ public class Doll extends Enemies{
             else {
                 animate = 0;
                 sprite = Sprite.doll_dead;
+                player.score += 1;
             }
         }
         else if (direct == 0 || direct == 1) {

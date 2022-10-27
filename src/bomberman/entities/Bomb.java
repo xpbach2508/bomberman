@@ -8,7 +8,6 @@ import bomberman.graphics.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import java.awt.font.ImageGraphicAttribute;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +28,10 @@ public class Bomb extends AnimatedEntity {
     public Bomb(int xUnit, int yUnit, Image img, int bombLength) {
         super(xUnit, yUnit, img);
         this.bombLength = bombLength;
-        flameList[0] = new ArrayList<Flame>();
-        flameList[1] = new ArrayList<Flame>();
-        flameList[2] = new ArrayList<Flame>();
-        flameList[3] = new ArrayList<Flame>();
+        flameList[0] = new ArrayList<>();
+        flameList[1] = new ArrayList<>();
+        flameList[2] = new ArrayList<>();
+        flameList[3] = new ArrayList<>();
     }
 
     private void createFlame(int direction, int length, ArrayList<Flame> flames) {
@@ -202,8 +201,7 @@ public class Bomb extends AnimatedEntity {
                 if (flameList[i].get(j).collide(e)) return true;
             }
         }
-        if (this.collide(e)) return true;
-        return false;
+        return this.collide(e);
     }
 
     public boolean isMovedOut() {

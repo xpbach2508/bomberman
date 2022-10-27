@@ -19,6 +19,7 @@ public class Oneal extends Enemies{
             else {
                 animate = 0;
                 sprite = Sprite.oneal_dead;
+                player.score += 2;
             }
         }
         else switch (direct) {

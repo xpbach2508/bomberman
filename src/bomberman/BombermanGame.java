@@ -18,7 +18,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Scale;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -35,9 +35,9 @@ public class BombermanGame extends Application {
     public static int numberEnemies;
     private GraphicsContext graContext;
     private Canvas canvas;
+    private long preTime;
 
     public static Pane root = new Pane();
-    public static Scene scene = new Scene(root);
     public static Bomber player = new Bomber(1, 1, Sprite.player_right.getFxImage());
     public static List<Entity> entities = new ArrayList<>(List.of(player));
     public static List<Entity> stillObjects = new ArrayList<>();
@@ -53,15 +53,12 @@ public class BombermanGame extends Application {
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         graContext = canvas.getGraphicsContext2D();
+        canvas.setTranslateY(60);
 
         // Tao root container
         root.getChildren().add(canvas);
-        Scale scale = new Scale(1, 1, 0, 0);
-        Menu.create(scale);
-
-
-        // Tao scene
-        scene.getRoot().getTransforms().setAll(scale);
+        Scene scene = new Scene(root, Sprite.SCALED_SIZE * WIDTH + 160, Sprite.SCALED_SIZE * HEIGHT + 60, Color.SKYBLUE);
+        Menu.create();
 
         //Handle Input
         handleInput direction = new handleInput();
@@ -86,6 +83,7 @@ public class BombermanGame extends Application {
                     }
                     removeBombs(player);
                     update(player);
+                    countTime();
                     render();
                 }
             }
@@ -134,8 +132,8 @@ public class BombermanGame extends Application {
         for (Entity stillObject : stillObjects) {
             stillObject.render(graContext);
         }
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).render(graContext);
+        for (Entity entity : entities) {
+            entity.render(graContext);
         }
         for (Bomb b : bombList) {
             b.render(graContext);
@@ -207,6 +205,14 @@ public class BombermanGame extends Application {
         Entity e = getMovingEntityAt((b.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE,
                                                     ((b.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE));
         return e == null;
+    }
+
+    public void countTime() {
+        long current = System.currentTimeMillis();
+        if (current - preTime >= 1000) {
+            preTime = System.currentTimeMillis();
+            player.timeLeft--;
+        }
     }
 
     public static void main(String[] args) {

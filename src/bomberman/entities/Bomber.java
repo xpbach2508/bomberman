@@ -5,6 +5,7 @@ import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Portal;
 import bomberman.entities.tile.Wall;
 import bomberman.graphics.Sprite;
+import bomberman.graphics.TaskBar;
 import bomberman.inPut.handleInput;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -12,9 +13,9 @@ import javafx.scene.image.Image;
 import static bomberman.BombermanGame.*;
 import static bomberman.graphics.Menu.*;
 
-
 public class Bomber extends AnimatedEntity {
     public int life = 3;
+    public int score = 0;
     public int direct = -1;
     public boolean moving = false;
     public int bombNow = 1;
@@ -22,6 +23,7 @@ public class Bomber extends AnimatedEntity {
     public int bombPower = 1;
     public int level = 1;
     public int timerDead = 100;
+    public int timeLeft = 200;
     boolean startDead = true;
 
     public Bomber(int x, int y, Image img) {
@@ -38,6 +40,7 @@ public class Bomber extends AnimatedEntity {
         if (timerIntervalBomb < -2500) timerIntervalBomb = 0;
         else timerIntervalBomb--;
         checkWin();
+        TaskBar.update();
     }
 
     private void chooseSprite() {
@@ -195,11 +198,11 @@ public class Bomber extends AnimatedEntity {
 
     public void checkWin() {
         for (Entity e : stillObjects) {
-            if (e instanceof Portal &&
-                    (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.x / Sprite.SCALED_SIZE &&
-                    (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.y / Sprite.SCALED_SIZE &&
-                    !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) /*&&
-                   numberEnemies == 0*/) {
+             if (e instanceof Portal &&
+                (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.x / Sprite.SCALED_SIZE &&
+                (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.y / Sprite.SCALED_SIZE &&
+                !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) &&
+                numberEnemies == 0) {
                 level++;
                 music.playPortal();
                 try {

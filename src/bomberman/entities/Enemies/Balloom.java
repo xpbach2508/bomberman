@@ -17,21 +17,14 @@ public class Balloom extends Enemies {
             else {
                 animate = 0;
                 sprite = Sprite.balloom_dead;
+                player.score += 1;
             }
         }
         else switch (direct) {
-            case 0 -> {
-                sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_left2, Sprite.balloom_right3, animate, 40);
-            }
-            case 2 -> {
-                sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_right2, Sprite.balloom_left3, animate, 40);
-            }
-            case 3 -> {
-                sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, animate, 40);
-            }
-            default -> {
-                sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, animate, 40);
-            }
+            case 0 -> sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_left2, Sprite.balloom_right3, animate, 40);
+            case 2 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_right2, Sprite.balloom_left3, animate, 40);
+            case 3 -> sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3, animate, 40);
+            default -> sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, animate, 40);
         }
     }
 
