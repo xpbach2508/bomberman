@@ -3,10 +3,13 @@ package bomberman.entities.Enemies;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
+import java.util.Random;
+
 import static bomberman.BombermanGame.player;
 
 public class Doll extends Enemies{
 
+    private double acceleration = 0;
     public Doll(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -31,31 +34,81 @@ public class Doll extends Enemies{
     protected void move() {
         moveX = 0;
         moveY = 0;
+        boolean canMoveRight = canMove(x + 4, y);
+        boolean canMoveLeft = canMove(x - 4, y);
+        boolean canMoveDown = canMove(x, y + 4);
+        boolean canMoveUp = canMove(x, y - 4);
+        Random newRandom = new Random();
+        System.out.println(newRandom.nextInt() % 100);
         if (direct == 1) {
-            if (canMove(x + 8, y)) {
+            if (canMoveUp && newRandom.nextInt() % 100 == 2) {
+                direct = 0;
+            }
+            else if (canMoveDown && newRandom.nextInt() % 100 == 1) {
+                direct = 2;
+            }
+            else if (canMoveRight) {
                 moveX = 1;
+                if (acceleration > 0) {
+                    acceleration--;
+                    moveX += 1;
+                }
             } else {
+                acceleration = 50;
                 direct = 2;
             }
         }
         if (direct == 2) {
-            if (canMove(x, y + 4)) {
+            if (canMoveLeft && newRandom.nextInt() % 100 == 2) {
+                direct = 3;
+            }
+            else if (canMoveRight && newRandom.nextInt() % 100 == 1) {
+                direct = 1;
+            }
+            else if (canMoveDown) {
                 moveY = 1;
+                if (acceleration > 0) {
+                    acceleration--;
+                    moveY += 1;
+                }
             } else {
+                acceleration = 50;
                 direct = 3;
             }
         }
         if (direct == 3) {
-            if (canMove(x - 4, y)) {
+            if (canMoveUp && newRandom.nextInt() % 100 == 2) {
+                direct = 0;
+            }
+            else if (canMoveDown && newRandom.nextInt() % 100 == 1) {
+                direct = 2;
+            }
+            else if (canMoveLeft) {
                 moveX = -1;
+                if (acceleration > 0) {
+                    acceleration--;
+                    moveX -= 1;
+                }
             } else {
+                acceleration = 50;
                 direct = 0;
             }
         }
         if (direct == 0) {
-            if (canMove(x, y - 4)) {
+            if (canMoveLeft && newRandom.nextInt() % 100 == 2) {
+                direct = 3;
+            }
+            else if (canMoveRight && newRandom.nextInt() % 100 == 1) {
+                direct = 1;
+            }
+            else if (canMoveUp) {
                 moveY = -1;
+                if (acceleration > 0) {
+                    acceleration--;
+                    moveY -= 1;
+                }
             } else {
+                acceleration = 50;
                 direct = 1;
             }
         }

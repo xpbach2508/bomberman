@@ -80,7 +80,6 @@ public class Bomb extends AnimatedEntity {
                 if (block instanceof Wall) return i - 1;
                 if (block instanceof Brick) {
                     block.removed = true;
-                    System.out.println(i + "1");
                     return i - 1;
                 }
             }
@@ -91,7 +90,6 @@ public class Bomb extends AnimatedEntity {
                 if (block instanceof Wall) return i - 1;
                 if (block instanceof Brick) {
                     block.removed = true;
-                    System.out.println(i + "2");
                     return i - 1;
                 }
             }
@@ -102,7 +100,6 @@ public class Bomb extends AnimatedEntity {
                 if (block instanceof Wall) return i - 1;
                 if (block instanceof Brick) {
                     block.removed = true;
-                    System.out.println(i + "3");
                     return i - 1;
                 }
             }

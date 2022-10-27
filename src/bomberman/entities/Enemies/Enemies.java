@@ -21,7 +21,6 @@ public class Enemies extends AnimatedEntity {
     }
 
     protected void chooseSprite(){
-
     }
 
     @Override
