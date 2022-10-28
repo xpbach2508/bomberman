@@ -19,13 +19,7 @@ import static bomberman.graphics.MapTiles.getObject;
 
 public class Menu {
     public static void create() {
-//        Scale scale = new Scale(1,1,0,0);
-//        root.getTransforms().removeIf(e -> (e instanceof Scale));
         music.playMenuMusic();
-//        scale.xProperty().bind(root.widthProperty().divide(32 * size[0]));
-//        scale.yProperty().bind(root.heightProperty().divide(32 * size[1]));
-//        root.getTransforms().add(scale);
-//        scene.getRoot().getTransforms().setAll(scale);
 
         Image backgroundImg = new Image("./textures/background.png", 32 * size[0] + 160, 32 * size[1]+60, false, false);
         ImageView background = new ImageView(backgroundImg);
@@ -128,7 +122,9 @@ public class Menu {
         }
     }
     public static void loadLevel(String level) {
-        if (level.equals("Stage 1")) TaskBar.create();
+        if (level.equals("Stage 1")) {
+            TaskBar.create();
+        }
         Image backgroundImg = new Image("./textures/scr2gif.gif", 32 * size[0] + 160, 32 * size[1]+60, false, false);
         Image load = new Image("./textures/load.gif", 32 * 9, 32 * 4, false, false);
         Image bl = new Image("./textures/black.png", 32 * size[0] + 160, 32 * size[1]+60, false, false);
@@ -180,11 +176,13 @@ public class Menu {
         bombList.clear();
         player.reset();
         player.timeLeft = 200;
+        player.life = 3;
         numberEnemies = 0;
         getObject(size, level);
     }
 
     public static void checkEnd(String message) {
+        TaskBar.clear();
         Image bl = new Image("./textures/black.png", 32 * 31 + 200, 32 * 13+60, false, false);
         ImageView black = new ImageView(bl);
         Image cat = new Image("./textures/cat.gif", 32 * 9, 32 * 4, false, false);

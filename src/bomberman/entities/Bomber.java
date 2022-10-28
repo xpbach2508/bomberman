@@ -50,7 +50,7 @@ public class Bomber extends AnimatedEntity {
             music.playMoveY();
         else music.stopMove();
 
-        if (removed) {
+        if (removed || timeLeft == 0) {
             music.playDead();
             if (startDead && timeAnimation > 0) {
                 sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, animate, 70);
