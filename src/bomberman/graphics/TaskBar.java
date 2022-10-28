@@ -100,7 +100,12 @@ public class TaskBar {
         replay.setOnMouseClicked(mouseEvent -> loadObject("Stage 1"));
         exit.setOnMouseClicked(mouseEvent -> Platform.exit());
 
-        Pane layout = new Pane(time,score,life,left,play,pause,replay,exit,Music,effect);
+        root.getChildren().add(time);
+        root.getChildren().add(score);
+        root.getChildren().add(life);
+        root.getChildren().add(left);
+
+        Pane layout = new Pane(play,pause,replay,exit,Music,effect);
         root.getChildren().add(layout);
     }
 
@@ -109,5 +114,12 @@ public class TaskBar {
         score.setText("SCORES: " + player.score);
         life.setText("LIVES: " + player.life);
         left.setText("ENEMIES: " + numberEnemies);
+    }
+
+    public static void clear() {
+        root.getChildren().remove(time);
+        root.getChildren().remove(score);
+        root.getChildren().remove(life);
+        root.getChildren().remove(left);
     }
 }

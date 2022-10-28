@@ -20,6 +20,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -59,6 +60,12 @@ public class BombermanGame extends Application {
         // Tao root container
         root.getChildren().add(canvas);
         Scene scene = new Scene(root, Sprite.SCALED_SIZE * WIDTH + 160, Sprite.SCALED_SIZE * HEIGHT + 60, Color.SKYBLUE);
+        Scale scale = new Scale(1,1,0,0);
+        root.getTransforms().removeIf(e -> (e instanceof Scale));
+        scale.xProperty().bind(root.widthProperty().divide(32 * size[0] + 160));
+        scale.yProperty().bind(root.heightProperty().divide(32 * size[1] + 60));
+        root.getTransforms().add(scale);
+        scene.getRoot().getTransforms().setAll(scale);
         Menu.create();
 
         //Handle Input
