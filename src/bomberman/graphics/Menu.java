@@ -175,7 +175,7 @@ public class Menu {
     }
 
     public static void loadObject(String level) {
-        entities.removeIf(n -> !(n instanceof Bomber));
+        enemies.clear();
         stillObjects.clear();
         bombList.clear();
         player.reset();

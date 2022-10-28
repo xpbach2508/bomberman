@@ -1,12 +1,11 @@
 package bomberman.entities.Enemies;
 
-import bomberman.gameInteraction.Collision;
 import bomberman.entities.AnimatedEntity;
 import bomberman.entities.Bomber;
 import bomberman.entities.Entity;
 import javafx.scene.image.Image;
 
-import static bomberman.BombermanGame.numberEnemies;
+import java.util.List;
 
 public class Enemies extends AnimatedEntity {
     protected int preX = 0, preY = 0;
@@ -20,22 +19,14 @@ public class Enemies extends AnimatedEntity {
         this.preY = y;
     }
 
-    protected void chooseSprite(){
+    protected void chooseSprite() {
     }
 
     @Override
     public boolean collide(Entity e) {
-        if (e instanceof Bomber && !this.removed) {
-            if (Collision.checkCollision(this, e)) {
-                e.removed = true;
-                numberEnemies--;
-                return true;
-            }
-        }
         return false;
     }
 
-    @Override
     public void update() {
         if (removed) {
             animate();
@@ -44,14 +35,31 @@ public class Enemies extends AnimatedEntity {
             if (timeAnimation > 0) timeAnimation--;
         } else {
             animate();
+            move();
             x += moveX;
             y += moveY;
-            move();
             chooseSprite();
             this.img = sprite.getFxImage();
         }
     }
     protected void move() {
+        moveX = 0;
+        moveY = 0;
+        if (direct == 0) {
+            if (canMove(x, y - entitySpeed)) moveY -= entitySpeed;
+        }
+        if (direct == 1) {
+            if (canMove(x + entitySpeed, y)) moveX += entitySpeed;
+        }
+        if (direct == 2) {
+            if (canMove(x, y + entitySpeed)) moveY += entitySpeed;
+        }
+        if (direct == 3) {
+            if (canMove(x - entitySpeed, y)) moveX -= entitySpeed;
+        }
+    }
+    public void setDirection(Bomber player, List<Entity> stillObj) {
+
     }
 
 }

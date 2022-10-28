@@ -101,16 +101,16 @@ public class Bomber extends AnimatedEntity {
                 moveX -= entitySpeed;
                 direct = 3;
             } else {
-                double topLeftX = (double) x - entitySpeed + 2;
-                double topLeftY = (double) y + 2;
+                double topLeftX = (double) x - entitySpeed + 1;
+                double topLeftY = (double) y + 1;
                 Entity topL = getStillEntityAt(topLeftX, topLeftY);
                 if (topL instanceof Wall || topL instanceof Brick) {
                     moveY += entitySpeed;
                     direct = 2;
                 }
 
-                double botLeftX = (double) x - entitySpeed + 2;
-                double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 2;
+                double botLeftX = (double) x - entitySpeed + 1;
+                double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 1;
                 Entity botL = getStillEntityAt(botLeftX, botLeftY);
                 if (botL instanceof Wall || botL instanceof Brick) {
                     moveY -= entitySpeed;
@@ -124,16 +124,16 @@ public class Bomber extends AnimatedEntity {
                 moveX += entitySpeed;
                 direct = 1;
             } else {
-                double topRightX = (double) x + entitySpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                double topRightY = (double) y + 2;
+                double topRightX = (double) x + entitySpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 1;
+                double topRightY = (double) y + 1;
                 Entity topR = getStillEntityAt(topRightX, topRightY);
                 if (topR instanceof Wall || topR instanceof Brick) {
                     moveY += entitySpeed;
                     direct = 2;
                 }
 
-                double botRightX = (double) x + entitySpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 2;
+                double botRightX = (double) x + entitySpeed + (double) Sprite.SCALED_SIZE * 3 / 4 - 1;
+                double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 1;
                 Entity botR = getStillEntityAt(botRightX, botRightY);
                 if (botR instanceof Wall || botR instanceof Brick) {
                     moveY -= entitySpeed;
@@ -147,16 +147,16 @@ public class Bomber extends AnimatedEntity {
                 moveY -= entitySpeed;
                 direct = 0;
             } else {
-                double topLeftX = (double) x + 2;
-                double topLeftY = (double) y - entitySpeed + 2;
+                double topLeftX = (double) x + 1;
+                double topLeftY = (double) y - entitySpeed + 1;
                 Entity topL = getStillEntityAt(topLeftX, topLeftY);
                 if (topL instanceof Wall || topL instanceof Brick) {
                     moveX += entitySpeed;
                     direct = 1;
                 }
 
-                double topRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                double topRightY = (double) y - entitySpeed + 2;
+                double topRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 1;
+                double topRightY = (double) y - entitySpeed + 1;
                 Entity topR = getStillEntityAt(topRightX, topRightY);
                 if (topR instanceof Wall || topR instanceof Brick) {
                     moveX -= entitySpeed;
@@ -170,15 +170,15 @@ public class Bomber extends AnimatedEntity {
                 moveY += entitySpeed;
                 direct = 2;
             } else {
-                double botLeftX = (double) x + 2;
-                double botLeftY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 2;
+                double botLeftX = (double) x + 1;
+                double botLeftY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 1;
                 Entity botL = getStillEntityAt(botLeftX, botLeftY);
                 if (botL instanceof Wall || botL instanceof Brick) {
                     moveX += entitySpeed;
                     direct = 1;
                 }
-                double botRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                double botRightY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 2;
+                double botRightX = (double) x + (double) Sprite.SCALED_SIZE * 3 / 4 - 1;
+                double botRightY = (double) y + entitySpeed + (double) Sprite.SCALED_SIZE - 1;
                 Entity botR = getStillEntityAt(botRightX, botRightY);
                 if (botR instanceof Wall || botR instanceof Brick) {
                     moveX -= entitySpeed;

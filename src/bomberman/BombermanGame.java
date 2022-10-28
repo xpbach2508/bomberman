@@ -4,6 +4,7 @@ import bomberman.entities.AnimatedEntity;
 import bomberman.entities.Bomb;
 import bomberman.entities.Bomber;
 import bomberman.entities.Enemies.Enemies;
+import bomberman.entities.Enemies.Minvo;
 import bomberman.entities.Entity;
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Brick;
@@ -39,7 +40,7 @@ public class BombermanGame extends Application {
 
     public static Pane root = new Pane();
     public static Bomber player = new Bomber(1, 1, Sprite.player_right.getFxImage());
-    public static List<Entity> entities = new ArrayList<>(List.of(player));
+    public static List<Enemies> enemies = new ArrayList<>();
     public static List<Entity> stillObjects = new ArrayList<>();
     public static int[] size = new int[2];
     public static List<Bomb> bombList = new ArrayList<>();
@@ -93,12 +94,14 @@ public class BombermanGame extends Application {
 
     public void update(Bomber player) {
         //Enemy and player
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).update();
+        player.update();
+        for (Enemies e : enemies) {
+            e.setDirection(player, stillObjects);
+            e.update();
         }
         //Bomb
         for (Bomb e : bombList) {
-            e.update(entities, stillObjects, bombList);
+            e.update(player, enemies, stillObjects, bombList);
         }
         //Brick and wall
         for (int i = 0; i < stillObjects.size(); i++) {
@@ -114,16 +117,14 @@ public class BombermanGame extends Application {
             }
         }
         //Enemy and player collision
-        for (int i = 0; i < entities.size(); i++) {
-            Entity e = entities.get(i);
-            if (e.removed && (e instanceof Enemies) && ((AnimatedEntity) e).timeAnimation <= 0) {
-                entities.remove(i);
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemies e = enemies.get(i);
+            if (e.removed &&  e.timeAnimation <= 0) {
+                enemies.remove(i);
                 i--;
                 numberEnemies--;
             }
-            if (e instanceof Enemies) {
-                if (player.collide(e) && !e.removed) player.removed = true;
-            }
+            if (player.collide(e) && !e.removed) player.removed = true;
         }
     }
 
@@ -132,12 +133,13 @@ public class BombermanGame extends Application {
         for (Entity stillObject : stillObjects) {
             stillObject.render(graContext);
         }
-        for (Entity entity : entities) {
+        for (Entity entity : enemies) {
             entity.render(graContext);
         }
         for (Bomb b : bombList) {
             b.render(graContext);
         }
+        player.render(graContext);
     }
 
     public static Entity getStillEntityAt(double x, double y) {
@@ -146,7 +148,7 @@ public class BombermanGame extends Application {
         for (int i = stillObjects.size() - 1; i >= 0; i--) {
             Entity e = stillObjects.get(i);
             if (e instanceof Grass) continue;
-            if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
+            if (e.getTileX() == xTile && e.getTileY() == yTile) {
                 return e;
             }
         }
@@ -163,9 +165,9 @@ public class BombermanGame extends Application {
     }
 
     public static Entity getMovingEntityAt(double x, double y) {
-        for (int i = entities.size() - 1; i >= 0; i--) {
-            Entity e = entities.get(i);
-            if (e instanceof Enemies) if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
+        for (int i = enemies.size() - 1; i >= 0; i--) {
+            Enemies e = enemies.get(i);
+            if (e.getTileX() == (int) x / Sprite.SCALED_SIZE && e.getTileY() == (int) y / Sprite.SCALED_SIZE) {
                 return e;
             }
         }

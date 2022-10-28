@@ -132,7 +132,7 @@ public class Bomb extends AnimatedEntity {
         }
     }
 
-    public void update(List<Entity> player, List<Entity> stillObj, List<Bomb> bombList) {
+    public void update(Bomber player, List<Enemies> enemy, List<Entity> stillObj, List<Bomb> bombList) {
         if (timerExplode > 0) timerExplode--;
         else {
             if (!explodedBomb) {
@@ -145,35 +145,33 @@ public class Bomb extends AnimatedEntity {
             }
             else removed = true;
         }
-        for (Entity e : player) {
-            if (e instanceof Bomber) {
-                double topLeftX = (double) e.getX() + 2;
-                double topLeftY = (double) e.getY() + 2;
-                double topRightX = (double) e.getX() + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                double topRightY = (double) e.getY() + 2;
-                double botLeftX = (double) e.getX() + 2;
-                double botLeftY = (double) e.getY() + (double) Sprite.SCALED_SIZE - 2;
-                double botRightX = (double) e.getX() + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-                double botRightY = (double) e.getY() + (double) Sprite.SCALED_SIZE - 2;
-                int tileTopLx = (int) topLeftX / Sprite.SCALED_SIZE;
-                int tileTopLy = (int) topLeftY / Sprite.SCALED_SIZE;
-                int tileTopRx = (int) topRightX / Sprite.SCALED_SIZE;
-                int tileTopRy = (int) topRightY / Sprite.SCALED_SIZE;
-                int tileBotLx = (int) botLeftX / Sprite.SCALED_SIZE;
-                int tileBotLy = (int) botLeftY / Sprite.SCALED_SIZE;
-                int tileBotRx = (int) botRightX / Sprite.SCALED_SIZE;
-                int tileBotRy = (int) botRightY / Sprite.SCALED_SIZE;
-                if ((tileTopLx != this.getTileX() || tileTopLy != this.getTileY())
-                    && (tileBotRx != this.getTileX() || tileBotRy != this.getTileY())
-                    && (tileTopRx != this.getTileX() || tileTopRy != this.getTileY())
-                    && (tileBotLx != this.getTileX() || tileBotLy != this.getTileY())) {
-                    this.setMovedOut(true);
-                }
-            }
-            if (explodedBomb && (e instanceof Bomber || e instanceof Enemies)) {
+        double topLeftX = (double) player.getX() + 2;
+        double topLeftY = (double) player.getY() + 2;
+        double topRightX = (double) player.getX() + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+        double topRightY = (double) player.getY() + 2;
+        double botLeftX = (double) player.getX() + 2;
+        double botLeftY = (double) player.getY() + (double) Sprite.SCALED_SIZE - 2;
+        double botRightX = (double) player.getX() + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
+        double botRightY = (double) player.getY() + (double) Sprite.SCALED_SIZE - 2;
+        int tileTopLx = (int) topLeftX / Sprite.SCALED_SIZE;
+        int tileTopLy = (int) topLeftY / Sprite.SCALED_SIZE;
+        int tileTopRx = (int) topRightX / Sprite.SCALED_SIZE;
+        int tileTopRy = (int) topRightY / Sprite.SCALED_SIZE;
+        int tileBotLx = (int) botLeftX / Sprite.SCALED_SIZE;
+        int tileBotLy = (int) botLeftY / Sprite.SCALED_SIZE;
+        int tileBotRx = (int) botRightX / Sprite.SCALED_SIZE;
+        int tileBotRy = (int) botRightY / Sprite.SCALED_SIZE;
+        if ((tileTopLx != this.getTileX() || tileTopLy != this.getTileY())
+                && (tileBotRx != this.getTileX() || tileBotRy != this.getTileY())
+                && (tileTopRx != this.getTileX() || tileTopRy != this.getTileY())
+                && (tileBotLx != this.getTileX() || tileBotLy != this.getTileY())) {
+            this.setMovedOut(true);
+        }
+        if (explodedBomb) if (deadByFlame(player)) player.removed = true;
+        for(Enemies e : enemy)
+            if (explodedBomb) {
                 if (deadByFlame(e)) e.removed = true;
             }
-        }
         for (Bomb e : bombList) {
             if (e!= this && deadByFlame(e)) e.timerExplode = 0;
         }

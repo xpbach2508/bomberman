@@ -1,8 +1,11 @@
 package bomberman.entities.Enemies;
 
+import bomberman.entities.Bomber;
+import bomberman.entities.Entity;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
+import java.util.List;
 import java.util.Random;
 
 import static bomberman.BombermanGame.player;
@@ -10,6 +13,7 @@ import static bomberman.BombermanGame.player;
 public class Doll extends Enemies{
 
     private double acceleration = 0;
+    private int timeChangeDir = 10;
     public Doll(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -39,13 +43,16 @@ public class Doll extends Enemies{
         boolean canMoveDown = canMove(x, y + 4);
         boolean canMoveUp = canMove(x, y - 4);
         Random newRandom = new Random();
-        System.out.println(newRandom.nextInt() % 100);
         if (direct == 1) {
-            if (canMoveUp && newRandom.nextInt() % 100 == 2) {
+            if (canMoveUp && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
                 direct = 0;
+                timeChangeDir = 10;
+                acceleration = 0;
             }
-            else if (canMoveDown && newRandom.nextInt() % 100 == 1) {
+            else if (canMoveDown && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
                 direct = 2;
+                timeChangeDir = 10;
+                acceleration = 0;
             }
             else if (canMoveRight) {
                 moveX = 1;
@@ -54,16 +61,21 @@ public class Doll extends Enemies{
                     moveX += 1;
                 }
             } else {
-                acceleration = 50;
-                direct = 2;
+                acceleration = 30;
+                direct = 3;
+                timeChangeDir--;
             }
         }
-        if (direct == 2) {
-            if (canMoveLeft && newRandom.nextInt() % 100 == 2) {
+        else if (direct == 2) {
+            if (canMoveLeft && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
                 direct = 3;
+                timeChangeDir = 10;
+                acceleration = 0;
             }
-            else if (canMoveRight && newRandom.nextInt() % 100 == 1) {
+            else if (canMoveRight && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
                 direct = 1;
+                timeChangeDir = 10;
+                acceleration = 0;
             }
             else if (canMoveDown) {
                 moveY = 1;
@@ -72,16 +84,21 @@ public class Doll extends Enemies{
                     moveY += 1;
                 }
             } else {
-                acceleration = 50;
-                direct = 3;
+                acceleration = 30;
+                direct = 0;
+                timeChangeDir--;
             }
         }
-        if (direct == 3) {
-            if (canMoveUp && newRandom.nextInt() % 100 == 2) {
+        else if (direct == 3) {
+            if (canMoveUp && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
                 direct = 0;
+                timeChangeDir = 10;
+                acceleration = 0;
             }
-            else if (canMoveDown && newRandom.nextInt() % 100 == 1) {
+            else if (canMoveDown && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
                 direct = 2;
+                timeChangeDir = 10;
+                acceleration = 0;
             }
             else if (canMoveLeft) {
                 moveX = -1;
@@ -90,16 +107,21 @@ public class Doll extends Enemies{
                     moveX -= 1;
                 }
             } else {
-                acceleration = 50;
-                direct = 0;
+                acceleration = 30;
+                direct = 1;
+                timeChangeDir--;
             }
         }
-        if (direct == 0) {
-            if (canMoveLeft && newRandom.nextInt() % 100 == 2) {
+        else if (direct == 0) {
+            if (canMoveLeft && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
                 direct = 3;
+                timeChangeDir = 10;
+                acceleration = 0;
             }
-            else if (canMoveRight && newRandom.nextInt() % 100 == 1) {
+            else if (canMoveRight && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
                 direct = 1;
+                timeChangeDir = 10;
+                acceleration = 0;
             }
             else if (canMoveUp) {
                 moveY = -1;
@@ -108,9 +130,11 @@ public class Doll extends Enemies{
                     moveY -= 1;
                 }
             } else {
-                acceleration = 50;
-                direct = 1;
+                acceleration = 30;
+                direct = 2;
+                timeChangeDir--;
             }
         }
     }
+
 }

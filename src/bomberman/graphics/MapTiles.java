@@ -6,6 +6,8 @@ import bomberman.entities.*;
 import bomberman.entities.Enemies.*;
 
 import java.io.*;
+import java.util.List;
+
 import static bomberman.BombermanGame.*;
 
 public class MapTiles {
@@ -25,6 +27,7 @@ public class MapTiles {
                 line = br.readLine();
                 for (int i = 0; i < WIDTH; i++) {
                     Entity object = new Grass(i, row, Sprite.grass.getFxImage());
+                    Enemies enemy = new Enemies(i, row, Sprite.minvo_right2.getFxImage());
                     stillObjects.add(object);
                     switch (line.charAt(i)) {
                         case '#' -> {
@@ -42,19 +45,24 @@ public class MapTiles {
                             stillObjects.add(object);
                         }
                         case '1' -> {
-                            object = new Balloom(i, row, Sprite.balloom_right1.getFxImage());
+                            enemy = new Balloom(i, row, Sprite.balloom_right1.getFxImage());
                             numberEnemies++;
-                            entities.add(object);
+                            enemies.add(enemy);
                         }
                         case '2' -> {
-                            object = new Oneal(i, row, Sprite.oneal_right1.getFxImage());
+                            enemy = new Oneal(i, row, Sprite.oneal_right1.getFxImage());
                             numberEnemies++;
-                            entities.add(object);
+                            enemies.add(enemy);
                         }
                         case '3' -> {
-                            object = new Doll(i, row, Sprite.doll_right1.getFxImage());
+                            enemy = new Doll(i, row, Sprite.doll_right1.getFxImage());
                             numberEnemies++;
-                            entities.add(object);
+                            enemies.add(enemy);
+                        }
+                        case '4' -> {
+                            enemy = new Minvo(i, row, Sprite.minvo_right1.getFxImage());
+                            numberEnemies++;
+                            enemies.add(enemy);
                         }
                         case 'b' -> {
                             object = new BombBuff(i, row, Sprite.powerup_bombs.getFxImage());
