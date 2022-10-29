@@ -39,13 +39,13 @@ public class Minvo extends Enemies {
     }
 
     @Override
-    public void setDirection(Bomber player, List<Entity> stillObj) {
+    public void setDirection(Bomber player) {
         ArrayList<Integer> directionList = new ArrayList<>();
         int directionNow = direct;
-        boolean canMoveRight = canMove(x + entitySpeed + Sprite.SCALED_SIZE / 4 + 3, y);
-        boolean canMoveLeft = canMove(x - entitySpeed - 3, y);
-        boolean canMoveDown = canMove(x, y + entitySpeed + 1);
-        boolean canMoveUp = canMove(x, y - entitySpeed - 3);
+        boolean canMoveRight = canMove(x + entitySpeed, y);
+        boolean canMoveLeft = canMove(x - entitySpeed, y);
+        boolean canMoveDown = canMove(x, y + entitySpeed);
+        boolean canMoveUp = canMove(x, y - entitySpeed);
         if (canMoveUp) directionList.add(0);
         if (canMoveRight) directionList.add(1);
         if (canMoveDown) directionList.add(2);
@@ -86,11 +86,7 @@ public class Minvo extends Enemies {
             double min = 10000;
             ArrayList<Double> bestDir = new ArrayList<>();
 
-            System.out.println(directionList.size());
-            for (int i = 0; i < directionList.size(); i++) {
-                System.out.print(directionList.get(i) + " ");
-            }
-            System.out.println("");
+            //System.out.println(directionList.size());
             for (int i = 0; i < directionList.size(); i++) {
                 int dir = directionList.get(i);
                 double distance = 0;

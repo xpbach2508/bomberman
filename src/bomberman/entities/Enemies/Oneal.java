@@ -1,11 +1,8 @@
 package bomberman.entities.Enemies;
 
 import bomberman.entities.Bomber;
-import bomberman.entities.Entity;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
-
-import java.util.List;
 
 import static bomberman.BombermanGame.player;
 
@@ -34,8 +31,8 @@ public class Oneal extends Enemies {
         }
     }
 
-    protected void move() {
+    @Override
+    public void setDirection(Bomber player) {
 
     }
-
 }

@@ -19,7 +19,7 @@ public class SpeedBuff extends Buff {
         if (e instanceof Bomber) {
             if (Collision.checkCollision(this, e)) {
                 music.playBuff();
-                ((Bomber) e).setEntitySpeed();
+                ((Bomber) e).setEntitySpeed(1);
                 return true;
             }
         }

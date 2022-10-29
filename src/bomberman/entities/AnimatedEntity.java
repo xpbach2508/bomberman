@@ -139,8 +139,12 @@ public abstract class AnimatedEntity extends Entity {
         return Math.sqrt(Math.pow(x - entity2.getX(), 2) + Math.pow(y - entity2.getY(), 2));
     }
 
-    public void setEntitySpeed() {
-        this.entitySpeed = this.entitySpeed + 1;
+    public int getEntitySpeed() {
+        return entitySpeed;
+    }
+
+    public void setEntitySpeed(int x) {
+        this.entitySpeed = this.entitySpeed + x;
     }
 
 

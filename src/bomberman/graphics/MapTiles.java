@@ -22,6 +22,8 @@ public class MapTiles {
             int WIDTH = Integer.parseInt(s[2]);
             arr[0] = WIDTH;
             arr[1] = HEIGHT;
+            Sprite.GameHeight = HEIGHT;
+            Sprite.GameWidth = WIDTH;
 
             for (int row = 0; row < HEIGHT; row++) {
                 line = br.readLine();

@@ -103,7 +103,7 @@ public class BombermanGame extends Application {
         //Enemy and player
         player.update();
         for (Enemies e : enemies) {
-            e.setDirection(player, stillObjects);
+            e.setDirection(player);
             e.update();
         }
         //Bomb
