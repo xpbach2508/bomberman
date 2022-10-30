@@ -26,7 +26,6 @@ public class Enemies extends AnimatedEntity {
         add('3');
         add('4');
         add('d');
-        add('f');
     }};
 
     public Enemies(int x, int y, Image img) {

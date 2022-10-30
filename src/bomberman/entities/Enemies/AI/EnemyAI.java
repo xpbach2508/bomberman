@@ -16,12 +16,10 @@ public class EnemyAI {
     Node startNode, goalNode, currentNode;
     boolean goalReached = false;
     int step = 0;
-    boolean canChangeSpeed;
     int maxCol = Sprite.GameWidth;
     int maxRow = Sprite.GameHeight;
     Enemies enemy;
-    public EnemyAI(Bomber player, Enemies e, boolean canChangeSpeed) {
-        this.canChangeSpeed = canChangeSpeed;
+    public EnemyAI(Bomber player, Enemies e) {
         this.enemy = e;
         initNodes();
     }

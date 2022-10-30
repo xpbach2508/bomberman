@@ -15,9 +15,10 @@ import static bomberman.BombermanGame.getStillEntityAt;
 import static bomberman.BombermanGame.player;
 
 public class Kondoria extends Enemies {
-    EnemyAI ai = new EnemyAI(player, this, false);
+    EnemyAI ai = new EnemyAI(player, this);
     public Kondoria(int x, int y, Image img) {
         super(x, y, img);
+        entitySpeed = 1;
     }
 
     protected void chooseSprite() {

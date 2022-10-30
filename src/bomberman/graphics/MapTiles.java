@@ -81,6 +81,18 @@ public class MapTiles {
                             enemies.add(enemy);
                             tileMap[i][row] = '5';
                         }
+                        case '6' -> {
+                            enemy = new Pass(i, row, Sprite.pass_right1.getFxImage());
+                            numberEnemies++;
+                            enemies.add(enemy);
+                            tileMap[i][row] = '6';
+                        }
+                        case '7' -> {
+                            enemy = new Ovape(i, row, Sprite.ovape_right1.getFxImage());
+                            numberEnemies++;
+                            enemies.add(enemy);
+                            tileMap[i][row] = '7';
+                        }
                         case 'b' -> {
                             object = new BombBuff(i, row, Sprite.powerup_bombs.getFxImage());
                             stillObjects.add(object);
