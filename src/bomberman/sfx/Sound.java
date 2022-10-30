@@ -1,4 +1,4 @@
-package bomberman;
+package bomberman.sfx;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -135,7 +135,7 @@ public class Sound {
 
     public void playDead() {
          {
-            dead.setOnEndOfMedia(() -> dead.seek(Duration.ZERO));
+            dead.seek(Duration.ZERO);
             dead.play();
         }
     }

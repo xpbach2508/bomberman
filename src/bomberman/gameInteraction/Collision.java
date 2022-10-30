@@ -6,12 +6,6 @@ import bomberman.entities.Flame;
 
 public class Collision {
 
-    private static int leftA;
-    private static int leftB;
-    private static int rightA, rightB;
-    private static int topA, topB;
-    private static int bottomA, bottomB;
-
     public static boolean checkCollision(Entity e1, Entity e2) {
         int lengthCut = 10;
         int realCondition = 0;
@@ -23,35 +17,29 @@ public class Collision {
         int y1 = e1.getY();
         int x2 = e2.getX();
         int y2 = e2.getY();
-        leftA = x1;
-        leftB = x2 + lengthCut;
-        topA = y1;
-        topB = y2 + lengthCut;
+        int leftB = x2 + lengthCut;
+        int topB = y2 + lengthCut;
         //lengthCut là khi check những player như bomber hay enemy sẽ ko tính 2 phần rìa 2 bên của nó, sẽ thật hơn. Chú ý e2 là player.
-        rightA = x1 + (int) e1.getImg().getWidth();
-        rightB = x2 + (int) e2.getImg().getWidth() - lengthCut - realCondition;
-        bottomA = y1 + (int) e1.getImg().getHeight();
-        bottomB = y2 + (int) e2.getImg().getHeight() - lengthCut;
-        if ( bottomA <= topB )
+        int rightA = x1 + (int) e1.getImg().getWidth();
+        int rightB = x2 + (int) e2.getImg().getWidth() - lengthCut - realCondition;
+        int bottomA = y1 + (int) e1.getImg().getHeight();
+        int bottomB = y2 + (int) e2.getImg().getHeight() - lengthCut;
+        if ( bottomA <= topB)
         {
             return false;
         }
 
-        if ( topA >= bottomB )
+        if ( y1 >= bottomB)
         {
             return false;
         }
 
-        if ( rightA <= leftB )
+        if ( rightA <= leftB)
         {
             return false;
         }
 
-        if ( leftA >= rightB )
-        {
-            return false;
-        }
-        return true;
+        return x1 < rightB;
     }
 
 }

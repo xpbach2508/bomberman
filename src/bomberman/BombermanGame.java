@@ -1,10 +1,8 @@
 package bomberman;
 
-import bomberman.entities.AnimatedEntity;
 import bomberman.entities.Bomb;
 import bomberman.entities.Bomber;
 import bomberman.entities.Enemies.Enemies;
-import bomberman.entities.Enemies.Minvo;
 import bomberman.entities.Entity;
 import bomberman.entities.buff.Buff;
 import bomberman.entities.tile.Brick;
@@ -12,6 +10,7 @@ import bomberman.entities.tile.Grass;
 import bomberman.graphics.Menu;
 import bomberman.graphics.Sprite;
 import bomberman.inPut.handleInput;
+import bomberman.sfx.Sound;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -30,7 +29,6 @@ import static bomberman.graphics.MapTiles.tileMap;
 import static bomberman.graphics.Menu.loadObject;
 
 public class BombermanGame extends Application {
-    // replace with getWidth and getHeight
     public static Sound music = new Sound();
     public static int WIDTH;
     public static int HEIGHT;
@@ -88,9 +86,9 @@ public class BombermanGame extends Application {
                 if (running) {
                     player.move(direction);
                     if (direction.space && !player.removed) {
-                        putBomb(player);
+                        player.putBomb();
                     }
-                    removeBombs(player);
+                    player.removeBombs();
                     update(player);
                     countTime();
                     render();
@@ -133,7 +131,7 @@ public class BombermanGame extends Application {
                 i--;
                 numberEnemies--;
             }
-            if (player.collide(e) && !e.removed) player.removed = true;
+            if (player.collide(e) && !e.removed && !player.immortal) player.removed = true;
         }
     }
 
@@ -181,46 +179,6 @@ public class BombermanGame extends Application {
             }
         }
         return null;
-    }
-
-    public void removeBombs(Bomber e) {
-        for (int i = 0; i < bombList.size(); i++) {
-            Bomb b = bombList.get(i);
-            if (bombList.get(i).removed) {
-                tileMap[b.getTileX()][b.getTileY()] = ' ';
-                b.setMapChar(' ');
-                bombList.remove(i);
-                e.bombNow++;
-                i--;
-            }
-        }
-    }
-
-    public void putBomb(Bomber e) {
-        if (e.timerIntervalBomb < 0 && e.bombNow > 0) {
-            int xTileMore = 0;
-            int yTileMore = 0;
-            if (!canPutBomb(e)) switch (e.direct) {
-                case 0 -> yTileMore = 1;
-                case 2 -> yTileMore = -1;
-                case 3 -> xTileMore = 1;
-                default -> xTileMore = -1;
-            }
-            Bomb b = new Bomb((e.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + xTileMore,
-                    (e.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + yTileMore, Sprite.bomb.getFxImage(), e.bombPower);
-            tileMap[b.getTileX()][b.getTileY()] = 'd';
-
-            bombList.add(b);
-            music.playPlantBomb();
-            e.timerIntervalBomb = 30;
-            e.bombNow--;
-        }
-    }
-
-    public boolean canPutBomb(Bomber b) {
-        Entity e = getMovingEntityAt((b.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE,
-                                                    ((b.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE));
-        return e == null;
     }
 
     public void countTime() {

@@ -1,6 +1,5 @@
 package bomberman.graphics;
 
-import bomberman.entities.Bomber;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.application.Platform;
@@ -183,6 +182,7 @@ public class Menu {
 
     public static void checkEnd(String message) {
         TaskBar.clear();
+        player.score = 0;
         Image bl = new Image("./textures/black.png", 32 * 31 + 200, 32 * 13+60, false, false);
         ImageView black = new ImageView(bl);
         Image cat = new Image("./textures/cat.gif", 32 * 9, 32 * 4, false, false);

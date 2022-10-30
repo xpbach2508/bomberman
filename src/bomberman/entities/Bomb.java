@@ -225,7 +225,7 @@ public class Bomb extends AnimatedEntity {
                 && (tileBotLx != this.getTileX() || tileBotLy != this.getTileY())) {
             this.setMovedOut(true);
         }
-        if (explodedBomb) if (deadByFlame(player)) player.removed = true;
+        if (explodedBomb) if (deadByFlame(player) && !player.immortal) player.removed = true;
         for(Enemies e : enemy)
             if (explodedBomb) {
                 if (deadByFlame(e)) e.removed = true;

@@ -1,17 +1,13 @@
 package bomberman.entities.Enemies;
 
-import bomberman.entities.Bomber;
-import bomberman.entities.Entity;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
-import java.util.List;
 import java.util.Random;
 
 import static bomberman.BombermanGame.player;
 
 public class Doll extends Enemies{
-
     private double acceleration = 0;
     public Doll(int x, int y, Image img) {
         super(x, y, img);
