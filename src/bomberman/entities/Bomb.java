@@ -13,6 +13,7 @@ import java.util.List;
 
 import static bomberman.BombermanGame.getStillEntityAt;
 import static bomberman.BombermanGame.music;
+import static bomberman.graphics.MapTiles.tileMap;
 
 public class Bomb extends AnimatedEntity {
 
@@ -32,18 +33,19 @@ public class Bomb extends AnimatedEntity {
         flameList[1] = new ArrayList<>();
         flameList[2] = new ArrayList<>();
         flameList[3] = new ArrayList<>();
+        setMapChar('f');
     }
 
     private void createFlame(int direction, int length, ArrayList<Flame> flames) {
         boolean lastFlame = false;
         int limitLength = realDistance(direction, length);
         for (int i = 1; i <= limitLength; i++) {
+            int xTile = this.getTileX();
+            int yTile = this.getTileY();
             if (i == limitLength) {
                 lastFlame = true;
             }
             Flame f;
-            int xTile = this.getTileX();
-            int yTile = this.getTileY();
 
             if (direction == 0) {
                 f = new Flame(xTile, yTile - i, direction, lastFlame);
@@ -58,6 +60,21 @@ public class Bomb extends AnimatedEntity {
                 f = new Flame(xTile - i, yTile, direction, lastFlame);
             }
             flames.add(f);
+        }
+    }
+
+    public void setMapChar(char ch) {
+        for (int i = 1; i <= checkAIDistance(0, bombLength); i++ ) {
+            tileMap[this.getTileX()][this.getTileY() - i] = ch;
+        }
+        for (int i = 1; i <= checkAIDistance(1, bombLength); i++ ) {
+            tileMap[this.getTileX() + i][this.getTileY()] = ch;
+        }
+        for (int i = 1; i <= checkAIDistance(2, bombLength); i++ ) {
+            tileMap[this.getTileX()][this.getTileY() + 1] = ch;
+        }
+        for (int i = 1; i <= checkAIDistance(3, bombLength); i++ ) {
+            tileMap[this.getTileX() - i][this.getTileY()] = ch;
         }
     }
 
@@ -100,6 +117,47 @@ public class Bomb extends AnimatedEntity {
                 if (block instanceof Wall) return i - 1;
                 if (block instanceof Brick) {
                     block.removed = true;
+                    return i - 1;
+                }
+            }
+        }
+        return length;
+    }
+    private int checkAIDistance(int direction, int length) {
+        if (direction == 0) {
+            for (int i = 1; i <= length; i++) {
+                Entity block = getStillEntityAt(x, y - i * Sprite.SCALED_SIZE);
+                if (block instanceof Wall) {
+                    return i - 1;
+                }
+                if (block instanceof Brick) {
+                    return i - 1;
+                }
+            }
+        }
+        else if (direction == 1) {
+            for (int i = 1; i <= length; i++) {
+                Entity block = getStillEntityAt(x + i * Sprite.SCALED_SIZE, y);
+                if (block instanceof Wall) return i - 1;
+                if (block instanceof Brick) {
+                    return i - 1;
+                }
+            }
+        }
+        else if (direction == 2) {
+            for (int i = 1; i <= length; i++) {
+                Entity block = getStillEntityAt(x, y + i * Sprite.SCALED_SIZE);
+                if (block instanceof Wall) return i - 1;
+                if (block instanceof Brick) {
+                    return i - 1;
+                }
+            }
+        }
+        else {
+            for (int i = 1; i <= length; i++) {
+                Entity block = getStillEntityAt(x - i * Sprite.SCALED_SIZE, y);
+                if (block instanceof Wall) return i - 1;
+                if (block instanceof Brick) {
                     return i - 1;
                 }
             }

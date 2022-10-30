@@ -9,12 +9,25 @@ import bomberman.entities.tile.Wall;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static bomberman.BombermanGame.getStillEntityAt;
 
 public class Enemies extends AnimatedEntity {
     protected int preX = 0, preY = 0;
+    protected int timeChangeDir = 10;
+
+    public List<Character> goThrough = new ArrayList<Character>(){{
+        add('#');
+        add('1');
+        add('2');
+        add('3');
+        add('4');
+        add('d');
+        add('f');
+    }};
 
     public Enemies(int x, int y, Image img) {
         super(x,y,img);
@@ -65,6 +78,67 @@ public class Enemies extends AnimatedEntity {
         }
     }
     public void setDirection(Bomber player) {
+        boolean canMoveRight = canMove(x + 4, y);
+        boolean canMoveLeft = canMove(x - 4, y);
+        boolean canMoveDown = canMove(x, y + 4);
+        boolean canMoveUp = canMove(x, y - 4);
+        Random newRandom = new Random();
+        if (direct == 1) {
+            if (canMoveUp && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
+                direct = 0;
+                timeChangeDir = 5;
+            }
+            else if (canMoveDown && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
+                direct = 2;
+                timeChangeDir = 5;
+            }
+            else if (!canMoveRight) {
+                direct = 3;
+                timeChangeDir--;
+            }
+        }
+        else if (direct == 2) {
+            if (canMoveLeft && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
+                direct = 3;
+                timeChangeDir = 5;
+            }
+            else if (canMoveRight && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
+                direct = 1;
+                timeChangeDir = 5;
+            }
+            else if (!canMoveDown) {
+                direct = 0;
+                timeChangeDir--;
+            }
+        }
+        else if (direct == 3) {
+            if (canMoveUp && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
+                direct = 0;
+                timeChangeDir = 5;
+            }
+            else if (canMoveDown && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
+                direct = 2;
+                timeChangeDir = 5;
+            }
+            else if (!canMoveLeft) {
+                direct = 1;
+                timeChangeDir--;
+            }
+        }
+        else if (direct == 0) {
+            if (canMoveLeft && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
+                direct = 3;
+                timeChangeDir = 5;
+            }
+            else if (canMoveRight && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
+                direct = 1;
+                timeChangeDir = 5;
+            }
+            else if (!canMoveUp) {
+                direct = 2;
+                timeChangeDir--;
+            }
+        }
     }
 
     @Override

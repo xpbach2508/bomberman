@@ -13,7 +13,6 @@ import static bomberman.BombermanGame.player;
 public class Doll extends Enemies{
 
     private double acceleration = 0;
-    private int timeChangeDir = 10;
     public Doll(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -136,5 +135,6 @@ public class Doll extends Enemies{
             }
         }
     }
+
 
 }

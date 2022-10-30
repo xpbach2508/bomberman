@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bomberman.graphics.MapTiles.tileMap;
 import static bomberman.graphics.Menu.loadObject;
 
 public class BombermanGame extends Application {
@@ -119,6 +120,7 @@ public class BombermanGame extends Application {
                 i--;
             }
             if (e instanceof Brick && ((Brick) e).timeRemoved <= 0) {
+                tileMap[e.getTileX()][e.getTileY()] = ' ';
                 stillObjects.remove(i);
                 i--;
             }
@@ -183,7 +185,10 @@ public class BombermanGame extends Application {
 
     public void removeBombs(Bomber e) {
         for (int i = 0; i < bombList.size(); i++) {
+            Bomb b = bombList.get(i);
             if (bombList.get(i).removed) {
+                tileMap[b.getTileX()][b.getTileY()] = ' ';
+                b.setMapChar(' ');
                 bombList.remove(i);
                 e.bombNow++;
                 i--;
@@ -203,6 +208,8 @@ public class BombermanGame extends Application {
             }
             Bomb b = new Bomb((e.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + xTileMore,
                     (e.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + yTileMore, Sprite.bomb.getFxImage(), e.bombPower);
+            tileMap[b.getTileX()][b.getTileY()] = 'd';
+
             bombList.add(b);
             music.playPlantBomb();
             e.timerIntervalBomb = 30;

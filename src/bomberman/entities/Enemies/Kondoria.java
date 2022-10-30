@@ -1,20 +1,23 @@
 package bomberman.entities.Enemies;
 
+import bomberman.entities.Bomb;
 import bomberman.entities.Bomber;
 import bomberman.entities.Enemies.AI.EnemyAI;
+import bomberman.entities.Entity;
+import bomberman.entities.tile.Brick;
+import bomberman.entities.tile.Wall;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
 import java.util.Random;
 
+import static bomberman.BombermanGame.getStillEntityAt;
 import static bomberman.BombermanGame.player;
 
-public class Oneal extends Enemies {
-
+public class Kondoria extends Enemies {
     EnemyAI ai = new EnemyAI(player, this, false);
-    public Oneal(int x, int y, Image img) {
+    public Kondoria(int x, int y, Image img) {
         super(x, y, img);
-        this.goThrough.add('*');
     }
 
     protected void chooseSprite() {
@@ -24,18 +27,46 @@ public class Oneal extends Enemies {
             }
             else {
                 animate = 0;
-                sprite = Sprite.oneal_dead;
+                sprite = Sprite.kondoria_dead;
                 player.score += 2;
             }
         }
         else switch (direct) {
-            case 0 -> sprite = Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_left2, Sprite.oneal_right2, animate, 40);
-            case 2 -> sprite = Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_right2, Sprite.oneal_left2, animate, 40);
-            case 3 -> sprite = Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3, animate, 40);
-            default -> sprite = Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, animate, 40);
+            case 0 -> sprite = Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_left2, Sprite.kondoria_right2, animate, 40);
+            case 2 -> sprite = Sprite.movingSprite(Sprite.kondoria_left1, Sprite.kondoria_right2, Sprite.kondoria_left2, animate, 40);
+            case 3 -> sprite = Sprite.movingSprite(Sprite.kondoria_left1, Sprite.kondoria_left2, Sprite.kondoria_left3, animate, 40);
+            default -> sprite = Sprite.movingSprite(Sprite.kondoria_right1, Sprite.kondoria_right2, Sprite.kondoria_right3, animate, 40);
         }
     }
 
+    @Override
+    public boolean canMove(int x, int y) {
+        double topLeftX = (double) x + 1;
+        double topLeftY = (double) y + 1;
+        double topRightX = (double) x + (double) Sprite.SCALED_SIZE - 1;
+        double topRightY = (double) y + 1;
+        double botLeftX = (double) x + 1;
+        double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 1;
+        double botRightX = (double) x + (double) Sprite.SCALED_SIZE - 1;
+        double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 1;
+        Entity topL = getStillEntityAt(topLeftX, topLeftY);
+        Entity topR = getStillEntityAt(topRightX, topRightY);
+        Entity botL = getStillEntityAt(botLeftX, botLeftY);
+        Entity botR = getStillEntityAt(botRightX, botRightY);
+        if (topL instanceof Wall || topL instanceof Bomb) {
+            return false;
+        }
+        if (topR instanceof Wall || topR instanceof Bomb) {
+            return false;
+        }
+        if (botL instanceof Wall || botL instanceof Bomb) {
+            return false;
+        }
+        if (botR instanceof Wall || botR instanceof Bomb) {
+            return false;
+        }
+        return true;
+    }
     @Override
     public void setDirection(Bomber player) {
         int goalCol = (player.getTileX());
@@ -50,7 +81,6 @@ public class Oneal extends Enemies {
             int yTile = (y + 1) / Sprite.SCALED_SIZE;
             int enRightX = (x + Sprite.SCALED_SIZE - 1) / Sprite.SCALED_SIZE;
             int enBotY = (y + Sprite.SCALED_SIZE - 1) / Sprite.SCALED_SIZE;
-            //System.out.println(nextX + " " + nextY + " " + xTile + " " + yTile + " " + enRightX + " " + enBotY);
             if (enRightX == xTile && enBotY == yTile) {
                 if (nextX > xTile) direct = 1;
                 if (nextX < xTile) direct = 3;
