@@ -2,7 +2,7 @@
 
 Trong bài tập lớn này, nhiệm vụ của bạn là viết một phiên bản Java mô phỏng lại trò chơi [Bomberman](https://www.youtube.com/watch?v=mKIOVwqgSXM) kinh điển của NES.
 
-![image](https://user-images.githubusercontent.com/100515892/199038571-ff01a7ac-dbed-4b1e-a90e-6bf75fa71673.png)
+![image](https://user-images.githubusercontent.com/100515892/199038926-0f01c3ff-e386-4ac9-aa1b-92b8323e0c5b.png)
 
 ## Mô tả về các đối tượng trong trò chơi
 Nếu bạn đã từng chơi Bomberman, bạn sẽ cảm thấy quen thuộc với những đối tượng này. Chúng được được chia làm hai loại chính là nhóm đối tượng động (*Bomber*, *Enemy*, *Bomb*) và nhóm đối tượng tĩnh (*Grass*, *Wall*, *Brick*, *Door*, *Item*).
@@ -55,7 +55,7 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 ![](res/classDiagram.png)
 
 ## Các tính năng khác
-- Hoàn thành giao diện trò chơi và menu: New Game, Credit, Exit, Pause, Replay
+- Hoàn thành giao diện trò chơi và menu: New Game, Credit, Exit, Pause, Replay, Maximize and minimize screen
 - Thiết kế 4 màn chơi đọc từ file text.
 - Thêm hiệu ứng và nhạc (Có thể bật tắt)
 - Thuật toán A* cho Enemy
