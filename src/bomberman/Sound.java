@@ -7,18 +7,21 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class Sound {
-    private final String playing_path = "D:\\bomberman\\res\\sounds\\game_sound.mp3";
-    private final String menu_path = "D:\\bomberman\\res\\sounds\\menu_sound.mp3";
-    private final String buff_path = "D:\\bomberman\\res\\sounds\\buff.wav";
-    private final String enter_portal_path = "D:\\bomberman\\res\\sounds\\enter_portal.wav";
-    private final String explode_path = "D:\\bomberman\\res\\sounds\\explode (2).wav";
-    private final String game_over_path = "D:\\bomberman\\res\\sounds\\game_over.mp3";
-    private final String move_vertical_path = "D:\\bomberman\\res\\sounds\\move_y.wav";
-    private final String move_horizontal_path = "D:\\bomberman\\res\\sounds\\move_x.wav";
-    private final String plant_bomb_path = "D:\\bomberman\\res\\sounds\\plant_bomb.wav";
-    private final String dead_path = "D:\\bomberman\\res\\sounds\\player_death.wav";
-    private final String load_scene_path = "D:\\bomberman\\res\\sounds\\stage_scene.wav";
-    private final String youWin_path = "D:\\bomberman\\res\\sounds\\youWin.mp3";
+    String workingDir = System.getProperty("user.dir");
+
+    private final String playing_path = workingDir + "\\res\\sounds\\game_sound.mp3";
+    private final String menu_path = workingDir + "\\res\\sounds\\menu_sound.mp3";
+    private final String buff_path = workingDir + "\\res\\sounds\\buff.wav";
+    private final String enter_portal_path = workingDir + "\\res\\sounds\\enter_portal.wav";
+    private final String explode_path = workingDir + "\\res\\sounds\\explode (2).wav";
+    private final String game_over_path = workingDir + "\\res\\sounds\\game_over.mp3";
+    private final String move_vertical_path = workingDir + "\\res\\sounds\\move_y.wav";
+    private final String move_horizontal_path = workingDir + "\\res\\sounds\\move_x.wav";
+    private final String plant_bomb_path = workingDir + "\\res\\sounds\\plant_bomb.wav";
+    private final String dead_path = workingDir + "\\res\\sounds\\player_death.wav";
+    private final String load_scene_path = workingDir + "\\res\\sounds\\stage_scene.wav";
+    private final String youWin_path = workingDir + "\\res\\sounds\\youWin.mp3";
+
 
     private final Media playing_media = new Media(new File(playing_path).toURI().toString());
     private final Media menu_media = new Media(new File(menu_path).toURI().toString());

@@ -20,7 +20,6 @@ public class Ovape extends Enemies {
     }
 
     protected void chooseSprite() {
-        System.out.println(this.x + " " + this.y);
         if (removed) {
             if (timeAnimation <= 30) {
                 sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 20);
@@ -32,7 +31,7 @@ public class Ovape extends Enemies {
             }
         }
         else {
-            if (distanceObject(this.x, this.y, player) < 300) switch (direct) {
+            if (distanceObject(this.x, this.y, player) < 220) switch (direct) {
                 case 0 -> sprite = Sprite.movingSprite(Sprite.ovape_right1, Sprite.ovape_left2, Sprite.ovape_right2, animate, 40);
                 case 2 -> sprite = Sprite.movingSprite(Sprite.ovape_left1, Sprite.ovape_right2, Sprite.ovape_left2, animate, 40);
                 case 3 -> sprite = Sprite.movingSprite(Sprite.ovape_left1, Sprite.ovape_left2, Sprite.ovape_left3, animate, 40);

@@ -50,7 +50,6 @@ public class Oneal extends Enemies {
             int yTile = (y + 1) / Sprite.SCALED_SIZE;
             int enRightX = (x + Sprite.SCALED_SIZE - 1) / Sprite.SCALED_SIZE;
             int enBotY = (y + Sprite.SCALED_SIZE - 1) / Sprite.SCALED_SIZE;
-            //System.out.println(nextX + " " + nextY + " " + xTile + " " + yTile + " " + enRightX + " " + enBotY);
             if (enRightX == xTile && enBotY == yTile) {
                 if (nextX > xTile) direct = 1;
                 if (nextX < xTile) direct = 3;

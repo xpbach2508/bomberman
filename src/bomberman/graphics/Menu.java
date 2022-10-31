@@ -87,7 +87,7 @@ public class Menu {
 
         Image bl = new Image("./textures/black.png", 32 * size[0] + 160, 32 * size[1]+60, false, false);
         ImageView black = new ImageView(bl);
-        Text text = new Text(520,260,"  GAME MADE BY :  \nPHAM MINH HIEU\nPHAM XUAN BACH.");
+        Text text = new Text(450,210,"  GAME MADE BY :  \nPHAM MINH HIEU\nPHAM XUAN BACH");
         text.setTextAlignment(TextAlignment.JUSTIFY);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 30));
         text.setFill(Color.WHITE);
@@ -143,7 +143,7 @@ public class Menu {
         root.getChildren().add(background);
         root.getChildren().add(loading);
 
-        Text text = new Text(520,260,level);
+        Text text = new Text(490,270,level);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
         text.setFill(Color.WHITE);
 
