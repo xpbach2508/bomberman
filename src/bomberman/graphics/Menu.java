@@ -1,6 +1,5 @@
 package bomberman.graphics;
 
-import bomberman.entities.Bomber;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.application.Platform;
@@ -11,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import static bomberman.BombermanGame.*;
@@ -21,7 +19,7 @@ public class Menu {
     public static void create() {
         music.playMenuMusic();
 
-        Image backgroundImg = new Image("./textures/background.png", 32 * size[0] + 160, 32 * size[1]+60, false, false);
+        Image backgroundImg = new Image("./textures/background.png", 32 * size[0] + 160, 32 * size[1] + 60, false, false);
         ImageView background = new ImageView(backgroundImg);
         background.setX(0);
         background.setY(0);
@@ -29,9 +27,9 @@ public class Menu {
         Text[] options = new Text[3];
         Rectangle[] rect = new Rectangle[3];
 
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             options[i] = new Text();
-            options[i].setFont(Font.loadFont("file:./res/textures/pixel_font.ttf",25));
+            options[i].setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 25));
             options[i].setFill(Color.WHITE);
 
             rect[i] = new Rectangle();
@@ -85,10 +83,13 @@ public class Menu {
             loadLevel("Stage 1");
         });
 
-        Image bl = new Image("./textures/black.png", 32 * size[0] + 160, 32 * size[1]+60, false, false);
+        Image bl = new Image("./textures/black.png", 32 * size[0] + 160, 32 * size[1] + 60, false, false);
         ImageView black = new ImageView(bl);
-        Text text = new Text(450,210,"  GAME MADE BY :  \nPHAM MINH HIEU\nPHAM XUAN BACH");
-        text.setTextAlignment(TextAlignment.JUSTIFY);
+        Text text = new Text(360, 200,
+                "                 GAME MADE BY :\n" +
+                        "      PHAM MINH HIEU 21020319\n" +
+                        "      PHAM XUAN BACH 21020283\n" +
+                        "AT OOP COURSE SEMESTER I 2022");
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 30));
         text.setFill(Color.WHITE);
 
@@ -108,26 +109,25 @@ public class Menu {
             credit.play();
         });
 
+        rect[2].setOnMouseClicked(event -> Platform.exit());
+        options[2].setOnMouseClicked(event -> Platform.exit());
 
-        rect[2].setOnMouseClicked(event-> Platform.exit());
-        options[2].setOnMouseClicked(event-> Platform.exit());
-
-
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             int finalI = i;
-            rect[i].setOnMouseEntered(event-> rect[finalI].setFill(Color.LIGHTGREEN));
-            rect[i].setOnMouseExited(event-> rect[finalI].setFill(Color.DEEPSKYBLUE));
-            options[i].setOnMouseEntered(event-> rect[finalI].setFill(Color.LIGHTGREEN));
-            options[i].setOnMouseExited(event-> rect[finalI].setFill(Color.DEEPSKYBLUE));
+            rect[i].setOnMouseEntered(event -> rect[finalI].setFill(Color.LIGHTGREEN));
+            rect[i].setOnMouseExited(event -> rect[finalI].setFill(Color.DEEPSKYBLUE));
+            options[i].setOnMouseEntered(event -> rect[finalI].setFill(Color.LIGHTGREEN));
+            options[i].setOnMouseExited(event -> rect[finalI].setFill(Color.DEEPSKYBLUE));
         }
     }
+
     public static void loadLevel(String level) {
         if (level.equals("Stage 1")) {
             TaskBar.create();
         }
-        Image backgroundImg = new Image("./textures/scr2gif.gif", 32 * size[0] + 160, 32 * size[1]+60, false, false);
+        Image backgroundImg = new Image("./textures/scr2gif.gif", 32 * size[0] + 160, 32 * size[1] + 60, false, false);
         Image load = new Image("./textures/load.gif", 32 * 9, 32 * 4, false, false);
-        Image bl = new Image("./textures/black.png", 32 * size[0] + 160, 32 * size[1]+60, false, false);
+        Image bl = new Image("./textures/black.png", 32 * size[0] + 160, 32 * size[1] + 60, false, false);
 
         music.stopGameMusic();
         music.stopMove();
@@ -183,7 +183,8 @@ public class Menu {
 
     public static void checkEnd(String message) {
         TaskBar.clear();
-        Image bl = new Image("./textures/black.png", 32 * 31 + 200, 32 * 13+60, false, false);
+        player.score = 0;
+        Image bl = new Image("./textures/black.png", 32 * 31 + 200, 32 * 13 + 60, false, false);
         ImageView black = new ImageView(bl);
         Image cat = new Image("./textures/cat.gif", 32 * 9, 32 * 4, false, false);
         ImageView meow = new ImageView(cat);
@@ -193,7 +194,7 @@ public class Menu {
         music.stopGameMusic();
         music.stopMove();
 
-        Text text = new Text(510,250,message);
+        Text text = new Text(500, 250, message);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
         text.setFill(Color.WHITE);
         root.getChildren().add(black);

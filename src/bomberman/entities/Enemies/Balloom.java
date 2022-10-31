@@ -1,11 +1,7 @@
 package bomberman.entities.Enemies;
 
-import bomberman.entities.Bomber;
-import bomberman.entities.Entity;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
-
-import java.util.List;
 
 import static bomberman.BombermanGame.player;
 
@@ -36,9 +32,9 @@ public class Balloom extends Enemies {
         moveX = 0;
         moveY = 0;
         if (direct == 1) {
-            if (canMove(x + 8, y)) {
+            if (canMove(x + 4, y)) {
                 moveX = 1;
-                if (x - preX > 24) if (canMove(x, y - 4) || canMove(x, y + 4)) {
+                if (x - preX > 24) if (canMove(x, y - 8) || canMove(x, y + 8)) {
                     direct = random(new int[]{1, 0, 2});
                     setChangedCoordinates(x, y);
                 }
@@ -62,7 +58,7 @@ public class Balloom extends Enemies {
         if (direct == 3) {
             if (canMove(x - 4, y)) {
                 moveX = -1;
-                if (preX - x > 24) if (canMove(x+10, y - 4) || canMove(x+10, y + 4)) {
+                if (preX - x > 24) if (canMove(x, y - 8) || canMove(x, y + 8)) {
                     direct = random(new int[]{3, 0, 2});
                     setChangedCoordinates(x, y);
                 }

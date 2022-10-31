@@ -1,6 +1,5 @@
 package bomberman.entities;
 
-import bomberman.gameInteraction.Collision;
 import bomberman.entities.tile.Brick;
 import bomberman.entities.tile.Portal;
 import bomberman.entities.tile.Wall;
@@ -11,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import static bomberman.BombermanGame.*;
+import static bomberman.graphics.MapTiles.tileMap;
 import static bomberman.graphics.Menu.*;
 
 public class Bomber extends AnimatedEntity {
@@ -24,6 +24,8 @@ public class Bomber extends AnimatedEntity {
     public int level = 1;
     public int timerDead = 100;
     public int timeLeft = 200;
+    public int timeImmortal = 4;
+    public boolean immortal = true;
     boolean startDead = true;
 
     public Bomber(int x, int y, Image img) {
@@ -39,6 +41,8 @@ public class Bomber extends AnimatedEntity {
         y += moveY;
         if (timerIntervalBomb < -2500) timerIntervalBomb = 0;
         else timerIntervalBomb--;
+        if (timeImmortal > 0) timeImmortal--;
+        else immortal = false;
         checkWin();
         TaskBar.update();
     }
@@ -51,7 +55,7 @@ public class Bomber extends AnimatedEntity {
         else music.stopMove();
 
         if (removed || timeLeft == 0) {
-            music.playDead();
+            if (timeAnimation == 70) music.playDead();
             if (startDead && timeAnimation > 0) {
                 sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, animate, 70);
                 timeAnimation--;
@@ -191,18 +195,53 @@ public class Bomber extends AnimatedEntity {
         }
     }
 
-    @Override
-    public boolean collide(Entity e) {
-        return Collision.checkCollision(this, e);
+    public void removeBombs() {
+        for (int i = 0; i < bombList.size(); i++) {
+            Bomb b = bombList.get(i);
+            if (bombList.get(i).removed) {
+                tileMap[b.getTileX()][b.getTileY()] = ' ';
+                b.setMapChar(' ');
+                bombList.remove(i);
+                bombNow++;
+                i--;
+            }
+        }
+    }
+
+    public void putBomb() {
+        if (timerIntervalBomb < 0 && bombNow > 0) {
+            int xTileMore = 0;
+            int yTileMore = 0;
+            if (!canPutBomb()) switch (direct) {
+                case 0 -> yTileMore = 1;
+                case 2 -> yTileMore = -1;
+                case 3 -> xTileMore = 1;
+                default -> xTileMore = -1;
+            }
+            Bomb b = new Bomb((getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + xTileMore,
+                    (getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + yTileMore, Sprite.bomb.getFxImage(), bombPower);
+            tileMap[b.getTileX()][b.getTileY()] = 'd';
+
+            bombList.add(b);
+            music.playPlantBomb();
+            timerIntervalBomb = 30;
+            bombNow--;
+        }
+    }
+
+    public boolean canPutBomb() {
+        Entity e = getMovingEntityAt((this.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE,
+                ((this.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE));
+        return e == null;
     }
 
     public void checkWin() {
         for (Entity e : stillObjects) {
-             if (e instanceof Portal &&
-                (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.x / Sprite.SCALED_SIZE &&
-                (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.y / Sprite.SCALED_SIZE &&
-                !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) &&
-                numberEnemies == 0) {
+            if (e instanceof Portal &&
+                    (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.x / Sprite.SCALED_SIZE &&
+                    (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.y / Sprite.SCALED_SIZE &&
+                    !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) &&
+                    numberEnemies == 0) {
                 level++;
                 music.playPortal();
                 try {
@@ -210,7 +249,7 @@ public class Bomber extends AnimatedEntity {
                 } catch (InterruptedException I) {
                     I.printStackTrace();
                 }
-                if (level < 3) {
+                if (level < 5) {
                     loadObject("Stage " + level);
                     loadLevel("Stage " + level);
                 } else {
@@ -233,6 +272,8 @@ public class Bomber extends AnimatedEntity {
         timeAnimation = 70;
         startDead = true;
         removed = false;
+        timeImmortal = 400;
+        immortal = true;
     }
 
     @Override

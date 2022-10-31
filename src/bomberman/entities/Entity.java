@@ -1,12 +1,9 @@
 package bomberman.entities;
 
 import bomberman.gameInteraction.Collision;
-import javafx.scene.SnapshotParameters;
+import bomberman.graphics.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import bomberman.graphics.Sprite;
 
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
@@ -64,11 +61,11 @@ public abstract class Entity {
     }
 
     public int getTileX() {
-        return (int) (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
+        return (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
     }
 
     public int getTileY() {
-        return (int) (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
+        return (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
     }
 
 

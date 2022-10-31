@@ -5,8 +5,6 @@ import bomberman.entities.tile.Wall;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
-import java.util.List;
-
 import static bomberman.BombermanGame.getStillEntityAt;
 
 public abstract class AnimatedEntity extends Entity {
@@ -68,10 +66,6 @@ public abstract class AnimatedEntity extends Entity {
 
     public double distanceObject(int x, int y, Entity entity2) {
         return Math.sqrt(Math.pow(x - entity2.getX(), 2) + Math.pow(y - entity2.getY(), 2));
-    }
-
-    public int getEntitySpeed() {
-        return entitySpeed;
     }
 
     public void setEntitySpeed(int x) {
