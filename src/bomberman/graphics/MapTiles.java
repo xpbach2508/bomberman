@@ -6,7 +6,6 @@ import bomberman.entities.*;
 import bomberman.entities.Enemies.*;
 
 import java.io.*;
-import java.util.List;
 
 import static bomberman.BombermanGame.*;
 

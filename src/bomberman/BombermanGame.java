@@ -29,14 +29,15 @@ import static bomberman.graphics.MapTiles.tileMap;
 import static bomberman.graphics.Menu.loadObject;
 
 public class BombermanGame extends Application {
+    private GraphicsContext graContext;
+    private Canvas canvas;
+    private long preTime;
+
     public static Sound music = new Sound();
     public static int WIDTH;
     public static int HEIGHT;
     public static boolean running = false;
     public static int numberEnemies;
-    private GraphicsContext graContext;
-    private Canvas canvas;
-    private long preTime;
 
     public static Pane root = new Pane();
     public static Bomber player = new Bomber(1, 1, Sprite.player_right.getFxImage());
@@ -56,11 +57,10 @@ public class BombermanGame extends Application {
         graContext = canvas.getGraphicsContext2D();
         canvas.setTranslateY(60);
 
-        // Tao root container
+        // Tao root container va scale
         root.getChildren().add(canvas);
         Scene scene = new Scene(root, Sprite.SCALED_SIZE * WIDTH + 160, Sprite.SCALED_SIZE * HEIGHT + 60, Color.SKYBLUE);
         Scale scale = new Scale(1,1,0,0);
-        root.getTransforms().removeIf(e -> (e instanceof Scale));
         scale.xProperty().bind(root.widthProperty().divide(32 * size[0] + 160));
         scale.yProperty().bind(root.heightProperty().divide(32 * size[1] + 60));
         root.getTransforms().add(scale);
@@ -76,9 +76,7 @@ public class BombermanGame extends Application {
         stage.getIcons().add(new Image("./textures/icon.jfif"));
         stage.setTitle("Bomberman");
         stage.setScene(scene);
-        stage.setResizable(true);
         stage.show();
-
 
         AnimationTimer timer = new AnimationTimer() {
             @Override

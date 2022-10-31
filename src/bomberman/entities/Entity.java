@@ -61,11 +61,11 @@ public abstract class Entity {
     }
 
     public int getTileX() {
-        return (int) (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
+        return (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
     }
 
     public int getTileY() {
-        return (int) (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
+        return (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
     }
 
 

@@ -3,8 +3,6 @@ package bomberman.entities;
 import bomberman.gameInteraction.Collision;
 import bomberman.graphics.Sprite;
 
-import static bomberman.BombermanGame.music;
-
 public class Flame extends AnimatedEntity {
     protected boolean last;
     protected int direction;

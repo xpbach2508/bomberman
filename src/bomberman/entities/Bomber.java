@@ -237,11 +237,11 @@ public class Bomber extends AnimatedEntity {
 
     public void checkWin() {
         for (Entity e : stillObjects) {
-             if (e instanceof Portal &&
-                (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.x / Sprite.SCALED_SIZE &&
-                (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.y / Sprite.SCALED_SIZE &&
-                !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) &&
-                numberEnemies == 0) {
+            if (e instanceof Portal &&
+                    (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.x / Sprite.SCALED_SIZE &&
+                    (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.y / Sprite.SCALED_SIZE &&
+                    !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) &&
+                    numberEnemies == 0) {
                 level++;
                 music.playPortal();
                 try {

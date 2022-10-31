@@ -9,8 +9,6 @@ import javafx.scene.image.Image;
 import static bomberman.BombermanGame.getStillEntityAt;
 import static bomberman.BombermanGame.music;
 
-//import static bomberman.Collision.checkCollision;
-
 public class FlameBuff extends Buff {
     public FlameBuff(int x, int y, Image img) {
         super(x, y, img);

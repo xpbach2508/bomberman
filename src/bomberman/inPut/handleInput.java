@@ -1,7 +1,6 @@
 package bomberman.inPut;
 
 import javafx.scene.input.KeyEvent;
-import javafx.event.EventHandler;
 
 public class handleInput {
     public boolean up, down, left, right;
@@ -9,59 +8,21 @@ public class handleInput {
 
     public void handlePressed (KeyEvent e) {
         switch (e.getCode()) {
-            case W:
-            case UP: {
-                up = true;
-                break;
-            }
-            case S:
-            case DOWN: {
-                down = true;
-                break;
-            }
-            case A:
-            case LEFT: {
-                left = true;
-                break;
-            }
-            case D:
-            case RIGHT: {
-                right = true;
-                break;
-            }
-            case SPACE: {
-                space = true;
-                break;
-            }
+            case W, UP -> up = true;
+            case S, DOWN -> down = true;
+            case A, LEFT -> left = true;
+            case D, RIGHT -> right = true;
+            case SPACE -> space = true;
         }
     }
 
     public void handleReleased (KeyEvent e) {
         switch (e.getCode()) {
-            case W:
-            case UP: {
-                up = false;
-                break;
-            }
-            case S:
-            case DOWN: {
-                down = false;
-                break;
-            }
-            case A:
-            case LEFT: {
-                left = false;
-                break;
-            }
-            case D:
-            case RIGHT: {
-                right = false;
-                break;
-            }
-            case SPACE: {
-                space = false;
-                break;
-            }
+            case W, UP -> up = false;
+            case S, DOWN -> down = false;
+            case A, LEFT -> left = false;
+            case D, RIGHT -> right = false;
+            case SPACE -> space = false;
         }
     }
 }
