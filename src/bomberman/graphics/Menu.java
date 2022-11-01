@@ -176,7 +176,7 @@ public class Menu {
         bombList.clear();
         player.reset();
         player.timeLeft = 200;
-        player.life = 3;
+        if (level.equals("Stage 1")) player.life = 3;
         numberEnemies = 0;
         getObject(size, level);
     }
