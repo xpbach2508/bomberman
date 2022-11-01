@@ -1,6 +1,7 @@
 package bomberman.entities.Enemies;
 
 import bomberman.entities.Bomber;
+import bomberman.entities.Enemies.AI.EnemyAI;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
@@ -11,9 +12,13 @@ import static bomberman.BombermanGame.player;
 
 public class Minvo extends Enemies {
 
+    EnemyAI ai = new EnemyAI(player, this);
     public Minvo(int x, int y, Image img) {
         super(x, y, img);
         entitySpeed = 2;
+        goThrough.add('f');
+        goThrough.add('*');
+        goThrough.add('d');
     }
 
     @Override
@@ -38,78 +43,35 @@ public class Minvo extends Enemies {
 
     @Override
     public void setDirection(Bomber player) {
-        ArrayList<Integer> directionList = new ArrayList<>();
-        int directionNow = direct;
-        boolean canMoveRight = canMove(x + entitySpeed, y);
-        boolean canMoveLeft = canMove(x - entitySpeed, y);
-        boolean canMoveDown = canMove(x, y + entitySpeed);
-        boolean canMoveUp = canMove(x, y - entitySpeed);
-        if (canMoveUp) directionList.add(0);
-        if (canMoveRight) directionList.add(1);
-        if (canMoveDown) directionList.add(2);
-        if (canMoveLeft) directionList.add(3);
-        if (directionList.size() == 0) {
-            direct = 4;
-            return;
-        }
-        if (directionList.size() == 2) {
-            if (directionNow == 0 && directionList.contains(2) && canMoveUp
-                    || directionNow == 2 && directionList.contains(0) && canMoveDown
-                    || directionNow == 1 && directionList.contains(3) && canMoveRight
-                    || directionNow == 3 && directionList.contains(1) && canMoveLeft) {
-                direct = directionNow;
-            } else {
-                if (directionNow == directionList.get(0)) {
-                    direct = directionList.get(1);
-                } else {
-                    direct = directionList.get(0);
+        if (distanceObject(this.getX(), this.getY(), player) < 150) {
+            entitySpeed = 1;
+            int goalCol = (player.getTileX());
+            int goalRow = player.getTileY();
+            int startCol = this.getTileX();
+            int startRow = this.getTileY();
+            ai.setNodes(startCol, startRow, goalCol, goalRow);
+            if (ai.search()) {
+                int nextX = ai.pathList.get(0).col ;
+                int nextY = ai.pathList.get(0).row ;
+                int xTile = (x + 1) / Sprite.SCALED_SIZE;
+                int yTile = (y + 1) / Sprite.SCALED_SIZE;
+                int enRightX = (x + Sprite.SCALED_SIZE - 1) / Sprite.SCALED_SIZE;
+                int enBotY = (y + Sprite.SCALED_SIZE - 1) / Sprite.SCALED_SIZE;
+                if (enRightX == xTile && enBotY == yTile) {
+                    if (nextX > xTile) direct = 1;
+                    if (nextX < xTile) direct = 3;
+                    if (nextY > yTile) direct = 2;
+                    if (nextY < yTile) direct = 0;
                 }
             }
-        } else if (directionList.size() == 1) {
-            direct = directionList.get(0);
-        } else {
-            if (directionNow == 0) {
-                directionList.remove((Integer) 2);
-                //if (!canMoveUp) directionList.remove((Integer) 0);
-            } else if (directionNow == 1) {
-                directionList.remove((Integer) 3);
-                //if (!canMoveRight) directionList.remove((Integer) 1);
-            } else if (directionNow == 2) {
-                directionList.remove((Integer) 0);
-                //if (!canMoveDown) directionList.remove((Integer) 2);
-            } else if (directionNow == 3) {
-                directionList.remove((Integer) 1);
-                //if (!canMoveRight) directionList.remove((Integer) 3);
-            }
-            double min = 10000;
-            ArrayList<Double> bestDir = new ArrayList<>();
-
-            //System.out.println(directionList.size());
-            for (int i = 0; i < directionList.size(); i++) {
-                int dir = directionList.get(i);
-                double distance = 0;
-                if (dir == 1) {
-                    distance = distanceObject(x + this.entitySpeed, y, player);
-                }
-                if (dir == 2) {
-                    distance = distanceObject(x, y + this.entitySpeed, player);
-                }
-                if (dir == 3) {
-                    distance = distanceObject(x - this.entitySpeed, y, player);
-                }
-                if (dir == 0) {
-                    distance = distanceObject(x, y - this.entitySpeed, player);
-                }
-                min = Math.min(min, distance);
-                bestDir.add(distance);
-            }
-            for (int i = 0; i < bestDir.size(); i++) {
-                if (bestDir.get(i) == min) {
-                    direct = directionList.get(i);
-                    break;
-                }
+            else {
+                entitySpeed = 2;
+                super.setDirection(player);
             }
         }
-        directionList.clear();
+        else {
+            entitySpeed = 2;
+            super.setDirection(player);
+        }
     }
 }

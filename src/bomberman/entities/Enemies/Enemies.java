@@ -19,13 +19,10 @@ public class Enemies extends AnimatedEntity {
     protected int preX = 0, preY = 0;
     protected int timeChangeDir = 10;
 
+    protected int timeStop = 0;
+
     public List<Character> goThrough = new ArrayList<Character>(){{
         add('#');
-        add('1');
-        add('2');
-        add('3');
-        add('4');
-        add('d');
     }};
 
     public Enemies(int x, int y, Image img) {

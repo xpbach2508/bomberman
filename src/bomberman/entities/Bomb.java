@@ -11,8 +11,7 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bomberman.BombermanGame.getStillEntityAt;
-import static bomberman.BombermanGame.music;
+import static bomberman.BombermanGame.*;
 import static bomberman.graphics.MapTiles.tileMap;
 
 public class Bomb extends AnimatedEntity {
@@ -203,28 +202,11 @@ public class Bomb extends AnimatedEntity {
             }
             else removed = true;
         }
-        double topLeftX = (double) player.getX() + 2;
-        double topLeftY = (double) player.getY() + 2;
-        double topRightX = (double) player.getX() + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-        double topRightY = (double) player.getY() + 2;
-        double botLeftX = (double) player.getX() + 2;
-        double botLeftY = (double) player.getY() + (double) Sprite.SCALED_SIZE - 2;
-        double botRightX = (double) player.getX() + (double) Sprite.SCALED_SIZE * 3 / 4 - 2;
-        double botRightY = (double) player.getY() + (double) Sprite.SCALED_SIZE - 2;
-        int tileTopLx = (int) topLeftX / Sprite.SCALED_SIZE;
-        int tileTopLy = (int) topLeftY / Sprite.SCALED_SIZE;
-        int tileTopRx = (int) topRightX / Sprite.SCALED_SIZE;
-        int tileTopRy = (int) topRightY / Sprite.SCALED_SIZE;
-        int tileBotLx = (int) botLeftX / Sprite.SCALED_SIZE;
-        int tileBotLy = (int) botLeftY / Sprite.SCALED_SIZE;
-        int tileBotRx = (int) botRightX / Sprite.SCALED_SIZE;
-        int tileBotRy = (int) botRightY / Sprite.SCALED_SIZE;
-        if ((tileTopLx != this.getTileX() || tileTopLy != this.getTileY())
-                && (tileBotRx != this.getTileX() || tileBotRy != this.getTileY())
-                && (tileTopRx != this.getTileX() || tileTopRy != this.getTileY())
-                && (tileBotLx != this.getTileX() || tileBotLy != this.getTileY())) {
-            this.setMovedOut(true);
+        boolean isEnemyOut = true;
+        for (Enemies e : enemy) {
+            if(!checkMovedOut(e)) isEnemyOut = false;
         }
+        if (isEnemyOut && checkMovedOut(player)) setMovedOut(true);
         if (explodedBomb) if (deadByFlame(player) && !player.immortal) player.removed = true;
         for(Enemies e : enemy)
             if (explodedBomb) {
@@ -263,6 +245,32 @@ public class Bomb extends AnimatedEntity {
 
     public void setMovedOut(boolean movedOut) {
         this.movedOut = movedOut;
+    }
+
+    private boolean checkMovedOut(Entity e) {
+        double topLeftX = (double) e.getX() + 1;
+        double topLeftY = (double) e.getY() + 1;
+        double topRightX = (double) e.getX() + (double) Sprite.SCALED_SIZE - 1;
+        double topRightY = (double) e.getY() + 1;
+        double botLeftX = (double) e.getX() + 1;
+        double botLeftY = (double) e.getY() + (double) Sprite.SCALED_SIZE - 1;
+        double botRightX = (double) e.getX() + (double) Sprite.SCALED_SIZE - 1;
+        double botRightY = (double) e.getY() + (double) Sprite.SCALED_SIZE - 1;
+        int tileTopLx = (int) topLeftX / Sprite.SCALED_SIZE;
+        int tileTopLy = (int) topLeftY / Sprite.SCALED_SIZE;
+        int tileTopRx = (int) topRightX / Sprite.SCALED_SIZE;
+        int tileTopRy = (int) topRightY / Sprite.SCALED_SIZE;
+        int tileBotLx = (int) botLeftX / Sprite.SCALED_SIZE;
+        int tileBotLy = (int) botLeftY / Sprite.SCALED_SIZE;
+        int tileBotRx = (int) botRightX / Sprite.SCALED_SIZE;
+        int tileBotRy = (int) botRightY / Sprite.SCALED_SIZE;
+        if ((tileTopLx != this.getTileX() || tileTopLy != this.getTileY())
+                && (tileBotRx != this.getTileX() || tileBotRy != this.getTileY())
+                && (tileTopRx != this.getTileX() || tileTopRy != this.getTileY())
+                && (tileBotLx != this.getTileX() || tileBotLy != this.getTileY())) {
+            return true;
+        }
+        return false;
     }
 
     @Override

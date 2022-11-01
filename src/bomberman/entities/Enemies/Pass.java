@@ -18,7 +18,6 @@ public class Pass extends Enemies {
     public Pass(int x, int y, Image img) {
         super(x, y, img);
         entitySpeed = 1;
-        goThrough.add('f');
         goThrough.add('*');
     }
 
@@ -42,38 +41,18 @@ public class Pass extends Enemies {
     }
 
     @Override
-    public boolean canMove(int x, int y) {
-        double topLeftX = (double) x + 1;
-        double topLeftY = (double) y + 1;
-        double topRightX = (double) x + (double) Sprite.SCALED_SIZE - 1;
-        double topRightY = (double) y + 1;
-        double botLeftX = (double) x + 1;
-        double botLeftY = (double) y + (double) Sprite.SCALED_SIZE - 1;
-        double botRightX = (double) x + (double) Sprite.SCALED_SIZE - 1;
-        double botRightY = (double) y + (double) Sprite.SCALED_SIZE - 1;
-        Entity topL = getStillEntityAt(topLeftX, topLeftY);
-        Entity topR = getStillEntityAt(topRightX, topRightY);
-        Entity botL = getStillEntityAt(botLeftX, botLeftY);
-        Entity botR = getStillEntityAt(botRightX, botRightY);
-        if (topL instanceof Wall || topL instanceof Bomb) {
-            return false;
-        }
-        if (topR instanceof Wall || topR instanceof Bomb) {
-            return false;
-        }
-        if (botL instanceof Wall || botL instanceof Bomb) {
-            return false;
-        }
-        if (botR instanceof Wall || botR instanceof Bomb) {
-            return false;
-        }
-        return true;
-    }
-    @Override
     public void setDirection(Bomber player) {
         Random newRandom = new Random();
-        if (newRandom.nextInt() % 100 == 5) entitySpeed = 0;
-        else entitySpeed = 1;
+        if (timeStop > 0) {
+            entitySpeed = 0;
+            timeStop--;
+        }
+        else {
+            entitySpeed = 1;
+        }
+        if (newRandom.nextInt() % 100 == 5 && timeStop <= 0) {
+            timeStop = 20;
+        }
         int goalCol = (player.getTileX());
         int goalRow = player.getTileY();
         int startCol = this.getTileX();
@@ -94,66 +73,7 @@ public class Pass extends Enemies {
             }
         }
         else {
-            boolean canMoveRight = canMove(x + 4, y);
-            boolean canMoveLeft = canMove(x - 4, y);
-            boolean canMoveDown = canMove(x, y + 4);
-            boolean canMoveUp = canMove(x, y - 4);
-            if (direct == 1) {
-                if (canMoveUp && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
-                    direct = 0;
-                    timeChangeDir = 5;
-                }
-                else if (canMoveDown && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
-                    direct = 2;
-                    timeChangeDir = 5;
-                }
-                else if (!canMoveRight) {
-                    direct = 3;
-                    timeChangeDir--;
-                }
-            }
-            else if (direct == 2) {
-                if (canMoveLeft && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
-                    direct = 3;
-                    timeChangeDir = 5;
-                }
-                else if (canMoveRight && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
-                    direct = 1;
-                    timeChangeDir = 5;
-                }
-                else if (!canMoveDown) {
-                    direct = 0;
-                    timeChangeDir--;
-                }
-            }
-            else if (direct == 3) {
-                if (canMoveUp && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
-                    direct = 0;
-                    timeChangeDir = 5;
-                }
-                else if (canMoveDown && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
-                    direct = 2;
-                    timeChangeDir = 5;
-                }
-                else if (!canMoveLeft) {
-                    direct = 1;
-                    timeChangeDir--;
-                }
-            }
-            else if (direct == 0) {
-                if (canMoveLeft && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
-                    direct = 3;
-                    timeChangeDir = 5;
-                }
-                else if (canMoveRight && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
-                    direct = 1;
-                    timeChangeDir = 5;
-                }
-                else if (!canMoveUp) {
-                    direct = 2;
-                    timeChangeDir--;
-                }
-            }
+            super.setDirection(player);
         }
     }
 }

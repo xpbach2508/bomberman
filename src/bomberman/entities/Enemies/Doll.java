@@ -1,5 +1,6 @@
 package bomberman.entities.Enemies;
 
+import bomberman.entities.Bomber;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
@@ -132,5 +133,7 @@ public class Doll extends Enemies{
         }
     }
 
-
+    @Override
+    public void setDirection(Bomber player) {
+    }
 }

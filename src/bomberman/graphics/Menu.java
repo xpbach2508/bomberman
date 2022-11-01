@@ -143,7 +143,7 @@ public class Menu {
         root.getChildren().add(background);
         root.getChildren().add(loading);
 
-        Text text = new Text(490,270,level);
+        Text text = new Text(490,280,level);
         text.setFont(Font.loadFont("file:./res/textures/pixel_font.ttf", 45));
         text.setFill(Color.WHITE);
 

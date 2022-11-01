@@ -19,6 +19,8 @@ public class Kondoria extends Enemies {
     public Kondoria(int x, int y, Image img) {
         super(x, y, img);
         entitySpeed = 1;
+        goThrough.add('d');
+        goThrough.add('f');
     }
 
     protected void chooseSprite() {
@@ -90,67 +92,7 @@ public class Kondoria extends Enemies {
             }
         }
         else {
-            boolean canMoveRight = canMove(x + 4, y);
-            boolean canMoveLeft = canMove(x - 4, y);
-            boolean canMoveDown = canMove(x, y + 4);
-            boolean canMoveUp = canMove(x, y - 4);
-            Random newRandom = new Random();
-            if (direct == 1) {
-                if (canMoveUp && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
-                    direct = 0;
-                    timeChangeDir = 5;
-                }
-                else if (canMoveDown && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
-                    direct = 2;
-                    timeChangeDir = 5;
-                }
-                else if (!canMoveRight) {
-                    direct = 3;
-                    timeChangeDir--;
-                }
-            }
-            else if (direct == 2) {
-                if (canMoveLeft && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
-                    direct = 3;
-                    timeChangeDir = 5;
-                }
-                else if (canMoveRight && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
-                    direct = 1;
-                    timeChangeDir = 5;
-                }
-                else if (!canMoveDown) {
-                    direct = 0;
-                    timeChangeDir--;
-                }
-            }
-            else if (direct == 3) {
-                if (canMoveUp && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
-                    direct = 0;
-                    timeChangeDir = 5;
-                }
-                else if (canMoveDown && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
-                    direct = 2;
-                    timeChangeDir = 5;
-                }
-                else if (!canMoveLeft) {
-                    direct = 1;
-                    timeChangeDir--;
-                }
-            }
-            else if (direct == 0) {
-                if (canMoveLeft && newRandom.nextInt() % 100 == 2 && timeChangeDir <= 0) {
-                    direct = 3;
-                    timeChangeDir = 5;
-                }
-                else if (canMoveRight && newRandom.nextInt() % 100 == 1 && timeChangeDir <= 0) {
-                    direct = 1;
-                    timeChangeDir = 5;
-                }
-                else if (!canMoveUp) {
-                    direct = 2;
-                    timeChangeDir--;
-                }
-            }
+            super.setDirection(player);
         }
     }
 }
