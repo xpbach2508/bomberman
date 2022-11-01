@@ -27,13 +27,13 @@ Các *Item* cũng được giấu phía sau Brick và chỉ hiện ra khi Brick 
 - ![](res/sprites/powerup_bombs.png) *BombItem* Thông thường, nếu không có đối tượng Bomb nào đang trong trạng thái kích hoạt, Bomber sẽ được đặt và kích hoạt duy nhất một đối tượng Bomb. Item này giúp tăng số lượng Bomb có thể đặt thêm một.
 
 Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này chỉ yêu cầu cài đặt hai loại Enemy dưới đây (nếu cài đặt thêm các loại khác sẽ được cộng thêm điểm):
-- ![](res/sprites/balloom_left1.png) *Balloom* là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc cố định
-- ![](res/sprites/oneal_left1.png) *Oneal* có tốc độ di chuyển chậm và di chuyển "thông minh" hơn so với Balloom (biết đuổi theo Bomber)
-- ![](res/sprites/doll_left1.png) *Doll* di chuyển ngẫu nhiên, tăng tốc độ khi va chạm với tường
-- ![](res/sprites/minvo_left1.png) *Minvo* di chuyển với tốc độ cực nhanh, nhưng dễ bị mắc kẹt
-- ![](res/sprites/kondoria_left1.png) *Kondoria* đi xuyên tường, đuổi theo Bomber
-- ![](res/sprites/pass_left1.png) *Pass* đuổi theo Bomber, lúc đi lúc không, né được Bombs và Flames
-- ![](res/sprites/ovape_left1.png) *Ovape* đuổi theo Bomber, né được Bombs, khi đến gần Bomber mới hiện hình
+- ![](res/sprites/balloom_left1.png) *Balloom* là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc chậm
+- ![](res/sprites/oneal_left1.png) *Oneal* có tốc độ di chuyển cao, hướng đi ngẫu nhiên
+- ![](res/sprites/doll_left1.png) *Doll* di chuyển ngẫu nhiên, tăng tốc độ khi va chạm với tường như cao su
+- ![](res/sprites/minvo_left1.png) *Minvo* di chuyển với tốc độ cực nhanh, nhưng khi tới gần Bomber sẽ đuổi theo Bomber với tốc độ chậm
+- ![](res/sprites/kondoria_left1.png) *Kondoria* đi xuyên tường, đuổi theo Bomber, né Bombs
+- ![](res/sprites/pass_left1.png) *Pass* đuổi theo Bomber, lúc đi lúc không
+- ![](res/sprites/ovape_left1.png) *Ovape* đuổi theo Bomber, lúc đi lúc không, né được Bombs, khi đến gần Bomber mới hiện hình còn khi ở xa hiện 3 con mắt
 
 ## Mô tả game play, xử lý va chạm và xử lý bom nổ
 - Trong một màn chơi, Bomber sẽ được người chơi di chuyển, đặt và kích hoạt Bomb với mục tiêu chính là tiêu diệt tất cả Enemy và tìm ra vị trí Portal để có thể qua màn mới
@@ -58,4 +58,5 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 - Hoàn thành giao diện trò chơi và menu: New Game, Credit, Exit, Pause, Replay, Maximize and minimize screen
 - Thiết kế 4 màn chơi đọc từ file text.
 - Thêm hiệu ứng và nhạc (Có thể bật tắt)
+- Người chơi bất tử 3 giây sau khi chết hoặc bắt đầu level
 - Thuật toán A* cho Enemy
