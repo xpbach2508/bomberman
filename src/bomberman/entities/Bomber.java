@@ -76,23 +76,26 @@ public class Bomber extends AnimatedEntity {
                     }
                 }
             }
-        } else switch (direct) {
-            case 0 -> {
-                sprite = Sprite.player_up;
-                if (moving) sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 20);
+        } else {
+            switch (direct) {
+                case 0 -> {
+                    sprite = Sprite.player_up;
+                    if (moving) sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 20);
+                }
+                case 2 -> {
+                    sprite = Sprite.player_down;
+                    if (moving) sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 20);
+                }
+                case 3 -> {
+                    sprite = Sprite.player_left;
+                    if (moving) sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 20);
+                }
+                default -> {
+                    sprite = Sprite.player_right;
+                    if (moving) sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 20);
+                }
             }
-            case 2 -> {
-                sprite = Sprite.player_down;
-                if (moving) sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 20);
-            }
-            case 3 -> {
-                sprite = Sprite.player_left;
-                if (moving) sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 20);
-            }
-            default -> {
-                sprite = Sprite.player_right;
-                if (moving) sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 20);
-            }
+            if (immortal) sprite = Sprite.movingSprite(sprite, Sprite.player_dead, animate, 40);
         }
     }
 
