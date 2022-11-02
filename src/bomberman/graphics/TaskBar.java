@@ -55,7 +55,7 @@ public class TaskBar {
         pause.setX(1000);
         replay.setX(1000);
         exit.setX(1000);
-        Music.setX(930);
+        Music.setX(1000);
         effect.setX(1070);
         pause.setY(80);
         replay.setY(215);

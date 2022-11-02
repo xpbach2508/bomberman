@@ -2,7 +2,7 @@ package bomberman.entities;
 
 import javafx.scene.image.Image;
 
-public abstract class WrapperBox extends AnimatedEntity {
+public abstract class WrapperBox extends Entity {
     public WrapperBox(int x, int y) {
         super(x, y);
     }

@@ -285,6 +285,7 @@ public class Bomber extends AnimatedEntity {
         timeImmortal = 400;
         immortal = true;
         detonatorOn = false;
+        bombDetonation();
     }
 
     @Override
