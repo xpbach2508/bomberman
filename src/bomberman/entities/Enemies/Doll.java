@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 
 import java.util.Random;
 
-import static bomberman.BombermanGame.player;
+import static bomberman.Board.player;
 
 public class Doll extends Enemies{
     private double acceleration = 0;

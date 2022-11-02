@@ -5,9 +5,7 @@ import bomberman.entities.Enemies.AI.EnemyAI;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
-import java.util.ArrayList;
-
-import static bomberman.BombermanGame.player;
+import static bomberman.Board.player;
 
 
 public class Minvo extends Enemies {

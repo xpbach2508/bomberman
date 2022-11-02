@@ -9,7 +9,7 @@ import bomberman.inPut.handleInput;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import static bomberman.BombermanGame.*;
+import static bomberman.Board.*;
 import static bomberman.graphics.MapTiles.tileMap;
 import static bomberman.graphics.Menu.*;
 
@@ -248,8 +248,8 @@ public class Bomber extends AnimatedEntity {
     public void checkWin() {
         for (Entity e : stillObjects) {
             if (e instanceof Portal &&
-                    (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.x / Sprite.SCALED_SIZE &&
-                    (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.y / Sprite.SCALED_SIZE &&
+                    (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.getX() / Sprite.SCALED_SIZE &&
+                    (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.getY() / Sprite.SCALED_SIZE &&
                     !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) /*&&
                     numberEnemies == 0*/) {
                 level++;

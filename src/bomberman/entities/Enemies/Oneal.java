@@ -1,17 +1,10 @@
 package bomberman.entities.Enemies;
 
-import bomberman.entities.Bomb;
 import bomberman.entities.Bomber;
-import bomberman.entities.Enemies.AI.EnemyAI;
-import bomberman.entities.Entity;
-import bomberman.entities.tile.Wall;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
-import java.util.Random;
-
-import static bomberman.BombermanGame.getStillEntityAt;
-import static bomberman.BombermanGame.player;
+import static bomberman.Board.player;
 
 public class Oneal extends Enemies {
 

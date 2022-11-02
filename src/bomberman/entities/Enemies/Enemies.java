@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static bomberman.BombermanGame.getStillEntityAt;
+import static bomberman.Board.getStillEntityAt;
 
 public class Enemies extends AnimatedEntity {
     protected int preX = 0, preY = 0;
@@ -21,7 +21,7 @@ public class Enemies extends AnimatedEntity {
 
     protected int timeStop = 0;
 
-    public List<Character> goThrough = new ArrayList<Character>(){{
+    public List<Character> goThrough = new ArrayList<>() {{
         add('#');
     }};
 

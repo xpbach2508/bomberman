@@ -7,7 +7,7 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class Sound {
-    String workingDir = System.getProperty("user.dir");
+    private final String workingDir = System.getProperty("user.dir");
 
     private final String playing_path = workingDir + "\\res\\sounds\\game_sound.mp3";
     private final String menu_path = workingDir + "\\res\\sounds\\menu_sound.mp3";
@@ -21,7 +21,6 @@ public class Sound {
     private final String dead_path = workingDir + "\\res\\sounds\\player_death.wav";
     private final String load_scene_path = workingDir + "\\res\\sounds\\stage_scene.wav";
     private final String youWin_path = workingDir + "\\res\\sounds\\youWin.mp3";
-
 
     private final Media playing_media = new Media(new File(playing_path).toURI().toString());
     private final Media menu_media = new Media(new File(menu_path).toURI().toString());
@@ -48,7 +47,6 @@ public class Sound {
     private final MediaPlayer load_scene = new MediaPlayer(load_scene_media);
     private final MediaPlayer game_over = new MediaPlayer(game_over_media);
     private final MediaPlayer dead = new MediaPlayer(dead_media);
-
 
     public boolean pauseMusic = false;
     public boolean pauseEffect = false;

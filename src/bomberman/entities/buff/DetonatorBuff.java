@@ -7,8 +7,8 @@ import bomberman.entities.tile.Brick;
 import bomberman.gameInteraction.Collision;
 import javafx.scene.image.Image;
 
-import static bomberman.BombermanGame.getStillEntityAt;
-import static bomberman.BombermanGame.music;
+import static bomberman.Board.getStillEntityAt;
+import static bomberman.Board.music;
 
 public class DetonatorBuff extends Buff {
     public DetonatorBuff(int x, int y, Image img) {

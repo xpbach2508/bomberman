@@ -7,7 +7,7 @@ import bomberman.entities.Enemies.*;
 
 import java.io.*;
 
-import static bomberman.BombermanGame.*;
+import static bomberman.Board.*;
 
 public class MapTiles {
     public static char[][] tileMap;

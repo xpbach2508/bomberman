@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bomberman.BombermanGame.*;
+import static bomberman.Board.*;
 import static bomberman.graphics.MapTiles.tileMap;
 
 public class Bomb extends AnimatedEntity {
@@ -19,7 +19,7 @@ public class Bomb extends AnimatedEntity {
     private boolean movedOut = false;
     private int timerExplode = 150;
     private int timerRemove = 20;
-    public boolean detonate = false;
+    public boolean detonate;
     public boolean explodedBomb = false;
 
     private int bombLength;

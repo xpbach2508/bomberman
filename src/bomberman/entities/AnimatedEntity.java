@@ -5,7 +5,7 @@ import bomberman.entities.tile.Wall;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
-import static bomberman.BombermanGame.getStillEntityAt;
+import static bomberman.Board.getStillEntityAt;
 
 public abstract class AnimatedEntity extends Entity {
     protected int animate = 0;

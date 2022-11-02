@@ -3,7 +3,7 @@ package bomberman.entities.Enemies;
 import bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
-import static bomberman.BombermanGame.player;
+import static bomberman.Board.player;
 
 public class Balloom extends Enemies {
 

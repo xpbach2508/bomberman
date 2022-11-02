@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static bomberman.BombermanGame.*;
+import static bomberman.Board.*;
 import static bomberman.graphics.MapTiles.getObject;
 
 public class Menu {
@@ -63,20 +63,16 @@ public class Menu {
         rect[2].setY(383);
 
         rect[0].setOnMouseClicked(event -> {
-            background.setX(-1000);
-            background.setY(-1000);
-            layoutMenu.setTranslateX(-1000);
-            layoutMenu.setTranslateY(-1000);
+            root.getChildren().remove(background);
+            root.getChildren().remove(layoutMenu);
             player.life = 3;
             music.stopMenuMusic();
             music.playGameMusic();
             loadLevel("Stage 1");
         });
         options[0].setOnMouseClicked(event -> {
-            background.setX(-1000);
-            background.setY(-1000);
-            layoutMenu.setTranslateX(-1000);
-            layoutMenu.setTranslateY(-1000);
+            root.getChildren().remove(background);
+            root.getChildren().remove(layoutMenu);
             player.life = 3;
             music.stopMenuMusic();
             music.playGameMusic();
@@ -176,7 +172,7 @@ public class Menu {
         bombList.clear();
         player.reset();
         player.timeLeft = 200;
-        if (level.equals("Stage 1")) player.life = 3;
+        player.life = 3;
         numberEnemies = 0;
         getObject(size, level);
     }

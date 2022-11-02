@@ -6,8 +6,8 @@ import bomberman.entities.Bomber;
 import bomberman.entities.Entity;
 import javafx.scene.image.Image;
 
-import static bomberman.BombermanGame.getStillEntityAt;
-import static bomberman.BombermanGame.music;
+import static bomberman.Board.getStillEntityAt;
+import static bomberman.Board.music;
 
 public class BombBuff extends Buff {
     public BombBuff(int x, int y, Image img) {

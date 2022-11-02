@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import static bomberman.BombermanGame.*;
+import static bomberman.Board.*;
 import static bomberman.graphics.Menu.loadObject;
 
 public class TaskBar {
