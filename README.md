@@ -24,7 +24,8 @@ Nếu bạn đã từng chơi Bomberman, bạn sẽ cảm thấy quen thuộc v�
 Các *Item* cũng được giấu phía sau Brick và chỉ hiện ra khi Brick bị phá hủy. Bomber có thể sử dụng Item bằng cách di chuyển vào vị trí của Item. Thông tin về chức năng của các Item được liệt kê như dưới đây:
 - ![](res/sprites/powerup_speed.png) *SpeedItem* Khi sử dụng Item này, Bomber sẽ được tăng vận tốc di chuyển thêm một giá trị thích hợp
 - ![](res/sprites/powerup_flames.png) *FlameItem* Item này giúp tăng phạm vi ảnh hưởng của Bomb khi nổ (độ dài các Flame lớn hơn)
-- ![](res/sprites/powerup_bombs.png) *BombItem* Thông thường, nếu không có đối tượng Bomb nào đang trong trạng thái kích hoạt, Bomber sẽ được đặt và kích hoạt duy nhất một đối tượng Bomb. Item này giúp tăng số lượng Bomb có thể đặt thêm một.
+- ![](res/sprites/powerup_bombs.png) *BombItem* Thông thường, nếu không có đối tượng Bomb nào đang trong trạng thái kích hoạt, Bomber sẽ được đặt và kích hoạt duy nhất một đối tượng Bomb. Item này giúp tăng số lượng Bomb có thể đặt thêm một
+- ![](res/sprites/powerup_detonator.png) *DetonatorItem* Item này giúp Bomber có thể ấn nút P để kích nổ toàn bộ Bombs đang hiện có trong game.
 
 Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này chỉ yêu cầu cài đặt hai loại Enemy dưới đây (nếu cài đặt thêm các loại khác sẽ được cộng thêm điểm):
 - ![](res/sprites/balloom_left1.png) *Balloom* là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc chậm
@@ -53,6 +54,8 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 ## UML Class Diagram
 
 ![](res/classDiagram.png)
+
+Chi tiết hơn xem tại: https://drive.google.com/file/d/1PYVmemv7PSHIe5EXTxhvNWo0-6Cmm6OV/view
 
 ## Các tính năng khác
 - Hoàn thành giao diện trò chơi và menu: New Game, Credit, Exit, Pause, Replay, Maximize and minimize screen
