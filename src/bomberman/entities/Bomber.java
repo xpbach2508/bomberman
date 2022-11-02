@@ -250,8 +250,8 @@ public class Bomber extends AnimatedEntity {
             if (e instanceof Portal &&
                     (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.getX() / Sprite.SCALED_SIZE &&
                     (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE == e.getY() / Sprite.SCALED_SIZE &&
-                    !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) /*&&
-                    numberEnemies == 0*/) {
+                    !(getStillEntityAt(e.getX(), e.getY()) instanceof Brick) &&
+                    numberEnemies == 0) {
                 level++;
                 music.playPortal();
                 try {
