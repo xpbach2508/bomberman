@@ -55,7 +55,7 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 
 ![](res/classDiagram.png)
 
-Chi tiết hơn xem tại: https://drive.google.com/file/d/1PYVmemv7PSHIe5EXTxhvNWo0-6Cmm6OV/view
+Chi tiết hơn xem tại: https://drive.google.com/file/d/1tuLhfk6RfbGROzYdtAoM6lJqZPGfZhai/view?usp=sharing
 
 ## Các tính năng khác
 - Hoàn thành giao diện trò chơi và menu: New Game, Credit, Exit, Pause, Replay, Maximize and minimize screen
