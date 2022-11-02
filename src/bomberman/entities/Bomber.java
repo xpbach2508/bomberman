@@ -19,6 +19,8 @@ public class Bomber extends AnimatedEntity {
     public int direct = -1;
     public boolean moving = false;
     public int bombNow = 1;
+
+    public boolean detonatorOn = false;
     public int timerIntervalBomb = 0;
     public int bombPower = 1;
     public int level = 1;
@@ -222,7 +224,7 @@ public class Bomber extends AnimatedEntity {
                 default -> xTileMore = -1;
             }
             Bomb b = new Bomb((getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + xTileMore,
-                    (getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + yTileMore, Sprite.bomb.getFxImage(), bombPower);
+                    (getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE + yTileMore, Sprite.bomb.getFxImage(), bombPower, detonatorOn);
             tileMap[b.getTileX()][b.getTileY()] = 'd';
 
             bombList.add(b);
@@ -236,6 +238,11 @@ public class Bomber extends AnimatedEntity {
         Entity e = getMovingEntityAt((this.getX() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE,
                 ((this.getY() + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE));
         return e == null;
+    }
+    public void bombDetonation() {
+        for (Bomb b : bombList) {
+            b.explodedBomb = true;
+        }
     }
 
     public void checkWin() {
@@ -277,6 +284,7 @@ public class Bomber extends AnimatedEntity {
         removed = false;
         timeImmortal = 400;
         immortal = true;
+        detonatorOn = false;
     }
 
     @Override

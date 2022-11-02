@@ -1,7 +1,7 @@
 1 13 31
 ###############################
 #p* s   * *    *  *    * *    #
-#   # #*# # #*#*# # # #*#*#*# #
+#   # #t# # #*#*# # # #*#*#*# #
 #  x* b    **  *      *   * * #
 # # # # # #*# # #*# # # # # #*#
 #     f     x **  *  *   3    #
@@ -39,5 +39,6 @@ Items:
 b - Bomb Item
 f - Flame Item
 s - Speed Item
+t - Detonator Item
 
 Kí tự khác các kí tự trên - Grass

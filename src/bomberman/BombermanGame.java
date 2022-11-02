@@ -86,6 +86,9 @@ public class BombermanGame extends Application {
                     if (direction.space && !player.removed) {
                         player.putBomb();
                     }
+                    if (player.detonatorOn && direction.p) {
+                        player.bombDetonation();
+                    }
                     player.removeBombs();
                     update(player);
                     countTime();

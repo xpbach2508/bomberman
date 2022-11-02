@@ -21,6 +21,7 @@ public class DetonatorBuff extends Buff {
         if (e instanceof Bomber) {
             if (Collision.checkCollision(this, e)) {
                 music.playBuff();
+                ((Bomber) e).detonatorOn = true;
                 return true;
             }
         }

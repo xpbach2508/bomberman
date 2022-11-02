@@ -19,15 +19,17 @@ public class Bomb extends AnimatedEntity {
     private boolean movedOut = false;
     private int timerExplode = 150;
     private int timerRemove = 20;
-    private boolean explodedBomb = false;
+    public boolean detonate = false;
+    public boolean explodedBomb = false;
 
     private int bombLength;
 
     private ArrayList<Flame>[] flameList = new ArrayList[4];
 
-    public Bomb(int xUnit, int yUnit, Image img, int bombLength) {
+    public Bomb(int xUnit, int yUnit, Image img, int bombLength, boolean detonate) {
         super(xUnit, yUnit, img);
         this.bombLength = bombLength;
+        this.detonate = detonate;
         flameList[0] = new ArrayList<>();
         flameList[1] = new ArrayList<>();
         flameList[2] = new ArrayList<>();
@@ -190,17 +192,28 @@ public class Bomb extends AnimatedEntity {
     }
 
     public void update(Bomber player, List<Enemies> enemy, List<Entity> stillObj, List<Bomb> bombList) {
-        if (timerExplode > 0) timerExplode--;
-        else {
-            if (!explodedBomb) {
+        if (detonate) {
+            if(explodedBomb) {
                 explodedBomb();
+                if (timerRemove > 0) {
+                    timerRemove--;
+                }
+                else removed = true;
             }
-            //Flame update
-            else update();
-            if (timerRemove > 0) {
-                timerRemove--;
+        }
+        else {
+            if (timerExplode > 0) timerExplode--;
+            else {
+                if (!explodedBomb) {
+                    explodedBomb();
+                }
+                //Flame update
+                else update();
+                if (timerRemove > 0) {
+                    timerRemove--;
+                }
+                else removed = true;
             }
-            else removed = true;
         }
         boolean isEnemyOut = true;
         for (Enemies e : enemy) {

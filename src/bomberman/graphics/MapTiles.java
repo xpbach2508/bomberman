@@ -113,7 +113,7 @@ public class MapTiles {
                             stillObjects.add(object);
                             tileMap[i][row] = '*';
                         }
-                        case 'p' -> {
+                        case 't' -> {
                             object = new DetonatorBuff(i, row, Sprite.powerup_detonator.getFxImage());
                             stillObjects.add(object);
                             object = new Brick(i, row, Sprite.brick.getFxImage());
